@@ -13,6 +13,8 @@ public final class IdentificationGenerator {
 	
 	public Identification generateIdentification()
 	{
+		generated = new Identification();
+		
 		generated.setGender(IdentificationDataGenerator.generateGender());
 		generated.setFullName(IdentificationDataGenerator.generateFullName(generated.getGender()));
 		generated.setPassportNumber(IdentificationDataGenerator.generatePassportNumber());

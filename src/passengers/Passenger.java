@@ -7,14 +7,16 @@ public class Passenger extends Thread{
 	private String fullName;
 	public Identification document;
 	
-	public Passenger(IdentificationGenerator generator)
+	/**
+	 * Is going to generate a Passenger with his Identification randomized. The fullName from Identification
+	 * is then used to be assigned to the fullName field in the Passenger class.
+	 * @param generator passed through as a mechanism to ensure randomized data from a pool of predetermined values.
+	 * The predetermined values are stored in a static way in the IdentificationDataGenerator class.
+	 */
+	public Passenger(IdentificationGenerator generator) //Dependency injection to ensure randomized attributes
 	{
 		Identification generatedInfo = generator.generateIdentification();
-		document = new Identification();
-		document.setFullName(generatedInfo.getFullName());
-		document.setGender(generatedInfo.getGender());
-		document.setPassportNumber(generatedInfo.getPassportNumber());
-		document.setNationality(generatedInfo.getNationality());
+		document = generatedInfo;
 		fullName = document.getFullName();
 	}
 	
@@ -22,8 +24,8 @@ public class Passenger extends Thread{
 	{
 		IdentificationGenerator generator = new IdentificationGenerator();
 		
-		document = generator.generateIdentification();
 		this.fullName = fullName;
+		document = generator.generateIdentification();
 		document.setFullName(fullName);  //maybe fix this method!
 	}
 	

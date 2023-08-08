@@ -21,18 +21,20 @@ public class Main extends Application {
 			//primaryStage.show();
 			
 			IdentificationGenerator generator = new IdentificationGenerator();
-			Passenger p1 = new Passenger(generator);
-			Passenger p2 = new Passenger(generator);
-			Passenger p3 = new Passenger(generator);
-			Passenger p4 = new Passenger(generator);
+			Passenger[] pas = new Passenger[10];
 			
-			System.out.println(p1);
-			System.out.println(p2);
-			System.out.println(p3);
-			System.out.println(p4);
+			for(int i = 0; i < 10; i++)
+			{
+				pas[i] = new Passenger(generator);
+			}
+			
+			for(Passenger p : pas)
+			{
+				System.out.println(p);
+			}
 			
 		} catch(Exception e) {
-			e.printStackTrace();
+			e.printStackTrace(); // LOGGER
 		}
 	}
 	
