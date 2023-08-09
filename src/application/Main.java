@@ -2,6 +2,7 @@ package application;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
+import passengers.BusPassenger;
 import passengers.Passenger;
 import util.random.IdentificationGenerator;
 import javafx.scene.Scene;
@@ -21,16 +22,17 @@ public class Main extends Application {
 			//primaryStage.show();
 			
 			IdentificationGenerator generator = new IdentificationGenerator();
-			Passenger[] pas = new Passenger[10];
+			BusPassenger[] pas = new BusPassenger[20];
 			
-			for(int i = 0; i < 10; i++)
+			
+			for(int i = 0; i < 20; i++)
 			{
-				pas[i] = new Passenger(generator);
+				pas[i] = new BusPassenger(generator);
 			}
 			
-			for(Passenger p : pas)
+			for(BusPassenger p : pas)
 			{
-				System.out.println(p);
+				System.out.println(p.getFullName() + " HAS LUGGAGE: \t" + p.hasLuggage() + " HAS ILLEGAL LUGGAGE: " + p.hasIllegalLuggage());
 			}
 			
 		} catch(Exception e) {

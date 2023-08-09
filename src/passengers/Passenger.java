@@ -1,9 +1,16 @@
 package passengers;
 
+import java.util.logging.Logger;
+
+import logger.LoggerManager;
 import util.random.IdentificationGenerator;
 
-public class Passenger extends Thread{
-
+public class Passenger{
+	//////////////////////////////////////////////////////////////////////
+	private static Logger infoLogger = LoggerManager.getInfoLogger();	
+	private static Logger errorLogger = LoggerManager.getErrorLogger();
+	/////////////////////////////////////////////////////////////////////
+	
 	private String fullName;
 	public Identification document;
 	
@@ -15,18 +22,43 @@ public class Passenger extends Thread{
 	 */
 	public Passenger(IdentificationGenerator generator) //Dependency injection to ensure randomized attributes
 	{
-		Identification generatedInfo = generator.generateIdentification();
-		document = generatedInfo;
-		fullName = document.getFullName();
+	    
+		
+		 try {
+	            
+			 Identification generatedInfo = generator.generateIdentification();
+			 document = generatedInfo;
+			 fullName = document.getFullName();
+
+	            infoLogger.info("Passenger created: " + fullName);
+	        } catch (Exception e) {
+	            errorLogger.severe("<Error creating passenger> " + e.getMessage());
+	        }
 	}
 	
 	public Passenger(String fullName) //TEST THIS METHOD!
 	{
-		IdentificationGenerator generator = new IdentificationGenerator();
 		
+		try {
+			IdentificationGenerator generator = new IdentificationGenerator();
+			
+			this.fullName = fullName;
+			document = generator.generateIdentification();
+			document.setFullName(fullName);  //maybe fix this method!
+            infoLogger.info("Passenger created: " + fullName);
+        } catch (Exception ex) {
+            errorLogger.severe("<Error creating passenger> " + ex.getMessage());
+        }
+		
+	}
+	
+	
+	public String getFullName() {
+		return fullName;
+	}
+	
+	public void setFullName(String fullName) {
 		this.fullName = fullName;
-		document = generator.generateIdentification();
-		document.setFullName(fullName);  //maybe fix this method!
 	}
 	
 	@Override 
@@ -39,5 +71,4 @@ public class Passenger extends Thread{
 		
 		return sb.toString();
 	}
-	
 }

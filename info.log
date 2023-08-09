@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-08-09T00:19:42.047450Z</date>
+  <millis>1691540382047</millis>
+  <nanos>450000</nanos>
+  <sequence>0</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Milica Gonzalez</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.123248300Z</date>
+  <millis>1691540382123</millis>
+  <nanos>248300</nanos>
+  <sequence>1</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: Milica Gonzalez has luggage: ( true ), has illegal luggage: ( false )
+</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.125243800Z</date>
+  <millis>1691540382125</millis>
+  <nanos>243800</nanos>
+  <sequence>2</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Louise Lombardi</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.128234400Z</date>
+  <millis>1691540382128</millis>
+  <nanos>234400</nanos>
+  <sequence>3</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: Louise Lombardi has luggage: ( true ), has illegal luggage: ( false )
+</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.133221300Z</date>
+  <millis>1691540382133</millis>
+  <nanos>221300</nanos>
+  <sequence>4</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Clara Pavlov</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.136213700Z</date>
+  <millis>1691540382136</millis>
+  <nanos>213700</nanos>
+  <sequence>5</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: Clara Pavlov has luggage: ( true ), has illegal luggage: ( false )
+</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.141199400Z</date>
+  <millis>1691540382141</millis>
+  <nanos>199400</nanos>
+  <sequence>6</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Julian Moore</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.144191700Z</date>
+  <millis>1691540382144</millis>
+  <nanos>191700</nanos>
+  <sequence>7</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: Julian Moore has luggage: ( true ), has illegal luggage: ( false )
+</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.149178900Z</date>
+  <millis>1691540382149</millis>
+  <nanos>178900</nanos>
+  <sequence>8</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Petar Simon</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.152171300Z</date>
+  <millis>1691540382152</millis>
+  <nanos>171300</nanos>
+  <sequence>9</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: Petar Simon has luggage: ( true ), has illegal luggage: ( false )
+</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.155162800Z</date>
+  <millis>1691540382155</millis>
+  <nanos>162800</nanos>
+  <sequence>10</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Olivia Martin</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.157171600Z</date>
+  <millis>1691540382157</millis>
+  <nanos>171600</nanos>
+  <sequence>11</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: Olivia Martin has luggage: ( true ), has illegal luggage: ( false )
+</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.163141Z</date>
+  <millis>1691540382163</millis>
+  <nanos>141000</nanos>
+  <sequence>12</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Polina Stojanovic</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.165136100Z</date>
+  <millis>1691540382165</millis>
+  <nanos>136100</nanos>
+  <sequence>13</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: Polina Stojanovic has luggage: ( false ), has illegal luggage: ( false )
+</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.166133800Z</date>
+  <millis>1691540382166</millis>
+  <nanos>133800</nanos>
+  <sequence>14</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Sora Popov</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.167130100Z</date>
+  <millis>1691540382167</millis>
+  <nanos>130100</nanos>
+  <sequence>15</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: Sora Popov has luggage: ( true ), has illegal luggage: ( false )
+</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.170123Z</date>
+  <millis>1691540382170</millis>
+  <nanos>123000</nanos>
+  <sequence>16</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Yuna Martinez</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.171121600Z</date>
+  <millis>1691540382171</millis>
+  <nanos>121600</nanos>
+  <sequence>17</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: Yuna Martinez has luggage: ( true ), has illegal luggage: ( false )
+</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.172118500Z</date>
+  <millis>1691540382172</millis>
+  <nanos>118500</nanos>
+  <sequence>18</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Yuto Hernandez</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.173114500Z</date>
+  <millis>1691540382173</millis>
+  <nanos>114500</nanos>
+  <sequence>19</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: Yuto Hernandez has luggage: ( true ), has illegal luggage: ( false )
+</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.174113300Z</date>
+  <millis>1691540382174</millis>
+  <nanos>113300</nanos>
+  <sequence>20</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: James Stojanovic</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.175109300Z</date>
+  <millis>1691540382175</millis>
+  <nanos>109300</nanos>
+  <sequence>21</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: James Stojanovic has luggage: ( false ), has illegal luggage: ( false )
+</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.177104400Z</date>
+  <millis>1691540382177</millis>
+  <nanos>104400</nanos>
+  <sequence>22</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Jan Milosavljevic</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.178101700Z</date>
+  <millis>1691540382178</millis>
+  <nanos>101700</nanos>
+  <sequence>23</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: Jan Milosavljevic has luggage: ( true ), has illegal luggage: ( false )
+</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.180097Z</date>
+  <millis>1691540382180</millis>
+  <nanos>97000</nanos>
+  <sequence>24</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Rika Zaitsev</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.182092500Z</date>
+  <millis>1691540382182</millis>
+  <nanos>92500</nanos>
+  <sequence>25</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: Rika Zaitsev has luggage: ( true ), has illegal luggage: ( false )
+</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.184085400Z</date>
+  <millis>1691540382184</millis>
+  <nanos>85400</nanos>
+  <sequence>26</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Grace Carter</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.185085300Z</date>
+  <millis>1691540382185</millis>
+  <nanos>85300</nanos>
+  <sequence>27</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: Grace Carter has luggage: ( false ), has illegal luggage: ( false )
+</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.186080600Z</date>
+  <millis>1691540382186</millis>
+  <nanos>80600</nanos>
+  <sequence>28</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Tatiana Watanabe</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.187077700Z</date>
+  <millis>1691540382187</millis>
+  <nanos>77700</nanos>
+  <sequence>29</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: Tatiana Watanabe has luggage: ( false ), has illegal luggage: ( false )
+</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.190069800Z</date>
+  <millis>1691540382190</millis>
+  <nanos>69800</nanos>
+  <sequence>30</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Mila Djor?evic</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.193066900Z</date>
+  <millis>1691540382193</millis>
+  <nanos>66900</nanos>
+  <sequence>31</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: Mila Djor?evic has luggage: ( true ), has illegal luggage: ( false )
+</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.195057200Z</date>
+  <millis>1691540382195</millis>
+  <nanos>57200</nanos>
+  <sequence>32</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Hikaru Miller</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.195057200Z</date>
+  <millis>1691540382195</millis>
+  <nanos>57200</nanos>
+  <sequence>33</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: Hikaru Miller has luggage: ( true ), has illegal luggage: ( false )
+</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.196053200Z</date>
+  <millis>1691540382196</millis>
+  <nanos>53200</nanos>
+  <sequence>34</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Jovana Simic</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.198048300Z</date>
+  <millis>1691540382198</millis>
+  <nanos>48300</nanos>
+  <sequence>35</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: Jovana Simic has luggage: ( false ), has illegal luggage: ( false )
+</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.199045600Z</date>
+  <millis>1691540382199</millis>
+  <nanos>45600</nanos>
+  <sequence>36</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Vladislav Sato</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.202038Z</date>
+  <millis>1691540382202</millis>
+  <nanos>38000</nanos>
+  <sequence>37</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: Vladislav Sato has luggage: ( false ), has illegal luggage: ( false )
+</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.203034800Z</date>
+  <millis>1691540382203</millis>
+  <nanos>34800</nanos>
+  <sequence>38</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Sora Garcia</message>
+</record>
+<record>
+  <date>2023-08-09T00:19:42.204032500Z</date>
+  <millis>1691540382204</millis>
+  <nanos>32500</nanos>
+  <sequence>39</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.BusPassenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Bus passenger created: Sora Garcia has luggage: ( true ), has illegal luggage: ( false )
+</message>
+</record>

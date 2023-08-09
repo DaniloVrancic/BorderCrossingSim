@@ -4,9 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Logger;
+
+import logger.LoggerManager;
 
 final class IdentificationDataGenerator {
-
+	
+	private static Logger errorLogger = LoggerManager.getErrorLogger();
+	
+	
 	private static Random rand = new Random();
 	
 	private static final int PASSPORT_NUMBER_DIGITS = 9;
@@ -22,7 +28,14 @@ final class IdentificationDataGenerator {
 	
 	static
 	{
-		new IdentificationDataGenerator(); //Call it just once to instanciate the 
+		try
+		{
+			init(); //Call it just once to instantiate the 			
+		}
+		catch(Exception ex)
+		{
+			errorLogger.severe("<Error initializing the IdentificationDataGenerator class>: " +ex.getMessage());
+		}
 	}
 	
 	/**
@@ -31,7 +44,11 @@ final class IdentificationDataGenerator {
 	 */
 	private IdentificationDataGenerator()
 	{
-		String[] maleNamesArray = {
+	}
+	
+	private static void init()
+	{
+String[] maleNamesArray = {
 			    
 			    "Jacob", "Ethan", "Michael", "Alexander", "William", "James", "Matthew", "David", "Joseph", "Daniel",
 			    "Andrew", "Ryan", "Joshua", "Christopher", "John", "Nicholas", "Brandon", "Tyler", "Jonathan", "Christian",
@@ -136,14 +153,24 @@ final class IdentificationDataGenerator {
 	
 	public static String generatePassportNumber()
 	{
-		StringBuilder passportNumber = new StringBuilder();
-		
-		for(int i = 0; i < PASSPORT_NUMBER_DIGITS; i++)
+		StringBuilder passportNumber = null;
+		try
+		{	
+			passportNumber = new StringBuilder();
+			for(int i = 0; i < PASSPORT_NUMBER_DIGITS; i++)
+			{
+				passportNumber.append(String.valueOf(rand.nextInt(PASSPORT_NUMBER_MAX_DIGIT + 1)));
+			}			
+		}
+		catch(Exception ex)
 		{
-			passportNumber.append(String.valueOf(rand.nextInt(PASSPORT_NUMBER_MAX_DIGIT + 1)));
+			errorLogger.severe("<Error generating passport number><Returning default passportNumber>: " +ex.getMessage());
+			passportNumber.append("000000000");
 		}
 		
-		return passportNumber.toString();
+		return passportNumber.toString();			
+		
+		
 	}
 	
 	public static String generateGender()
