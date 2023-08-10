@@ -936,23 +936,6 @@
 									"subViews": [
 										{
 											"_type": "UMLAttributeView",
-											"_id": "AAAAAAGJzMMmQOg0D0M=",
-											"_parent": {
-												"$ref": "AAAAAAGJzKxBOBv0STE="
-											},
-											"model": {
-												"$ref": "AAAAAAGJzMMmN+gxdMI="
-											},
-											"font": "Arial;13;0",
-											"left": 1589,
-											"top": 854,
-											"width": 205.94970703125,
-											"height": 13,
-											"text": "-deklarisanaMasa: Integer",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
 											"_id": "AAAAAAGJzMNMWulD2sM=",
 											"_parent": {
 												"$ref": "AAAAAAGJzKxBOBv0STE="
@@ -962,27 +945,10 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1589,
-											"top": 869,
+											"top": 854,
 											"width": 205.94970703125,
 											"height": 13,
 											"text": "-documentationNecessary: Boolean",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAGJzS8UIC9MZSc=",
-											"_parent": {
-												"$ref": "AAAAAAGJzKxBOBv0STE="
-											},
-											"model": {
-												"$ref": "AAAAAAGJzS8UGC9JvtQ="
-											},
-											"font": "Arial;13;0",
-											"left": 1589,
-											"top": 884,
-											"width": 205.94970703125,
-											"height": 13,
-											"text": "-stvarnaMasa: Integer",
 											"horizontalAlignment": 0
 										}
 									],
@@ -990,7 +956,7 @@
 									"left": 1584,
 									"top": 849,
 									"width": 215.94970703125,
-									"height": 53
+									"height": 23
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -1003,7 +969,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 1584,
-									"top": 902,
+									"top": 872,
 									"width": 215.94970703125,
 									"height": 10
 								},
@@ -6120,30 +6086,13 @@
 											"height": 13,
 											"text": "-stvarnaMasa",
 											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAGJzTHbu1Khcv4=",
-											"_parent": {
-												"$ref": "AAAAAAGJzS58dCp2Kh4="
-											},
-											"model": {
-												"$ref": "AAAAAAGJzTHbs1KPa+E="
-											},
-											"font": "Arial;13;0",
-											"left": 1589,
-											"top": 1084,
-											"width": 207,
-											"height": 13,
-											"text": "-registracija",
-											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 1584,
 									"top": 1049,
 									"width": 217,
-									"height": 53
+									"height": 38
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -6156,7 +6105,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 1584,
-									"top": 1102,
+									"top": 1087,
 									"width": 217,
 									"height": 10
 								},
@@ -6898,16 +6847,6 @@
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
-							"_id": "AAAAAAGJzMMmN+gxdMI=",
-							"_parent": {
-								"$ref": "AAAAAAGJzKxBNxvshdo="
-							},
-							"name": "deklarisanaMasa",
-							"visibility": "private",
-							"type": "Integer"
-						},
-						{
-							"_type": "UMLAttribute",
 							"_id": "AAAAAAGJzMNMVulA94k=",
 							"_parent": {
 								"$ref": "AAAAAAGJzKxBNxvshdo="
@@ -6915,16 +6854,6 @@
 							"name": "documentationNecessary",
 							"visibility": "private",
 							"type": "Boolean"
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAGJzS8UGC9JvtQ=",
-							"_parent": {
-								"$ref": "AAAAAAGJzKxBNxvshdo="
-							},
-							"name": "stvarnaMasa",
-							"visibility": "private",
-							"type": "Integer"
 						}
 					]
 				},
@@ -7431,16 +7360,6 @@
 								"$ref": "AAAAAAGJzS58cypuLhU="
 							},
 							"name": "stvarnaMasa",
-							"visibility": "private",
-							"type": ""
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAGJzTHbs1KPa+E=",
-							"_parent": {
-								"$ref": "AAAAAAGJzS58cypuLhU="
-							},
-							"name": "registracija",
 							"visibility": "private",
 							"type": ""
 						}
