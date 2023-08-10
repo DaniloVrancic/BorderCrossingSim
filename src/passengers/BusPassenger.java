@@ -16,6 +16,13 @@ public class BusPassenger extends Passenger{
 	private static final double HAVE_LUGGAGE_CHANGE = 0.7;
 	private static final double HAVE_ILLEGAL_LUGGAGE_CHANCE = 0.1;
 	
+	/**
+	 * The passenger will be created with luggage and illegal luggage already
+	 * calculated properly and set. The checks for illegal luggage and 
+	 * luggage generally can only be read, as there is no point in setting values that have been
+	 * generated.
+	 * @param generator the generator object that ensures the proper generation of Passenger details
+	 */
 	public BusPassenger(IdentificationGenerator generator) {
 		super(generator);
 		try
@@ -82,15 +89,15 @@ public class BusPassenger extends Passenger{
 		return hasLuggage;
 	}
 	
-	public void setLuggage(boolean hasLuggage) {
-		this.hasLuggage = hasLuggage;
-	}
+//	public void setLuggage(boolean hasLuggage) {
+//		this.hasLuggage = hasLuggage;
+//	}
 	
 	public boolean hasIllegalLuggage() {
 		return hasIllegalLuggage;
 	}
 	
-	public void setIllegalLuggage(boolean hasIllegalLuggage) {
-		this.hasIllegalLuggage = hasIllegalLuggage;
-	}
+//	public void setIllegalLuggage(boolean hasIllegalLuggage) {
+//		this.hasIllegalLuggage = hasIllegalLuggage;
+//	}
 }

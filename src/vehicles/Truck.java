@@ -11,8 +11,8 @@ public class Truck extends Vehicle<Passenger>{
 
 	private static int MAX_TRUCK_CAPACITY = 3;
 	
-	boolean documentationNecessary;
-	public Optional<CustomsDocument> customsDocument; //Will be filled by the CustomsTerminal if necessary
+	private boolean documentationNecessary;
+	public Optional<CustomsDocument> customsDocument = Optional.empty(); //Will be filled by the CustomsTerminal
 	
 	public Truck() {
 		super();
@@ -39,17 +39,7 @@ public class Truck extends Vehicle<Passenger>{
 	@Override
 	public void setNumOfPassengers(int numOfPassengers) throws IllegalNumberOfPassengers 
     {
-        if (numOfPassengers < 1 || numOfPassengers > MAX_TRUCK_CAPACITY) {
-            if (numOfPassengers < 1) {
-                String errorMessage = "Number of passengers needs to be at least 1";
-                throw new IllegalNumberOfPassengers(errorMessage);
-            } else if (numOfPassengers > MAX_TRUCK_CAPACITY) {
-                String errorMessage = "Number of passengers can not be more than " + MAX_TRUCK_CAPACITY;
-                throw new IllegalNumberOfPassengers(errorMessage);
-            }
-        } else {
-            this.numOfPassengers = numOfPassengers;
-        }
+       this.setNumOfPassengers(numOfPassengers, MAX_TRUCK_CAPACITY);
     }
 	
 	private void fillTruckWithPassengers(int randomGeneratedNumOfPassengers) {
@@ -61,5 +51,10 @@ public class Truck extends Vehicle<Passenger>{
 			this.passengers.add(new Passenger(Vehicle.generator));
 			--randomGeneratedNumOfPassengers;
 		}
+	}
+	
+	public boolean isDocumentationNecessary()
+	{
+		return this.documentationNecessary;
 	}
 }

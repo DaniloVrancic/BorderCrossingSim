@@ -6,6 +6,10 @@ import passengers.BusPassenger;
 import passengers.Passenger;
 import util.random.IdentificationGenerator;
 import util.random.RandomGenerator;
+import vehicles.Vehicle;
+import vehicles.Bus;
+import vehicles.Automobile;
+import vehicles.Truck;
 import vehicles.documents.CustomsDocument;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -24,17 +28,17 @@ public class Main extends Application {
 			//primaryStage.show();
 			
 			IdentificationGenerator generator = new IdentificationGenerator();
-			CustomsDocument[] pas = new CustomsDocument[20];
+			Vehicle[] pas = new Automobile[1];
 			
 			
-			for(int i = 0; i < 20; i++)
+			for(int i = 0; i < 1; i++)
 			{
-				pas[i] = new CustomsDocument();
+				pas[i] = new Automobile();
 			}
 			
-			for(CustomsDocument p : pas)
+			for(Vehicle p : pas)
 			{
-				System.out.println(p.getActualWeight() + "\t" + p.getDeclaredWeight());
+				System.out.println(p);
 			}
 			
 		} catch(Exception e) {

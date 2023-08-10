@@ -32,13 +32,13 @@ abstract public class Vehicle<T extends Passenger> extends Thread {
     protected T driver;
     protected List<T> passengers;
     
-    protected static IdentificationGenerator generator; //Used for the generation of random Passengers
+
+    protected static IdentificationGenerator generator = new IdentificationGenerator(); //Used for the generation of random Passengers
 
     ///////////////////////////////////////////////////////////////
 
     public Vehicle()
     {
-    	generator = new IdentificationGenerator();
     	passengers = new LinkedList<T>();
     }
     
@@ -56,6 +56,28 @@ abstract public class Vehicle<T extends Passenger> extends Thread {
      */
     abstract public void setNumOfPassengers(int numOfPassengers) throws IllegalNumberOfPassengers;
 
+	/**
+	 * Just a setter class that is used to check if the set value is within
+	 * the allowed limits
+	 * @param numOfPassengers
+	 * @param MAX_NUM_OF_PASSENGERS Every subtype has their own Max limit of Passenger's they can take
+	 * @throws IllegalNumberOfPassengers
+	 */
+	protected void setNumOfPassengers(int numOfPassengers, int MAX_NUM_OF_PASSENGERS) throws IllegalNumberOfPassengers 
+    {
+        if (numOfPassengers < 1 || numOfPassengers > MAX_NUM_OF_PASSENGERS) {
+            if (numOfPassengers < 1) {
+                String errorMessage = "Number of passengers needs to be at least 1";
+                throw new IllegalNumberOfPassengers(errorMessage);
+            } else if (numOfPassengers > MAX_NUM_OF_PASSENGERS) {
+                String errorMessage = "Number of passengers can not be more than " + MAX_NUM_OF_PASSENGERS;
+                throw new IllegalNumberOfPassengers(errorMessage);
+            }
+        } else {
+            this.numOfPassengers = numOfPassengers;
+        }
+    }
+    
     /**
      * Gets the number of passengers currently in the vehicle.
      * 
@@ -63,6 +85,18 @@ abstract public class Vehicle<T extends Passenger> extends Thread {
      */
     public int getNumOfPassengers() {
         return this.numOfPassengers;
+    }
+    
+    @Override
+    public String toString()
+    {
+    	StringBuilder sb = new StringBuilder();
+    	
+    	sb.append(this.getClass().getName());
+    	sb.append(" :: ");
+    	sb.append("Number of Passengers: ");
+    	sb.append(this.numOfPassengers);
+    	return sb.toString();
     }
     
     //public void move(Terminal t); //LATER TO BE IMPLEMENTED

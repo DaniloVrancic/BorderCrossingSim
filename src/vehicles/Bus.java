@@ -1,19 +1,20 @@
 package vehicles;
 
 import exceptions.IllegalNumberOfPassengers;
-import passengers.Passenger;
+import passengers.BusPassenger;
 import util.random.RandomGenerator;
 
-public class Automobile extends Vehicle<Passenger>{
+public class Bus extends Vehicle<BusPassenger>{
 
-	private static int MAX_AUTOMOBILE_CAPACITY = 5;
-	public Automobile() {
+	private static int MAX_BUS_CAPACITY = 52;
+	
+	public Bus() {
 		super();
 		
 		try {
-			int randomGeneratedNumOfPassengers = RandomGenerator.generateInRange(1, MAX_AUTOMOBILE_CAPACITY);
+			int randomGeneratedNumOfPassengers = RandomGenerator.generateInRange(1, MAX_BUS_CAPACITY);
 			this.setNumOfPassengers(randomGeneratedNumOfPassengers);
-			fillAutomobileWithPassengers(randomGeneratedNumOfPassengers); //Fills the car with Passenger's
+			fillBusWithPassengers(randomGeneratedNumOfPassengers); //Fills the car with Passenger's
 		} catch (IllegalNumberOfPassengers ex) {
 			errorLogger.severe(ex.getMessage());
 		}
@@ -25,21 +26,20 @@ public class Automobile extends Vehicle<Passenger>{
 		
 		
 	}
-
 	
 	@Override
 	public void setNumOfPassengers(int numOfPassengers) throws IllegalNumberOfPassengers 
     {
-       this.setNumOfPassengers(numOfPassengers, MAX_AUTOMOBILE_CAPACITY);
+       this.setNumOfPassengers(numOfPassengers, MAX_BUS_CAPACITY);
     }
 	
-	private void fillAutomobileWithPassengers(int randomGeneratedNumOfPassengers) {
-		this.driver = new Passenger(Vehicle.generator);
+	private void fillBusWithPassengers(int randomGeneratedNumOfPassengers) {
+		this.driver = new BusPassenger(Vehicle.generator);
 		--randomGeneratedNumOfPassengers; //Remove one Passenger after adding the driver
 		
 		while(randomGeneratedNumOfPassengers > 0) //for each number, generate another Passenger in the Passenger list of the Automobile
 		{
-			this.passengers.add(new Passenger(Vehicle.generator));
+			this.passengers.add(new BusPassenger(Vehicle.generator));
 			--randomGeneratedNumOfPassengers;
 		}
 	}
