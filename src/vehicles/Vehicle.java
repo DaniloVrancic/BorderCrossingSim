@@ -1,0 +1,69 @@
+package vehicles;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.logging.Logger;
+import exceptions.IllegalNumberOfPassengers;
+import logger.LoggerManager;
+import passengers.Passenger;
+import util.random.IdentificationGenerator;
+
+/**
+ * An abstract class that serves as a core for all Vehicle subtypes.
+ * Vehicle movement logic is implemented within the vehicle itself, therefore it
+ * extends the Thread class.
+ * 
+ * @param <T> the type of passengers that the vehicle can accommodate, which can be either 'Passenger' or 'BusPassenger'.
+ * 
+ * @param infoLogger a logger object for important information that will need to be printed out.
+ * @param errorLogger a logger object for errors that will need to be printed out when they occur.
+ * 
+ * @param capacity represents the maximum number of passengers within the vehicle (including the driver).
+ * @param driver the passenger type representing the driver of the vehicle.
+ * @param passengers a list containing instances of the passenger type representing all passengers aboard the vehicle (excluding the driver).
+ */
+abstract public class Vehicle<T extends Passenger> extends Thread {
+    //////////////////////// FIELDS /////////////////////////////
+    protected static final Logger infoLogger = LoggerManager.getInfoLogger();
+    protected static final Logger errorLogger = LoggerManager.getErrorLogger();
+
+    protected int numOfPassengers;
+
+    protected T driver;
+    protected List<T> passengers;
+    
+    protected static IdentificationGenerator generator; //Used for the generation of random Passengers
+
+    ///////////////////////////////////////////////////////////////
+
+    public Vehicle()
+    {
+    	generator = new IdentificationGenerator();
+    	passengers = new LinkedList<T>();
+    }
+    
+    public Vehicle(int numOfPassengers) throws IllegalNumberOfPassengers
+    {
+    	generator = new IdentificationGenerator();
+    	passengers = new LinkedList<T>();
+    	this.setNumOfPassengers(numOfPassengers);
+    }
+    /**
+     * Sets the number of passengers in the vehicle.
+     * 
+     * @param numOfPassengers the maximum number of passengers the vehicle can accommodate.
+     * @throws IllegalNumberOfPassengers if the specified capacity is not within the valid range.
+     */
+    abstract public void setNumOfPassengers(int numOfPassengers) throws IllegalNumberOfPassengers;
+
+    /**
+     * Gets the number of passengers currently in the vehicle.
+     * 
+     * @return the maximum number of passengers the vehicle can accommodate.
+     */
+    public int getNumOfPassengers() {
+        return this.numOfPassengers;
+    }
+    
+    //public void move(Terminal t); //LATER TO BE IMPLEMENTED
+}

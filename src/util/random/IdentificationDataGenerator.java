@@ -88,7 +88,7 @@ String[] maleNamesArray = {
 			    "Lena", "Hannah", "Marie", "Laura", "Emma", "Sophie", "Clara", "Emilia", "Mila", "Lara",
 			    "Lea", "Johanna", "Paulina", "Charlotte", "Maja", "Alina", "Isabelle", "Magdalena", "Selina", "Ella",
 			    
-			    "Léa", "Chloé", "Manon", "Inès", "Camille", "Lola", "Sarah", "Julia", "Clara", "Emma",
+			    "Lea", "Chloe", "Manon", "Ines", "Camille", "Lola", "Sarah", "Julia", "Clara", "Emma",
 			    "Louise", "Alice", "Anna", "Eva", "Lina", "Léna", "Zoé", "Noémie", "Éléna", "Lucie",
 			    
 			    "Sofia", "Alessia", "Giulia", "Emma", "Martina", "Alice", "Aurora", "Viola", "Ginevra", "Beatrice",

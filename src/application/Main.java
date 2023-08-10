@@ -5,6 +5,8 @@ import javafx.stage.Stage;
 import passengers.BusPassenger;
 import passengers.Passenger;
 import util.random.IdentificationGenerator;
+import util.random.RandomGenerator;
+import vehicles.documents.CustomsDocument;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
@@ -22,17 +24,17 @@ public class Main extends Application {
 			//primaryStage.show();
 			
 			IdentificationGenerator generator = new IdentificationGenerator();
-			BusPassenger[] pas = new BusPassenger[20];
+			CustomsDocument[] pas = new CustomsDocument[20];
 			
 			
 			for(int i = 0; i < 20; i++)
 			{
-				pas[i] = new BusPassenger(generator);
+				pas[i] = new CustomsDocument();
 			}
 			
-			for(BusPassenger p : pas)
+			for(CustomsDocument p : pas)
 			{
-				System.out.println(p.getFullName() + " HAS LUGGAGE: \t" + p.hasLuggage() + " HAS ILLEGAL LUGGAGE: " + p.hasIllegalLuggage());
+				System.out.println(p.getActualWeight() + "\t" + p.getDeclaredWeight());
 			}
 			
 		} catch(Exception e) {
