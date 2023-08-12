@@ -1,15 +1,21 @@
 package passengers;
 
+import java.io.Serializable;
 import java.util.logging.Logger;
 
 import logger.LoggerManager;
 import util.random.IdentificationGenerator;
 
-public class BusPassenger extends Passenger{
+public class BusPassenger extends Passenger implements Serializable{
 	
-    private static Logger infoLogger = LoggerManager.getInfoLogger();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 9083429695496899018L;
+	///////////////////////////////////////////////
+	private static Logger infoLogger = LoggerManager.getInfoLogger();
     private static Logger errorLogger = LoggerManager.getErrorLogger();
-
+    ///////////////////////////////////////////////
 	private boolean hasLuggage = false;
 	private boolean hasIllegalLuggage = false;
 	

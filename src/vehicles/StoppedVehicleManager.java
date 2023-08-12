@@ -1,17 +1,19 @@
 package vehicles;
 
-import java.util.HashMap;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Logger;
 
 import logger.LoggerManager;
+import vehicles.writetofilehashmap.WriteToFileHashMap;
 
 public class StoppedVehicleManager {
 	private static ReentrantLock lock = new ReentrantLock();
 	private static Logger errorLogger = LoggerManager.getErrorLogger();
 
-    private static Map<Vehicle<?>, String> stoppedVehicles = new HashMap<>();
+    private static Map<Vehicle<?>, String> stoppedVehicles = new WriteToFileHashMap<>(getTerminalStatusFileName());
 
     public static void addStoppedVehicle(Vehicle<?> vehicle, String reason) {
     	lock.lock();
@@ -26,12 +28,10 @@ public class StoppedVehicleManager {
     	}
     }
 
-    public static Map<Vehicle<?>, String> getStoppedVehicles() {
-        lock.lock();
-        try {
-            return new HashMap<>(stoppedVehicles);
-        } finally {
-            lock.unlock();
-        }
+    
+    private static String getTerminalStatusFileName() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy_HH-mm-ss");
+        String formattedDate = dateFormat.format(new Date());
+        return "vehicleUpdates/" + formattedDate + "_StoppedVehicles.txt";
     }
 }

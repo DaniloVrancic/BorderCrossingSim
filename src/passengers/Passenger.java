@@ -1,11 +1,16 @@
 package passengers;
 
+import java.io.Serializable;
 import java.util.logging.Logger;
 
 import logger.LoggerManager;
 import util.random.IdentificationGenerator;
 
-public class Passenger{
+public class Passenger implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1485927857096003380L;
 	//////////////////////////////////////////////////////////////////////
 	private static Logger infoLogger = LoggerManager.getInfoLogger();	
 	private static Logger errorLogger = LoggerManager.getErrorLogger();

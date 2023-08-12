@@ -8,8 +8,7 @@ import logger.LoggerManager;
 import vehicles.Vehicle;
 
 public abstract class Terminal {
-	static int numberOfTerminals = 0;
-
+	private static int numberOfTerminals = 0;
 	protected static Logger errorLogger = LoggerManager.getErrorLogger();
 	
     protected TerminalStatus status;
@@ -30,7 +29,11 @@ public abstract class Terminal {
      */
     public Vehicle<?> takeNextVehicle(Queue<Vehicle<?>> vehicleQueue) {
     	Vehicle<?> returnedVehicle = null;
-    	lock.lock();
+    	if(this.vehicleAtTerminal != null)
+    	{
+    		return this.vehicleAtTerminal; //If the vehicle slot is not empty, return that vehicle
+    	}
+    	
     	try
     	{
     		returnedVehicle = vehicleQueue.poll();
@@ -39,10 +42,6 @@ public abstract class Terminal {
     	catch(Exception ex)
     	{
     		errorLogger.severe("<Error polling the Vehicle Queue>: " + ex.getMessage());
-    	}
-    	finally
-    	{
-    		lock.unlock();
     	}
         
         if(returnedVehicle == null)

@@ -1,5 +1,7 @@
 package passengers;
 
+import java.io.Serializable;
+
 /**
  * Identification class serves as a placeholder for the information that 
  * every passenger will carry with him.
@@ -8,8 +10,14 @@ package passengers;
  *
  * 
  */
-public class Identification {
-    private String fullName;
+public class Identification implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2390298073216646673L;
+	
+	
+	private String fullName;
     private String gender;
     private String passportNumber;
     private String nationality;

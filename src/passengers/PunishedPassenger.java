@@ -1,12 +1,19 @@
 package passengers;
 
+import java.io.Serializable;
+
 import vehicles.Vehicle;
 
-public class PunishedPassenger extends Passenger
+public class PunishedPassenger extends Passenger implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2673891012650992190L;
+	//////////////////////////////////////
 	String explanation;
 	Vehicle<?> vehicleOfPunishedPerson;
-	
+	//////////////////////////////////////
 
 	
     public PunishedPassenger(Passenger p) {

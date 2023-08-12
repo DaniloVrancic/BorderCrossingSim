@@ -1,7 +1,5 @@
 package terminals;
 
-import java.util.List;
-
 import passengers.Passenger;
 import passengers.PunishedPassenger;
 import passengers.PunishedPersonManager;
@@ -10,7 +8,7 @@ import vehicles.Vehicle;
 
 public class PoliceTerminal extends Terminal{
 
-	///////////////////   PASSENGER EXPLANATIONS
+	///////////////////   PASSENGER EXPLANATIONS	/////////////////////////
 	private final String DRIVER_IDENTIFICATION_INVALID_EXPLANATION = "The driver of vehicle(id): " + this.vehicleAtTerminal.getVehicleId() + "has invalid identification documents and is getting his entry cancelled.";
 	
 	private static String PASSENGER_IDENTIFICATION_INVALID_EXPLANATION(Passenger p)
@@ -71,14 +69,18 @@ public class PoliceTerminal extends Terminal{
 	}
 	
 	private void processPassengers(Vehicle<?> vehicle, int processingTime) throws InterruptedException
-	{ 
+	{
+		
 		for(Passenger p : vehicle.passengers)
 		{
 			Thread.sleep(processingTime);
 			if(Math.random() <= 0.03) // Chance of 3%
 			{
-				PunishedPersonManager.addPunishment(new PunishedPassenger(p, PASSENGER_IDENTIFICATION_INVALID_EXPLANATION(p), this.vehicleAtTerminal));
-				vehicle.passengers.remove(p);
+				synchronized(vehicle.passengers)
+				{
+					PunishedPersonManager.addPunishment(new PunishedPassenger(p, PASSENGER_IDENTIFICATION_INVALID_EXPLANATION(p), this.vehicleAtTerminal));
+					vehicle.passengers.remove(p);		//Punish the passenger with Invalid documents and throw him out of the Passenger list
+				}
 			}
 		}
 	}
