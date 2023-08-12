@@ -2,6 +2,7 @@ package vehicles;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 import exceptions.IllegalNumberOfPassengers;
 import logger.LoggerManager;
@@ -29,17 +30,25 @@ abstract public class Vehicle<T extends Passenger> extends Thread {
 
     protected int numOfPassengers;
 
-    protected T driver;
-    protected List<T> passengers;
+    public T driver;
+    public List<T> passengers;
+    
+    private static int numberOfVehiclesCreated = 0;
+    protected int id;
     
 
-    protected static IdentificationGenerator generator = new IdentificationGenerator(); //Used for the generation of random Passengers
+    public int getVehicleId() {
+		return id;
+	}
+
+	protected static IdentificationGenerator generator = new IdentificationGenerator(); //Used for the generation of random Passengers
 
     ///////////////////////////////////////////////////////////////
 
     public Vehicle()
     {
     	passengers = new LinkedList<T>();
+    	this.id = ++numberOfVehiclesCreated;
     }
     
     public Vehicle(int numOfPassengers) throws IllegalNumberOfPassengers
@@ -47,6 +56,7 @@ abstract public class Vehicle<T extends Passenger> extends Thread {
     	generator = new IdentificationGenerator();
     	passengers = new LinkedList<T>();
     	this.setNumOfPassengers(numOfPassengers);
+    	this.id = ++numberOfVehiclesCreated;
     }
     /**
      * Sets the number of passengers in the vehicle.
@@ -98,6 +108,22 @@ abstract public class Vehicle<T extends Passenger> extends Thread {
     	sb.append(this.numOfPassengers);
     	return sb.toString();
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Vehicle<?> otherVehicle = (Vehicle<?>) obj;
+        return Objects.equals(driver, otherVehicle.driver) &&
+               Objects.equals(passengers, otherVehicle.passengers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(driver, passengers);
+    }
+    
     
     //public void move(Terminal t); //LATER TO BE IMPLEMENTED
 }

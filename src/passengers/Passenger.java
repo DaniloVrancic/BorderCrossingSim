@@ -11,7 +11,7 @@ public class Passenger{
 	private static Logger errorLogger = LoggerManager.getErrorLogger();
 	/////////////////////////////////////////////////////////////////////
 	
-	private String fullName;
+	protected String fullName;
 	public Identification document;
 	
 	/**
@@ -50,6 +50,15 @@ public class Passenger{
             errorLogger.severe("<Error creating passenger> " + ex.getMessage());
         }
 		
+	}
+	
+	/**
+	 * Creates an empty Passenger whose data can later be filled.
+	 */
+	public Passenger()
+	{
+		this.document = null;
+		this.fullName = "";
 	}
 	
 	
