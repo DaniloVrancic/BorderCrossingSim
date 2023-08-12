@@ -106,6 +106,8 @@ abstract public class Vehicle<T extends Passenger> extends Thread {
     	sb.append(" :: ");
     	sb.append("Number of Passengers: ");
     	sb.append(this.numOfPassengers);
+    	sb.append("\tvehicle.id = ");
+    	sb.append(this.getVehicleId());
     	return sb.toString();
     }
     
