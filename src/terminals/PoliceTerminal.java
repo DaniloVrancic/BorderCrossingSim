@@ -136,7 +136,7 @@ public abstract class PoliceTerminal extends Terminal{
 			status = TerminalStatus.FINISHED_AND_WAITING;
 			if(vehicleQueue.size() > 0)
 			{
-				vehicleQueue.peek().notify();				
+				//vehicleQueue.peek().notify();				
 			}
 		}
 		catch(InterruptedException ex)
@@ -181,7 +181,4 @@ public abstract class PoliceTerminal extends Terminal{
 		}
 	} //end of processPassengers(Vehicle<?>, int) (Method)
 	
-	public void work(Vehicle<?> nextVehicle)
-	{
-	}
 }

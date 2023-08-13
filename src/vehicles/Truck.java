@@ -28,7 +28,7 @@ public class Truck extends Vehicle<Passenger>{
 			errorLogger.severe(ex.getMessage());
 		}
 		
-		this.documentationNecessary = (Math.random() < 0.5) ? true : false;
+		this.documentationNecessary = (Math.random() < 0.5) ? true : false; //50% chance that declaration will be necessary
 		
 		
 		infoLogger.info("Truck successfully created.");

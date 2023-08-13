@@ -138,31 +138,4 @@ abstract public class Vehicle<T extends Passenger> extends Thread {
     }
     
     
-    public void scheduleMove(PoliceTerminal[] terminals)
-    {
-    	while(true)
-    	{
-    		
-    	for(PoliceTerminal t : terminals)
-    	{
-    		if(t.getStatus() == TerminalStatus.AVAILABLE)
-    		{
-    			if(t instanceof PoliceTerminalForOthers && (this instanceof Automobile || this instanceof Bus)){
-    				t.work(t.takeNextVehicle());
-    				return;
-    			}
-    			else if(t instanceof PoliceTerminalForTrucks && (this instanceof Truck))
-    			{
-    				t.work(t.takeNextVehicle());
-    				return;
-    			}
-    		}    		
-    	} //end of for
-    	try {
-    		wait();
-    	} catch (InterruptedException e) {
-    		errorLogger.severe(e.getMessage());
-    	}
-    	}//end of infinite while
-    }//end of move (Method)
 }

@@ -1,6 +1,5 @@
 package terminals;
 
-import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 
 import vehicles.Truck;
@@ -39,26 +38,5 @@ public class PoliceTerminalForTrucks extends PoliceTerminal {
         return null;
     } //end of takeNextVehicle (Method)
     
-    @Override
-	public void work(Vehicle<?> nextVehicle)
-	{
-		while(vehicleQueue.size() > 0) //Request to process new vehicles until the queue is empty
-		{
-			if(this.status.equals(TerminalStatus.READY_FOR_PROCESSING))
-			{
-				this.vehicleAtTerminal = nextVehicle;
-				processVehicle();
-				//sendToCustoms(CustomsTerminal ct); //implement it later (have this.vehicleAtTerminal.wait() in the method)
-				this.status = TerminalStatus.AVAILABLE;
-			}
-			else
-			{
-				try {
-					this.vehicleAtTerminal.wait(); //will get notified once the Customs terminal finishes processing of their vehicle and frees up
-				} catch (InterruptedException e) {
-					errorLogger.severe("<INTERRUPTED WAIT EXCEPTION>:" + e.getMessage());
-				}
-			} //end of else
-		} //end of while loop
-	} //end of work() (Method)
+    
 }

@@ -1,6 +1,5 @@
 package terminals;
 
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Logger;
 
