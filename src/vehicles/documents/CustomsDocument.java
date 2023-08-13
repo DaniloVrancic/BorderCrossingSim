@@ -42,6 +42,17 @@ public final class CustomsDocument {
 		return this.declaredWeight;
 	}
 	
+	@Override
+	public String toString()
+	{
+		StringBuffer sb = new StringBuffer();
+		sb.append("DOCUMENT> Declared weight: ");
+		sb.append(this.declaredWeight);
+		sb.append(" Actual weight: ");
+		sb.append(this.actualWeight);
+		return sb.toString();
+	}
+	
 	
 	
 }

@@ -1,5 +1,6 @@
 package vehicles;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -28,7 +29,7 @@ import util.random.IdentificationGenerator;
  * @param driver the passenger type representing the driver of the vehicle.
  * @param passengers a list containing instances of the passenger type representing all passengers aboard the vehicle (excluding the driver).
  */
-abstract public class Vehicle<T extends Passenger> extends Thread {
+abstract public class Vehicle<T extends Passenger> extends Thread implements Serializable{
     //////////////////////// FIELDS /////////////////////////////
     protected static final Logger infoLogger = LoggerManager.getInfoLogger();
     protected static final Logger errorLogger = LoggerManager.getErrorLogger();

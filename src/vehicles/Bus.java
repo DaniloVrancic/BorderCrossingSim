@@ -1,10 +1,12 @@
 package vehicles;
 
+import java.io.Serializable;
+
 import exceptions.IllegalNumberOfPassengers;
 import passengers.BusPassenger;
 import util.random.RandomGenerator;
 
-public class Bus extends Vehicle<BusPassenger>{
+public class Bus extends Vehicle<BusPassenger> implements Serializable{
 
 	private static int MAX_BUS_CAPACITY = 52;
 	

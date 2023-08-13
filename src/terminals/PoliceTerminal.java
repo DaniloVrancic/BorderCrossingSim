@@ -1,5 +1,7 @@
 package terminals;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
 import passengers.Passenger;
@@ -56,7 +58,6 @@ public abstract class PoliceTerminal extends Terminal{
 	/////////////////////////////////////////////////////////////////////////
 	
 	
-	protected Terminal connectedTerminal = null;
 	protected BlockingQueue<Vehicle<?>> vehicleQueue = null;
 	
 
@@ -66,13 +67,6 @@ public abstract class PoliceTerminal extends Terminal{
 		this.vehicleQueue = vehicleQueue;
 	}
 	
-	public void connectTerminal(Terminal other)
-	  {
-	    	if(other != null)
-	    	connectedTerminal = other;
-	    	else
-	    	 infoLogger.severe("Can't connect to other terminal that is null");
-	  }
 
 	public void setVehicleQueue(BlockingQueue<Vehicle<?>> vehicleQueue) {
 		this.vehicleQueue = vehicleQueue;
@@ -98,7 +92,7 @@ public abstract class PoliceTerminal extends Terminal{
     	try
     	{
     		returnedVehicle = vehicleQueue.poll();
-    		status = TerminalStatus.READY_FOR_PROCESSING;
+    		status = TerminalStatus.PROCESSING;
     	}
     	catch(Exception ex)
     	{
@@ -164,7 +158,7 @@ public abstract class PoliceTerminal extends Terminal{
 	
 	private void processPassengers(Vehicle<?> vehicle, int processingTime) throws InterruptedException
 	{
-		
+		List<Passenger> passengersToRemove = new ArrayList<>();
 		for(Passenger p : vehicle.passengers)
 		{
 			System.out.println("PROCESSING PASSENGER: " + p.getFullName()); //DELETE LATER, TESTING PURPOSES
@@ -175,10 +169,11 @@ public abstract class PoliceTerminal extends Terminal{
 				{
 					PunishedPersonManager.addPunishment(new PunishedPassenger(p, PASSENGER_IDENTIFICATION_INVALID_EXPLANATION(p), this.vehicleAtTerminal));
 					System.out.println("REMOVED: " + p); //REMOVE THIS LINE LATER
-					vehicle.passengers.remove(p);		//Punish the passenger with Invalid documents and throw him out of the Passenger list
+					passengersToRemove.add(p);		//Punish the passenger with Invalid documents and throw him out of the Passenger list
 				}
 			}
 		}
+		vehicle.passengers.removeAll(passengersToRemove);
 	} //end of processPassengers(Vehicle<?>, int) (Method)
 	
 }

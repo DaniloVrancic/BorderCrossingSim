@@ -11,6 +11,9 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import passengers.BusPassenger;
 import passengers.Passenger;
+import terminals.CustomsTerminal;
+import terminals.CustomsTerminalForOthers;
+import terminals.CustomsTerminalForTrucks;
 import terminals.PoliceTerminal;
 import terminals.PoliceTerminalForOthers;
 import terminals.PoliceTerminalForTrucks;
@@ -67,10 +70,42 @@ public class Main extends Application {
 			policeTerminals[1] = new PoliceTerminalForOthers(vehicleQueue);
 			policeTerminals[2] = new PoliceTerminalForTrucks(vehicleQueue);
 			
+			List<PoliceTerminal> policeTerminalsForOthers = new ArrayList<>();
+			policeTerminalsForOthers.add(policeTerminals[0]);
+			policeTerminalsForOthers.add(policeTerminals[1]);
+			List<PoliceTerminal> policeTerminalsForTrucks = new ArrayList<>();
 			
-			for(Vehicle<?> v : vehicleQueue)
+			List<CustomsTerminal> customsTerminals = new ArrayList<>();
+			CustomsTerminal ct1 = new CustomsTerminalForOthers(policeTerminalsForOthers);
+			CustomsTerminal ct2 = new CustomsTerminalForTrucks(policeTerminalsForTrucks);
+		
+			customsTerminals.add(ct1);
+			customsTerminals.add(ct2);
+			
+			while(vehicleQueue.size() > 0)
 			{
-				v.scheduleMove(policeTerminals);				
+				Vehicle<?> nextElement = vehicleQueue.peek();
+				System.out.println("NEXT ELEMENT: " + nextElement);
+				Thread.sleep(3000);
+				for(CustomsTerminal ct : customsTerminals)
+				{
+					if((nextElement instanceof Automobile || nextElement instanceof Bus) && ct instanceof CustomsTerminalForOthers)
+					{
+						if(ct.getVehicleAtTerminal() == null)
+						{
+							ct.setVehicleAtTerminal(vehicleQueue.poll());
+							((CustomsTerminalForOthers)ct).processVehicle();
+						}
+					}
+					if(nextElement instanceof Truck && ct instanceof CustomsTerminalForTrucks)
+					{
+						if(ct.getVehicleAtTerminal() == null)
+						{
+							ct.setVehicleAtTerminal(vehicleQueue.poll());
+							((CustomsTerminalForTrucks)ct).processVehicle();
+						}
+					}
+				}
 			}
 			System.out.println("FINISHED!");
 		} //end of try-block
