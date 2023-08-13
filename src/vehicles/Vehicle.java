@@ -7,6 +7,11 @@ import java.util.logging.Logger;
 import exceptions.IllegalNumberOfPassengers;
 import logger.LoggerManager;
 import passengers.Passenger;
+import terminals.PoliceTerminal;
+import terminals.PoliceTerminalForOthers;
+import terminals.PoliceTerminalForTrucks;
+import terminals.Terminal;
+import terminals.TerminalStatus;
 import util.random.IdentificationGenerator;
 
 /**
@@ -126,6 +131,38 @@ abstract public class Vehicle<T extends Passenger> extends Thread {
         return Objects.hash(driver, passengers);
     }
     
+    @Override
+    public void run()
+    {
+    	
+    }
     
-    //public void move(Terminal t); //LATER TO BE IMPLEMENTED
+    
+    public void scheduleMove(PoliceTerminal[] terminals)
+    {
+    	while(true)
+    	{
+    		
+    	for(PoliceTerminal t : terminals)
+    	{
+    		if(t.getStatus() == TerminalStatus.AVAILABLE)
+    		{
+    			if(t instanceof PoliceTerminalForOthers && (this instanceof Automobile || this instanceof Bus)){
+    				t.work(t.takeNextVehicle());
+    				return;
+    			}
+    			else if(t instanceof PoliceTerminalForTrucks && (this instanceof Truck))
+    			{
+    				t.work(t.takeNextVehicle());
+    				return;
+    			}
+    		}    		
+    	} //end of for
+    	try {
+    		wait();
+    	} catch (InterruptedException e) {
+    		errorLogger.severe(e.getMessage());
+    	}
+    	}//end of infinite while
+    }//end of move (Method)
 }

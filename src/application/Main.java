@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Queue;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
 import passengers.BusPassenger;
 import passengers.Passenger;
+import terminals.PoliceTerminal;
+import terminals.PoliceTerminalForOthers;
+import terminals.PoliceTerminalForTrucks;
 import util.random.IdentificationGenerator;
 import util.random.RandomGenerator;
 import vehicles.Vehicle;
@@ -41,20 +45,34 @@ public class Main extends Application {
 			List<Vehicle<?>> listToShuffle = fillAndShuffleList(NUMBER_OF_BUSES_AT_START, NUMBER_OF_TRUCKS_AT_START,
 					NUMBER_OF_CARS_AT_START);
 			
-			Queue<Vehicle<?>> vehicleQueue = new LinkedBlockingQueue<>(listToShuffle);
+			BlockingQueue<Vehicle<?>> vehicleQueue = new LinkedBlockingQueue<>(listToShuffle);
 			
-			for(Vehicle<?> vehicle : vehicleQueue)
+//			for(Vehicle<?> vehicle : vehicleQueue)
+//			{
+//				System.out.println(vehicle);
+//				System.out.println("-------------- DRIVER ----------");
+//				System.out.println(vehicle.driver);
+//				System.out.println("-------------- PASSENGERS ----------");
+//				for(Passenger p : vehicle.passengers)
+//				{
+//					System.out.println(p);
+//				}
+//				System.out.println("----------------------------------");
+//			}
+
+			
+			PoliceTerminal[] policeTerminals = new PoliceTerminal[3];
+			
+			policeTerminals[0] = new PoliceTerminalForOthers(vehicleQueue);
+			policeTerminals[1] = new PoliceTerminalForOthers(vehicleQueue);
+			policeTerminals[2] = new PoliceTerminalForTrucks(vehicleQueue);
+			
+			
+			for(Vehicle<?> v : vehicleQueue)
 			{
-				System.out.println(vehicle);
-				System.out.println("-------------- DRIVER ----------");
-				System.out.println(vehicle.driver);
-				System.out.println("-------------- PASSENGERS ----------");
-				for(Passenger p : vehicle.passengers)
-				{
-					System.out.println(p);
-				}
-				System.out.println("----------------------------------");
+				v.scheduleMove(policeTerminals);				
 			}
+			System.out.println("FINISHED!");
 		} //end of try-block
 		catch(Exception ex)
 		{
