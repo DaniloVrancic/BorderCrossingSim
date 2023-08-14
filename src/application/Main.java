@@ -1,6 +1,7 @@
 package application;
 	
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Queue;
@@ -17,6 +18,7 @@ import terminals.CustomsTerminalForTrucks;
 import terminals.PoliceTerminal;
 import terminals.PoliceTerminalForOthers;
 import terminals.PoliceTerminalForTrucks;
+import terminals.managers.PoliceTerminalsManager;
 import util.random.IdentificationGenerator;
 import util.random.RandomGenerator;
 import vehicles.Vehicle;
@@ -30,6 +32,9 @@ import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application {
+	public static BlockingQueue<Vehicle<?>> vehicleQueue;
+
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -43,12 +48,15 @@ public class Main extends Application {
 			final int NUMBER_OF_BUSES_AT_START 		= 5;
 			final int NUMBER_OF_TRUCKS_AT_START 	= 10;
 			final int NUMBER_OF_CARS_AT_START 		= 35;
+			/////////////////////////////////
+
+			
 			
 			IdentificationGenerator generator = new IdentificationGenerator();
 			List<Vehicle<?>> listToShuffle = fillAndShuffleList(NUMBER_OF_BUSES_AT_START, NUMBER_OF_TRUCKS_AT_START,
 					NUMBER_OF_CARS_AT_START);
 			
-			BlockingQueue<Vehicle<?>> vehicleQueue = new LinkedBlockingQueue<>(listToShuffle);
+			vehicleQueue = new LinkedBlockingQueue<>(listToShuffle);
 			
 //			for(Vehicle<?> vehicle : vehicleQueue)
 //			{
@@ -64,49 +72,35 @@ public class Main extends Application {
 //			}
 
 			
-			PoliceTerminal[] policeTerminals = new PoliceTerminal[3];
-			
-			policeTerminals[0] = new PoliceTerminalForOthers(vehicleQueue);
-			policeTerminals[1] = new PoliceTerminalForOthers(vehicleQueue);
-			policeTerminals[2] = new PoliceTerminalForTrucks(vehicleQueue);
-			
-			List<PoliceTerminal> policeTerminalsForOthers = new ArrayList<>();
-			policeTerminalsForOthers.add(policeTerminals[0]);
-			policeTerminalsForOthers.add(policeTerminals[1]);
-			List<PoliceTerminal> policeTerminalsForTrucks = new ArrayList<>();
 			
 			List<CustomsTerminal> customsTerminals = new ArrayList<>();
-			CustomsTerminal ct1 = new CustomsTerminalForOthers(policeTerminalsForOthers);
-			CustomsTerminal ct2 = new CustomsTerminalForTrucks(policeTerminalsForTrucks);
+	//		CustomsTerminal ct1 = new CustomsTerminalForOthers(PoliceTerminalsManager.policeTerminalsForOthers);
+	//		CustomsTerminal ct2 = new CustomsTerminalForTrucks(policeTerminalsForTrucks);
 		
-			customsTerminals.add(ct1);
-			customsTerminals.add(ct2);
+	//		customsTerminals.add(ct1);
+	//		customsTerminals.add(ct2);
 			
-			while(vehicleQueue.size() > 0)
-			{
-				Vehicle<?> nextElement = vehicleQueue.peek();
-				System.out.println("NEXT ELEMENT: " + nextElement);
-				Thread.sleep(3000);
-				for(CustomsTerminal ct : customsTerminals)
-				{
-					if((nextElement instanceof Automobile || nextElement instanceof Bus) && ct instanceof CustomsTerminalForOthers)
-					{
-						if(ct.getVehicleAtTerminal() == null)
-						{
-							ct.setVehicleAtTerminal(vehicleQueue.poll());
-							((CustomsTerminalForOthers)ct).processVehicle();
-						}
-					}
-					if(nextElement instanceof Truck && ct instanceof CustomsTerminalForTrucks)
-					{
-						if(ct.getVehicleAtTerminal() == null)
-						{
-							ct.setVehicleAtTerminal(vehicleQueue.poll());
-							((CustomsTerminalForTrucks)ct).processVehicle();
-						}
-					}
-				}
-			}
+			 
+		       
+
+		        List<Thread> vehicleThreads = new ArrayList<>();
+
+		        // Start vehicle threads
+		        while (!vehicleQueue.isEmpty()) {
+		            Vehicle<?> vehicle = vehicleQueue.poll();
+		            Thread vehicleThread = new Thread(vehicle);
+		            vehicleThreads.add(vehicleThread);
+		            vehicleThread.start();
+		        }
+
+		        // Wait for all vehicle threads to finish
+		        for (Thread thread : vehicleThreads) {
+		            try {
+		                thread.join();
+		            } catch (InterruptedException e) {
+		                e.printStackTrace();
+		            }
+		        }
 			System.out.println("FINISHED!");
 		} //end of try-block
 		catch(Exception ex)

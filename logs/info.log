@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-08-13T23:21:02.470383100Z</date>
+  <millis>1691968862470</millis>
+  <nanos>383100</nanos>
+  <sequence>0</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Hikari Jovanovic</message>
+</record>
+<record>
+  <date>2023-08-13T23:21:02.477365300Z</date>
+  <millis>1691968862477</millis>
+  <nanos>365300</nanos>
+  <sequence>1</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Vesna Greco</message>
+</record>
+<record>
+  <date>2023-08-13T23:21:02.477365300Z</date>
+  <millis>1691968862477</millis>
+  <nanos>365300</nanos>
+  <sequence>2</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>vehicles.Automobile</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Automobile successfully created.</message>
+</record>
+<record>
+  <date>2023-08-13T23:21:02.478362300Z</date>
+  <millis>1691968862478</millis>
+  <nanos>362300</nanos>
+  <sequence>3</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Jonas Ferrari</message>
+</record>
+<record>
+  <date>2023-08-13T23:21:02.478362300Z</date>
+  <millis>1691968862478</millis>
+  <nanos>362300</nanos>
+  <sequence>4</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Aurora Stevanovic</message>
+</record>
+<record>
+  <date>2023-08-13T23:21:02.478362300Z</date>
+  <millis>1691968862478</millis>
+  <nanos>362300</nanos>
+  <sequence>5</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>passengers.Passenger</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Passenger created: Alice Miller</message>
+</record>
+<record>
+  <date>2023-08-13T23:21:02.479360100Z</date>
+  <millis>1691968862479</millis>
+  <nanos>360100</nanos>
+  <sequence>6</sequence>
+  <logger>InfoLogger</logger>
+  <level>INFO</level>
+  <class>vehicles.Truck</class>
+  <method>&lt;init&gt;</method>
+  <thread>23</thread>
+  <message>Truck successfully created.</message>
+</record>

@@ -112,26 +112,28 @@ public abstract class PoliceTerminal extends Terminal{
 	public void processVehicle(int processingTime)
 	{
 		status = TerminalStatus.PROCESSING;
+		System.out.println("Processing vehicle: " + this.vehicleAtTerminal.getClass().getSimpleName() + " vehicle_id: " +this.vehicleAtTerminal.getVehicleId() + " ON TERMINAL: " + this.id);
 		try
 		{
-			System.out.println("Processing driver: " + this.vehicleAtTerminal.driver.getFullName()); //DELETE LATER, TESTING PURPOSES
+			//System.out.println("Processing Driver: " + this.vehicleAtTerminal.driver.getFullName() + " of vehicle id:" + this.vehicleAtTerminal.getVehicleId() + " TYPE: (" + this.getVehicleAtTerminal().getClass().getSimpleName() + " )"); //DELETE LATER, TESTING PURPOSES
 			boolean driverPassed = processDriver(this.vehicleAtTerminal.driver, processingTime);
 			
 			if(!driverPassed)
 			{
+				System.out.println("PUNISHING Driver: " + this.vehicleAtTerminal.driver.getFullName() + " of vehicle id:" + this.vehicleAtTerminal.getVehicleId() + " TYPE: (" + this.getVehicleAtTerminal().getClass().getSimpleName() + " )");
 				PunishedPersonManager.addPunishment(new PunishedPassenger(this.vehicleAtTerminal.driver, DRIVER_IDENTIFICATION_INVALID_EXPLANATION(), this.vehicleAtTerminal));
 				StoppedVehicleManager.addStoppedVehicle(this.vehicleAtTerminal, VEHICLE_DRIVER_HAS_INVALID_DOCUMENT_EXPLANATION());
 				vehicleAtTerminal = null;
 				status = TerminalStatus.AVAILABLE; //Free up the terminal from the vehicle that was being processed
+				
 				return; //No need to continue processing after this if the driver is evicted
 			}
 			
 			processPassengers(this.vehicleAtTerminal, processingTime);
-			status = TerminalStatus.FINISHED_AND_WAITING;
-			if(vehicleQueue.size() > 0)
-			{
-				//vehicleQueue.peek().notify();				
-			}
+			
+			status = TerminalStatus.AVAILABLE;
+			
+		
 		}
 		catch(InterruptedException ex)
 		{
@@ -161,14 +163,14 @@ public abstract class PoliceTerminal extends Terminal{
 		List<Passenger> passengersToRemove = new ArrayList<>();
 		for(Passenger p : vehicle.passengers)
 		{
-			System.out.println("PROCESSING PASSENGER: " + p.getFullName()); //DELETE LATER, TESTING PURPOSES
+			//System.out.println("PROCESSING PASSENGER: " + p.getFullName() + "FROM VEHICLE (ID) :" + this.vehicleAtTerminal.getVehicleId() + " TYPE: " + this.vehicleAtTerminal.getClass().getSimpleName()); //DELETE LATER, TESTING PURPOSES
 			Thread.sleep(processingTime);
 			if(Math.random() <= 0.03) // Chance of 3%
 			{
 				synchronized(vehicle.passengers)
 				{
 					PunishedPersonManager.addPunishment(new PunishedPassenger(p, PASSENGER_IDENTIFICATION_INVALID_EXPLANATION(p), this.vehicleAtTerminal));
-					System.out.println("REMOVED: " + p); //REMOVE THIS LINE LATER
+					System.out.println("PUNISHING AND REMOVING PASSENGER: " + p.getFullName() + " FROM VEHICLE (ID) :" + this.vehicleAtTerminal.getVehicleId() + " TYPE: " + this.vehicleAtTerminal.getClass().getSimpleName()); //REMOVE THIS LINE LATER
 					passengersToRemove.add(p);		//Punish the passenger with Invalid documents and throw him out of the Passenger list
 				}
 			}
@@ -176,4 +178,19 @@ public abstract class PoliceTerminal extends Terminal{
 		vehicle.passengers.removeAll(passengersToRemove);
 	} //end of processPassengers(Vehicle<?>, int) (Method)
 	
+    public boolean isAvailable() {
+        return lock.tryLock(); // Returns true if the lock is available, false otherwise
+    }
+    
+    /**
+     * Releases the lock from being used up by this object.
+     */
+    public void release() {
+        lock.unlock();
+    }
+    
+    public void lock()
+    {
+    	lock.lock();
+    }
 }

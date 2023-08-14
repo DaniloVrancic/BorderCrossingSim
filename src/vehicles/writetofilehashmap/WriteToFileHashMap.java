@@ -9,8 +9,8 @@ import java.util.Map;
  * Overrides the original functionality of put, adding 
  * a method that at the same time also adds details about
  * the Map input into a text file.
- * @param <K>
- * @param <V>
+ * @param <K> Key type
+ * @param <V> Value type
  */
 public class WriteToFileHashMap<K, V> extends HashMap<K, V> {
 
@@ -38,6 +38,7 @@ public class WriteToFileHashMap<K, V> extends HashMap<K, V> {
             for (Map.Entry<K, V> entry : entrySet()) {
                 writer.write("Vehicle:" + entry.getKey() + " STOPPED FOR REASON:  " + entry.getValue() + System.lineSeparator());
             }
+            clear();
         } catch (IOException e) {
             e.printStackTrace();
         }

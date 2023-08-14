@@ -4,8 +4,13 @@ package vehicles;
 import exceptions.IllegalNumberOfPassengers;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Optional;
 import passengers.Passenger;
+import terminals.PoliceTerminal;
+import terminals.PoliceTerminalForOthers;
+import terminals.PoliceTerminalForTrucks;
+import terminals.managers.PoliceTerminalsManager;
 import util.random.RandomGenerator;
 import vehicles.documents.CustomsDocument;
 
@@ -58,5 +63,43 @@ public class Truck extends Vehicle<Passenger> implements Serializable{
 	public boolean isDocumentationNecessary()
 	{
 		return this.documentationNecessary;
+	}
+	
+	@Override
+	public void run() {
+	    try {
+	    	List<PoliceTerminal> availableTerminals = PoliceTerminalsManager.availablePoliceTerminalsForTrucks;
+	        PoliceTerminalForTrucks assignedTerminal = null;
+	        while (assignedTerminal == null) {
+	            synchronized (availableTerminals) {
+	                for (PoliceTerminal terminal : availableTerminals) {
+	                    if (terminal.isAvailable() && terminal instanceof PoliceTerminalForTrucks) {
+	                        assignedTerminal = (PoliceTerminalForTrucks) terminal;
+	                        break;
+	                    }
+	                }
+	                if (assignedTerminal == null) {
+	                	availableTerminals.wait();
+	                }
+	            }
+	        }
+
+	        // Assign the vehicle to the terminal
+	        synchronized (assignedTerminal) {
+	            assignedTerminal.setVehicleAtTerminal(this);
+	          //  availableTerminals.remove(assignedTerminal); // Remove terminal from available list
+	        }
+
+	        assignedTerminal.processVehicle();
+	        assignedTerminal.release();
+
+	        synchronized (availableTerminals) {
+	            assignedTerminal.setVehicleAtTerminal(null);
+	         //   availableTerminals.add(assignedTerminal); // Return the terminal to the available list when processing is done
+	            availableTerminals.notify();
+	        }
+	    } catch (InterruptedException e) {
+	        e.printStackTrace();
+	    }
 	}
 }

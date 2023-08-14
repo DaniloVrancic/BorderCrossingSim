@@ -5,14 +5,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
+
 import exceptions.IllegalNumberOfPassengers;
 import logger.LoggerManager;
 import passengers.Passenger;
 import terminals.PoliceTerminal;
 import terminals.PoliceTerminalForOthers;
 import terminals.PoliceTerminalForTrucks;
-import terminals.Terminal;
-import terminals.TerminalStatus;
 import util.random.IdentificationGenerator;
 
 /**
@@ -33,6 +32,9 @@ abstract public class Vehicle<T extends Passenger> extends Thread implements Ser
     //////////////////////// FIELDS /////////////////////////////
     protected static final Logger infoLogger = LoggerManager.getInfoLogger();
     protected static final Logger errorLogger = LoggerManager.getErrorLogger();
+    ////////////////////// LIST OF POLICE TERMINALS THAT WORK WITH THE VEHICLES
+    protected List<PoliceTerminal> availablePoliceTerminals;
+    ///////////////////////////////////////////////////////////////////////////
 
     protected int numOfPassengers;
 
@@ -56,6 +58,17 @@ abstract public class Vehicle<T extends Passenger> extends Thread implements Ser
     	passengers = new LinkedList<T>();
     	this.id = ++numberOfVehiclesCreated;
     }
+    
+    /**
+     * With this, it is enabled that every vehicles 'sees' which terminals are available
+     * @param availableTerminals
+     */
+    public Vehicle(List<PoliceTerminal> availableTerminals) {
+        this.availablePoliceTerminals = availableTerminals;
+        passengers = new LinkedList<T>();
+        this.id = ++numberOfVehiclesCreated;
+    }
+
     
     public Vehicle(int numOfPassengers) throws IllegalNumberOfPassengers
     {
@@ -132,11 +145,10 @@ abstract public class Vehicle<T extends Passenger> extends Thread implements Ser
         return Objects.hash(driver, passengers);
     }
     
-    @Override
-    public void run()
-    {
-    	
-    }
+    
+    
+   
+
     
     
 }

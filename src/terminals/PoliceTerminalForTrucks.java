@@ -16,9 +16,7 @@ public class PoliceTerminalForTrucks extends PoliceTerminal {
     
 	
     public void processVehicle() {
-        	System.out.println("PROCESSING VEHICLE: " +this.vehicleAtTerminal.getClass().descriptorString() + " id = " + this.vehicleAtTerminal.getVehicleId() + " AT TERMINAL_ID = " + this.id);
             super.processVehicle(TIME_FOR_TRUCK_PASSENGER_PROCESS);
-        
     }
 
     @Override
