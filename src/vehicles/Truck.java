@@ -7,9 +7,13 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 import passengers.Passenger;
+import terminals.CustomsTerminal;
+import terminals.CustomsTerminalForOthers;
+import terminals.CustomsTerminalForTrucks;
 import terminals.PoliceTerminal;
 import terminals.PoliceTerminalForOthers;
 import terminals.PoliceTerminalForTrucks;
+import terminals.managers.CustomsTerminalsManager;
 import terminals.managers.PoliceTerminalsManager;
 import util.random.RandomGenerator;
 import vehicles.documents.CustomsDocument;
@@ -68,36 +72,72 @@ public class Truck extends Vehicle<Passenger> implements Serializable{
 	@Override
 	public void run() {
 	    try {
-	    	List<PoliceTerminal> availableTerminals = PoliceTerminalsManager.availablePoliceTerminalsForTrucks;
-	        PoliceTerminalForTrucks assignedTerminal = null;
-	        while (assignedTerminal == null) {
-	            synchronized (availableTerminals) {
-	                for (PoliceTerminal terminal : availableTerminals) {
+	    	List<PoliceTerminal> availablePoliceTerminals = PoliceTerminalsManager.availablePoliceTerminalsForTrucks;
+	        PoliceTerminalForTrucks assignedPoliceTerminal = null;
+	        while (assignedPoliceTerminal == null) {
+	            synchronized (availablePoliceTerminals) {
+	                for (PoliceTerminal terminal : availablePoliceTerminals) {
 	                    if (terminal.isAvailable() && terminal instanceof PoliceTerminalForTrucks) {
-	                        assignedTerminal = (PoliceTerminalForTrucks) terminal;
+	                        assignedPoliceTerminal = (PoliceTerminalForTrucks) terminal;
 	                        break;
 	                    }
 	                }
-	                if (assignedTerminal == null) {
-	                	availableTerminals.wait();
+	                if (assignedPoliceTerminal == null) {
+	                	availablePoliceTerminals.wait();
 	                }
 	            }
 	        }
 
 	        // Assign the vehicle to the terminal
-	        synchronized (assignedTerminal) {
-	            assignedTerminal.setVehicleAtTerminal(this);
+	        synchronized (assignedPoliceTerminal) {
+	            assignedPoliceTerminal.setVehicleAtTerminal(this);
 	          //  availableTerminals.remove(assignedTerminal); // Remove terminal from available list
 	        }
 
-	        assignedTerminal.processVehicle();
-	        assignedTerminal.release();
+	        assignedPoliceTerminal.processVehicle();
+	        assignedPoliceTerminal.release();
 
-	        synchronized (availableTerminals) {
-	            assignedTerminal.setVehicleAtTerminal(null);
-	         //   availableTerminals.add(assignedTerminal); // Return the terminal to the available list when processing is done
-	            availableTerminals.notify();
+
+	        
+	        //CUSTOMS PROCESSING >>
+	        List<CustomsTerminal> availableCustomsTerminals = CustomsTerminalsManager.availableCustomsTerminalsForTrucks;
+	        CustomsTerminalForTrucks assignedCustomsTerminal = null;
+	        while (assignedCustomsTerminal == null) {
+	            synchronized (availableCustomsTerminals) {
+	                for (CustomsTerminal terminal : availableCustomsTerminals) {
+	                    if (terminal.isAvailable() && terminal instanceof CustomsTerminalForTrucks) //if it is available, the object will lock
+	                    {
+	                    	assignedCustomsTerminal = (CustomsTerminalForTrucks) terminal;
+	            	        synchronized (availablePoliceTerminals) {
+	            	            assignedPoliceTerminal.setVehicleAtTerminal(null);
+	            	         //   availableTerminals.add(assignedTerminal); // Return the terminal to the available list when processing is done
+	            	            availablePoliceTerminals.notify();
+	            	        }
+	                        break;
+	                    }
+	                }
+	                if (assignedCustomsTerminal == null) {
+	                	availableCustomsTerminals.wait();
+	                }
+	            }
 	        }
+	            
+	             // Assign the vehicle to the terminal
+	    	        synchronized (assignedCustomsTerminal) {
+	    	        	assignedCustomsTerminal.setVehicleAtTerminal(this);
+	    	        }
+	    	        
+	    	        assignedCustomsTerminal.processVehicle();
+	    	        assignedCustomsTerminal.release();
+	            
+	            synchronized (availableCustomsTerminals) {
+	            	assignedCustomsTerminal.setVehicleAtTerminal(null);
+		            availableCustomsTerminals.notifyAll();
+		        }
+	        
+	        
+	        
+	        
 	    } catch (InterruptedException e) {
 	        e.printStackTrace();
 	    }

@@ -15,6 +15,11 @@ public class CustomsTerminalForOthers extends CustomsTerminal{
 		super(terminalsToWatch);
 	}
 	
+	public CustomsTerminalForOthers()
+	{
+		super();
+	}
+	
 	public void processVehicle()
 	{
 		try
@@ -38,18 +43,7 @@ public class CustomsTerminalForOthers extends CustomsTerminal{
 		finally
 		{
 			this.status = TerminalStatus.AVAILABLE;
-			this.vehicleAtTerminal = null;
 			
-			for(PoliceTerminal terminal : watchingTerminals)
-			{
-				if(terminal.vehicleAtTerminal != null)
-				{
-					synchronized (terminal.vehicleAtTerminal) 
-					{
-						terminal.vehicleAtTerminal.notify();
-					}
-				} //end of if
-			}//end of for
 		}// end of finally
 	}//end of processVehicle (Method)
 	

@@ -72,47 +72,10 @@ public abstract class PoliceTerminal extends Terminal{
 		this.vehicleQueue = vehicleQueue;
 	}
 	
-    /**
-     * Polls the queue of Vehicles and retrieves the next Vehicle waiting  in line;
-     * @param vehicleQueue Queue of vehicles waiting to get processed at the terminal
-     * @return Vehicle object that was next in line, or null if the line is empty
-     */
-    public Vehicle<?> takeNextVehicle() {
-    	if(this.vehicleQueue == null)
-    	{
-    		throw new NullPointerException(QUEUE_POINTS_TO_NULL_EXPLANATION);
-    	}
-    	
-    	Vehicle<?> returnedVehicle = null;
-    	if(this.vehicleAtTerminal != null)
-    	{
-    		return this.vehicleAtTerminal; //If the vehicle slot is not empty, return that vehicle
-    	}
-    	
-    	try
-    	{
-    		returnedVehicle = vehicleQueue.poll();
-    		status = TerminalStatus.PROCESSING;
-    	}
-    	catch(Exception ex)
-    	{
-    		errorLogger.severe("<Error polling the Vehicle Queue>: " + ex.getMessage());
-    	}
-        
-        if(returnedVehicle == null)
-        {
-        	return null;
-        }
-        else
-        {
-        	return returnedVehicle;
-        }
-    } //end of takeNextVehicle (Method)
-	
 	public void processVehicle(int processingTime)
 	{
 		status = TerminalStatus.PROCESSING;
-		System.out.println("Processing vehicle: " + this.vehicleAtTerminal.getClass().getSimpleName() + " vehicle_id: " +this.vehicleAtTerminal.getVehicleId() + " ON TERMINAL: " + this.id);
+		System.out.println("Processing vehicle: " + this.vehicleAtTerminal.getClass().getSimpleName() + " vehicle_id: " +this.vehicleAtTerminal.getVehicleId() + " ON POLICE TERMINAL: " + this.id);
 		try
 		{
 			//System.out.println("Processing Driver: " + this.vehicleAtTerminal.driver.getFullName() + " of vehicle id:" + this.vehicleAtTerminal.getVehicleId() + " TYPE: (" + this.getVehicleAtTerminal().getClass().getSimpleName() + " )"); //DELETE LATER, TESTING PURPOSES
@@ -178,19 +141,5 @@ public abstract class PoliceTerminal extends Terminal{
 		vehicle.passengers.removeAll(passengersToRemove);
 	} //end of processPassengers(Vehicle<?>, int) (Method)
 	
-    public boolean isAvailable() {
-        return lock.tryLock(); // Returns true if the lock is available, false otherwise
-    }
-    
-    /**
-     * Releases the lock from being used up by this object.
-     */
-    public void release() {
-        lock.unlock();
-    }
-    
-    public void lock()
-    {
-    	lock.lock();
-    }
+
 }

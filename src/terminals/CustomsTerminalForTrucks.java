@@ -13,6 +13,11 @@ public class CustomsTerminalForTrucks extends CustomsTerminal{
 		super(terminalsToWatch);
 	}
 	
+	public CustomsTerminalForTrucks()
+	{
+		super();
+	}
+	
 	private static final int TIME_PLACEHOLDER = 100;
 	
 	public void processVehicle()
@@ -33,18 +38,7 @@ public class CustomsTerminalForTrucks extends CustomsTerminal{
 		finally
 		{
 			this.status = TerminalStatus.AVAILABLE;
-			this.vehicleAtTerminal = null;
 			
-			for(PoliceTerminal terminal : watchingTerminals)
-			{
-				if(terminal.vehicleAtTerminal != null)
-				{
-					synchronized (terminal.vehicleAtTerminal) 
-					{
-						terminal.vehicleAtTerminal.notify();
-					}
-				} //end of if
-			}//end of for
 		}// end of finally
 	}//end of processVehicle (Method)
 	

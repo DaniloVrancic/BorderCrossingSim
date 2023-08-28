@@ -1,6 +1,5 @@
 package terminals;
 
-import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 
 import vehicles.Automobile;
@@ -26,26 +25,6 @@ public class PoliceTerminalForOthers extends PoliceTerminal{
 		{
 			super.processVehicle(TIME_FOR_AUTOMOBILE_PASSENGER_PROCESS);
 		}
-	}
-	
-	@Override
-	public Vehicle<?> takeNextVehicle()
-	{
-		try
-		{
-				Vehicle<?> temp = vehicleQueue.peek(); //Check out if the next vehicle in the queue is a Bus or an Automobile, if it is, take it from the Queue
-				
-				if(temp instanceof Automobile || temp instanceof Bus)
-				{
-					return super.takeNextVehicle();
-				}
-			
-		}
-		catch (Exception ex) {
-			errorLogger.severe("<Error polling the Vehicle Queue>: " + ex.getMessage());
-		}
-
-		return null; //If it's neither a Bus or an Automobile, return null
 	}
 	
 }

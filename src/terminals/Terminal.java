@@ -45,4 +45,20 @@
 	    {
 	    	this.status = TerminalStatus.BLOCKED;
 	    }
+	    
+	    public boolean isAvailable() {
+	        return lock.tryLock(); // Returns true if the lock is available, false otherwise
+	    }
+	    
+	    /**
+	     * Releases the lock from being used up by this object.
+	     */
+	    public void release() {
+	        lock.unlock();
+	    }
+	    
+	    public void lock()
+	    {
+	    	lock.lock();
+	    }
 	}

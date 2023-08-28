@@ -32,9 +32,15 @@ public abstract class CustomsTerminal extends Terminal{
 		this.watchingTerminals = terminalsToWatch;
 	}
 	
+	public CustomsTerminal()
+	{
+		
+	}
+	
 	
 	public void processVehicle(int processingTime) throws InterruptedException
 	{
+		System.out.println("Processing vehicle: " + this.vehicleAtTerminal.getClass().getSimpleName() + " vehicle_id: " +this.vehicleAtTerminal.getVehicleId() + " ON CUSTOMS TERMINAL: " + this.id);
 		if(this.vehicleAtTerminal instanceof Automobile)
 		{
 			processVehicleAutomobile(processingTime);
@@ -60,18 +66,17 @@ public abstract class CustomsTerminal extends Terminal{
 	
 	private void processVehicleBus(int processingTime) throws InterruptedException
 	{
-		System.out.println("Processing bus id: " + this.vehicleAtTerminal.getVehicleId()); //DELETE LATER
-//		Thread.sleep(processingTime);
-//		BusPassenger driver = (BusPassenger)this.vehicleAtTerminal.driver;
-//		if(driver.hasIllegalLuggage())
-//		{
-//			PunishedPersonManager.addPunishment(new PunishedPassenger(driver, DRIVER_ILLEGAL_LUGGAGE_EXPLANATION, this.vehicleAtTerminal));
-//			StoppedVehicleManager.addStoppedVehicle(this.vehicleAtTerminal, DRIVER_ILLEGAL_LUGGAGE_EXPLANATION);
-//			infoLogger.info("<BUS REMOVED CAUSE OF DRIVER ILLEGAL LUGGAGE> " + this.vehicleAtTerminal.getVehicleId());
-//			vehicleAtTerminal = null;
-//			status = TerminalStatus.AVAILABLE; //Free up the terminal from the vehicle that was being processed
-//			return; //No need to continue processing after this if the driver is evicted
-//		}  //UNLESS THE DRIVER CHECK IS ALSO NECESSARY
+		Thread.sleep(processingTime);
+		BusPassenger driver = (BusPassenger)this.vehicleAtTerminal.driver;
+		if(driver.hasIllegalLuggage())
+		{
+			PunishedPersonManager.addPunishment(new PunishedPassenger(driver, DRIVER_ILLEGAL_LUGGAGE_EXPLANATION, this.vehicleAtTerminal));
+			StoppedVehicleManager.addStoppedVehicle(this.vehicleAtTerminal, DRIVER_ILLEGAL_LUGGAGE_EXPLANATION);
+			infoLogger.info("<BUS REMOVED CAUSE OF DRIVER ILLEGAL LUGGAGE> " + this.vehicleAtTerminal.getVehicleId());
+			vehicleAtTerminal = null;
+			status = TerminalStatus.AVAILABLE; //Free up the terminal from the vehicle that was being processed
+			return; //No need to continue processing after this if the driver is evicted
+		}  //UNLESS THE DRIVER CHECK IS ALSO NECESSARY
 		
 		List<Passenger> passengersToRemove = new ArrayList<>();
 		
@@ -84,21 +89,16 @@ public abstract class CustomsTerminal extends Terminal{
 				{
 					infoLogger.info("<PASSENGER ILLEGAL LUGGAGE AT CUSTOMS>: " + PASSENGER_ILLEGAL_LUGGAGE_EXPLANATION + "\tPassenger Name: " + bp.getFullName());
 					PunishedPersonManager.addPunishment(new PunishedPassenger(bp, PASSENGER_ILLEGAL_LUGGAGE_EXPLANATION, this.vehicleAtTerminal));
-					System.out.println("PERSON:" + bp.getFullName() + "HAS ILLEGAL LUGGAGE AND WILL GET THROWN OUT!"); //DELETE LATER
+					System.out.println("PERSON:" + bp.getFullName() + " HAS ILLEGAL LUGGAGE AND IS GETTING THROWN OUT!"); //DELETE LATER
 					passengersToRemove.add(bp);				
 				}
 			}
 		}
 		this.vehicleAtTerminal.passengers.removeAll(passengersToRemove);
-		for(Passenger p: this.vehicleAtTerminal.passengers) //DELETE LATER
-		{//DELETE LATER
-			System.out.println(p);//DELETE LATER
-		}//DELETE LATER
 	}
 	
 	private void processVehicleTruck(int processingTime)
 	{
-		System.out.println("Processing truck id: " + this.vehicleAtTerminal.getVehicleId()); //DELETE LATER
 		Truck truckAtTerminal = (Truck)this.vehicleAtTerminal;
 		if(truckAtTerminal.isDocumentationNecessary())
 		{
@@ -116,7 +116,7 @@ public abstract class CustomsTerminal extends Terminal{
 			
 			if(actualWeight > declaredWeight)
 			{
-				System.out.println("TRUCK IS OVERWEIGHT, REMOVING FROM TERMINALS"); //DELETE THIS LATER
+				System.out.println("TRUCK IS OVERWEIGHT, REMOVING FROM CUSTOMS TERMINALS"); //DELETE THIS LATER
 				StoppedVehicleManager.addStoppedVehicle(truckAtTerminal, VEHICLE_OVER_DECLARED_WEIGHT_EXPLANATION);
 				infoLogger.info("<TRUCK REMOVED CAUSE OF OVERWEIGHT CARGO> " + truckAtTerminal.getVehicleId());
 			}//end if
