@@ -84,6 +84,15 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 	        assignedPoliceTerminal.processVehicle();
 	        assignedPoliceTerminal.release(); //release the lock after isAvailable locks it once it returns true
 
+	        if(assignedPoliceTerminal.getVehicleAtTerminal() == null)
+	        {
+	        	synchronized (availablePoliceTerminals) {
+     	        	assignedPoliceTerminal.setVehicleAtTerminal(null);
+     	        	//availablePoliceTerminals.add(assignedPoliceTerminal); // Return the terminal to the available list when processing is done
+     	        	availablePoliceTerminals.notifyAll();
+	        		}
+     	        	return;
+	        } //If the vehicle got thrown out, the vehicle at terminal will be set to null, and that will be a flag that no more processing is necessary
 	        
 	        
 	      //CUSTOMS PROCESSING >>

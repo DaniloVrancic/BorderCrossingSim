@@ -84,6 +84,16 @@ public class Bus extends Vehicle<BusPassenger> implements Serializable{
 	        /////////////////////////////////////////////
 	        ///MISSING PARTS HERE OF MECHANISM TO MOVE TO CUSTOMS AND GET PROCESSED THERE NEXT
 	        /////////////////////////////////////////////
+	        
+	        if(assignedPoliceTerminal.getVehicleAtTerminal() == null)
+	        {
+	        	synchronized (availablePoliceTerminals) {
+     	        	assignedPoliceTerminal.setVehicleAtTerminal(null);
+     	        	//availablePoliceTerminals.add(assignedPoliceTerminal); // Return the terminal to the available list when processing is done
+     	        	availablePoliceTerminals.notifyAll();
+	        		}
+     	        	return;
+	        } //If the vehicle got thrown out, the vehicle at terminal will be set to null, and that will be a flag that no more processing is necessary
 	       
 	        
 	      //CUSTOMS PROCESSING >>

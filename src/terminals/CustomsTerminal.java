@@ -53,7 +53,7 @@ public abstract class CustomsTerminal extends Terminal{
 		{
 			processVehicleTruck(processingTime);
 		}
-		System.out.println("Finished processing: " + this.getVehicleAtTerminal().getVehicleId()); //DELETE LATER
+		System.out.println("Finished processing: " + this.vehicleAtTerminal.getVehicleId()); //DELETE LATER
 		this.status = TerminalStatus.FINISHED_AND_WAITING;
 	}
 	
@@ -70,10 +70,12 @@ public abstract class CustomsTerminal extends Terminal{
 		BusPassenger driver = (BusPassenger)this.vehicleAtTerminal.driver;
 		if(driver.hasIllegalLuggage())
 		{
+			System.out.println("DRIVER: "+ driver.getFullName() +" HAS ILLEGAL LUGGAGE AND BUS IS BEING REMOVED!"); //DELETE LATER
+
 			PunishedPersonManager.addPunishment(new PunishedPassenger(driver, DRIVER_ILLEGAL_LUGGAGE_EXPLANATION, this.vehicleAtTerminal));
 			StoppedVehicleManager.addStoppedVehicle(this.vehicleAtTerminal, DRIVER_ILLEGAL_LUGGAGE_EXPLANATION);
 			infoLogger.info("<BUS REMOVED CAUSE OF DRIVER ILLEGAL LUGGAGE> " + this.vehicleAtTerminal.getVehicleId());
-			vehicleAtTerminal = null;
+			
 			status = TerminalStatus.AVAILABLE; //Free up the terminal from the vehicle that was being processed
 			return; //No need to continue processing after this if the driver is evicted
 		}  //UNLESS THE DRIVER CHECK IS ALSO NECESSARY

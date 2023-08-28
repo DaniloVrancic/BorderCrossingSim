@@ -86,7 +86,7 @@ public abstract class PoliceTerminal extends Terminal{
 				System.out.println("PUNISHING Driver: " + this.vehicleAtTerminal.driver.getFullName() + " of vehicle id:" + this.vehicleAtTerminal.getVehicleId() + " TYPE: (" + this.getVehicleAtTerminal().getClass().getSimpleName() + " )");
 				PunishedPersonManager.addPunishment(new PunishedPassenger(this.vehicleAtTerminal.driver, DRIVER_IDENTIFICATION_INVALID_EXPLANATION(), this.vehicleAtTerminal));
 				StoppedVehicleManager.addStoppedVehicle(this.vehicleAtTerminal, VEHICLE_DRIVER_HAS_INVALID_DOCUMENT_EXPLANATION());
-				vehicleAtTerminal = null;
+				vehicleAtTerminal = null; //MAYBE DELETE!?
 				status = TerminalStatus.AVAILABLE; //Free up the terminal from the vehicle that was being processed
 				
 				return; //No need to continue processing after this if the driver is evicted
