@@ -2,6 +2,8 @@ package vehicles;
 
 
 import exceptions.IllegalNumberOfPassengers;
+import gui.BorderCrossingGUIController;
+import javafx.scene.paint.Color;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,6 +15,7 @@ import terminals.CustomsTerminalForTrucks;
 import terminals.PoliceTerminal;
 import terminals.PoliceTerminalForOthers;
 import terminals.PoliceTerminalForTrucks;
+import terminals.TerminalStatus;
 import terminals.managers.CustomsTerminalsManager;
 import terminals.managers.PoliceTerminalsManager;
 import util.random.RandomGenerator;
@@ -21,6 +24,7 @@ import vehicles.documents.CustomsDocument;
 public class Truck extends Vehicle<Passenger> implements Serializable{
 
 	private static int MAX_TRUCK_CAPACITY = 3;
+	private static int TIME_TO_WAIT_AFTER_PUNISHMENT = 750;
 	
 	private boolean documentationNecessary;
 	public Optional<CustomsDocument> customsDocument = Optional.empty(); //Will be filled by the CustomsTerminal
@@ -77,7 +81,8 @@ public class Truck extends Vehicle<Passenger> implements Serializable{
 	        while (assignedPoliceTerminal == null) {
 	            synchronized (availablePoliceTerminals) {
 	                for (PoliceTerminal terminal : availablePoliceTerminals) {
-	                    if (terminal.isAvailable() && terminal instanceof PoliceTerminalForTrucks) {
+	                    if (terminal instanceof PoliceTerminalForTrucks && terminal.isAvailable()) 
+	                    {
 	                        assignedPoliceTerminal = (PoliceTerminalForTrucks) terminal;
 	                        break;
 	                    }
@@ -91,37 +96,45 @@ public class Truck extends Vehicle<Passenger> implements Serializable{
 	        // Assign the vehicle to the terminal
 	        synchronized (assignedPoliceTerminal) {
 	            assignedPoliceTerminal.setVehicleAndRemoveFromQueue();
-	          //  availableTerminals.remove(assignedTerminal); // Remove terminal from available list
 	        }
 
 	        assignedPoliceTerminal.processVehicle();
-	        assignedPoliceTerminal.release();
 
-	        if(assignedPoliceTerminal.getVehicleAtTerminal() == null)
+	        if(assignedPoliceTerminal.getStatus() == TerminalStatus.VEHICLE_PUNISHED) //This happens if the Vehicle was punished
 	        {
 	        	synchronized (availablePoliceTerminals) {
+	        		BorderCrossingGUIController.colorPaneofTerminal(assignedPoliceTerminal, Color.RED);
+	        		try
+	        		{
+	        			Thread.sleep(TIME_TO_WAIT_AFTER_PUNISHMENT);
+	        		}
+	        		catch(InterruptedException ex)
+	        		{
+	        			errorLogger.severe(ex.getMessage());
+	        		}
+	        		assignedPoliceTerminal.setStatus(TerminalStatus.AVAILABLE);
      	        	assignedPoliceTerminal.setVehicleAtTerminal(null);
-     	        	//availablePoliceTerminals.add(assignedPoliceTerminal); // Return the terminal to the available list when processing is done
+     	        	assignedPoliceTerminal.release();
      	        	availablePoliceTerminals.notifyAll();
 	        		}
      	        	return;
 	        } //If the vehicle got thrown out, the vehicle at terminal will be set to null, and that will be a flag that no more processing is necessary
-	        synchronized (availablePoliceTerminals) {
-	        availablePoliceTerminals.notifyAll();
-	        }
-	        	//NEED TO SET TO NULL VEHICLES IN POLICE TERMINAL ONCE THEY ARE VALID AND ASSIGNED TO A CUSTOMS TERMINAL!!!!!!!!!!!!
+	        
+	        /////////////////////////////////////////////////////////////////////////////////////////////
 	        //CUSTOMS PROCESSING >>
 	        List<CustomsTerminal> availableCustomsTerminals = CustomsTerminalsManager.availableCustomsTerminalsForTrucks;
 	        CustomsTerminalForTrucks assignedCustomsTerminal = null;
 	        while (assignedCustomsTerminal == null) {
 	            synchronized (availableCustomsTerminals) {
 	                for (CustomsTerminal terminal : availableCustomsTerminals) {
-	                    if (terminal.isAvailable() && terminal instanceof CustomsTerminalForTrucks) //if it is available, the object will lock
+	                    if (terminal instanceof CustomsTerminalForTrucks && terminal.isAvailable()) //if it is available, the object will lock
 	                    {
 	                    	assignedCustomsTerminal = (CustomsTerminalForTrucks) terminal;
 	            	        synchronized (availablePoliceTerminals) {
+	            	        	
+	            	        	assignedPoliceTerminal.setStatus(TerminalStatus.AVAILABLE);
 	            	            assignedPoliceTerminal.setVehicleAtTerminal(null);
-	            	         //   availableTerminals.add(assignedTerminal); // Return the terminal to the available list when processing is done
+	            	            assignedPoliceTerminal.release();
 	            	            availablePoliceTerminals.notify();
 	            	        }
 	                        break;
@@ -139,16 +152,26 @@ public class Truck extends Vehicle<Passenger> implements Serializable{
 	    	        }
 	    	        
 	    	        assignedCustomsTerminal.processVehicle();
-	    	        assignedCustomsTerminal.release();
+	    	        
 	            
 	            synchronized (availableCustomsTerminals) {
+	            	if(assignedCustomsTerminal.getStatus().equals(TerminalStatus.VEHICLE_PUNISHED))
+	            	{
+	            		BorderCrossingGUIController.colorPaneofTerminal(assignedCustomsTerminal, Color.RED);
+	            		try
+	            		{
+	            			Thread.sleep(TIME_TO_WAIT_AFTER_PUNISHMENT);
+	            		}
+	            		catch(InterruptedException ex)
+	            		{
+	            			errorLogger.severe("<WAITING INTERRUPTED ERROR>: " + ex.getMessage());
+	            		}
+	            	}
+	            	assignedCustomsTerminal.setStatus(TerminalStatus.AVAILABLE);
 	            	assignedCustomsTerminal.setVehicleAtTerminal(null);
+	            	assignedCustomsTerminal.release();
 		            availableCustomsTerminals.notifyAll();
 		        }
-	        
-	        
-	        
-	        
 	    } catch (InterruptedException e) {
 	        e.printStackTrace();
 	    }

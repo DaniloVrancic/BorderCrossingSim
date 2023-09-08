@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -19,32 +20,32 @@
                <children>
                   <HBox alignment="CENTER" maxHeight="200.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #0000AA;" VBox.vgrow="SOMETIMES">
                      <children>
-                        <Rectangle fx:id="customsTerminal1Rectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="150.0">
+                        <Pane fx:id="customsTerminal1Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-width: 0.8;" HBox.hgrow="NEVER">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Pane>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="1.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="150.0">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Rectangle>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="150.0">
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Rectangle>
-                        <Rectangle fx:id="customsTerminalTrucksRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" layoutX="107.0" layoutY="64.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
+                        <Pane fx:id="customsTerminalTrucksPane" layoutX="10.0" layoutY="64.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-width: 0.8;" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" maxHeight="200.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #00AA00;" VBox.vgrow="SOMETIMES">
                      <children>
-                        <Rectangle fx:id="policeTerminal1Rectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="150.0">
+                        <Pane fx:id="policeTerminal1Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-width: 0.8;">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
-                        </Rectangle>
-                        <Rectangle fx:id="policeTerminal2Rectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="150.0">
+                        </Pane>
+                        <Pane fx:id="policeTerminal2Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-width: 0.8;">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
-                        </Rectangle>
-                        <Rectangle fx:id="policeTerminalTrucksRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
+                        </Pane>
+                        <Pane fx:id="policeTerminalTrucksPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-width: 0.8;" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #AA0000;" VBox.vgrow="SOMETIMES">

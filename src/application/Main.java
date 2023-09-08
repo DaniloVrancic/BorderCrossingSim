@@ -10,8 +10,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import passengers.BusPassenger;
-import passengers.Passenger;
 import terminals.CustomsTerminal;
 import terminals.CustomsTerminalForOthers;
 import terminals.CustomsTerminalForTrucks;

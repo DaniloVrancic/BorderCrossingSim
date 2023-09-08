@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import exceptions.IllegalNumberOfPassengers;
+import gui.BorderCrossingGUIController;
+import javafx.scene.paint.Color;
 import passengers.BusPassenger;
 import terminals.CustomsTerminal;
 import terminals.CustomsTerminalForOthers;
@@ -75,21 +77,25 @@ public class Bus extends Vehicle<BusPassenger> implements Serializable{
 	        // Assign the vehicle to the terminal
 	        synchronized (assignedPoliceTerminal) {
 	        	assignedPoliceTerminal.setVehicleAndRemoveFromQueue();
-	            //availableTerminals.remove(assignedTerminal); // Remove terminal from available list
 	        }
 
 	        assignedPoliceTerminal.processVehicle();
-	        assignedPoliceTerminal.release();
 
-	        /////////////////////////////////////////////
-	        ///MISSING PARTS HERE OF MECHANISM TO MOVE TO CUSTOMS AND GET PROCESSED THERE NEXT
-	        /////////////////////////////////////////////
 	        
 	        if(assignedPoliceTerminal.getVehicleAtTerminal() == null)
 	        {
 	        	synchronized (availablePoliceTerminals) {
+	        		BorderCrossingGUIController.colorPaneofTerminal(assignedPoliceTerminal, Color.RED);
+	        		try
+	        		{
+	        			Thread.sleep(750);
+	        		}
+	        		catch(InterruptedException ex)
+	        		{
+	        			errorLogger.severe(ex.getMessage());
+	        		}
      	        	assignedPoliceTerminal.setVehicleAtTerminal(null);
-     	        	//availablePoliceTerminals.add(assignedPoliceTerminal); // Return the terminal to the available list when processing is done
+     	        	assignedPoliceTerminal.release();
      	        	availablePoliceTerminals.notifyAll();
 	        		}
      	        	return;
@@ -107,7 +113,7 @@ public class Bus extends Vehicle<BusPassenger> implements Serializable{
 	                    	assignedCustomsTerminal = (CustomsTerminalForOthers) terminal;
 	                    	 synchronized (availablePoliceTerminals) {
 	             	        	assignedPoliceTerminal.setVehicleAtTerminal(null);
-	             	        	//availablePoliceTerminals.add(assignedPoliceTerminal); // Return the terminal to the available list when processing is done
+	             	        	assignedPoliceTerminal.release();
 	             	        	availablePoliceTerminals.notifyAll();
 	             	        }
 	                        break;
@@ -125,10 +131,10 @@ public class Bus extends Vehicle<BusPassenger> implements Serializable{
 	    	        }
 	    	        
 	    	        assignedCustomsTerminal.processVehicle();
-	    	        assignedCustomsTerminal.release();
 	            
 	            synchronized (availableCustomsTerminals) {
 		        	assignedCustomsTerminal.setVehicleAtTerminal(null);
+		        	assignedCustomsTerminal.release();
 		            availableCustomsTerminals.notifyAll();
 		        }
 	        

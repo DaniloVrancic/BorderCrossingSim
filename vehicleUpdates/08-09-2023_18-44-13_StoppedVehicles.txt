@@ -1,0 +1,6 @@
+Vehicle:vehicles.Automobile :: Number of Passengers: 3	vehicle.id = 4 STOPPED FOR REASON:  The vehicle(id): [ 4 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:vehicles.Bus :: Number of Passengers: 22	vehicle.id = 6 STOPPED FOR REASON:  The vehicle(id): [ 6 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:vehicles.Truck :: Number of Passengers: 1	vehicle.id = 5 STOPPED FOR REASON:  The vehicle was over the declared cargo limit, thus denied border cross!
+Vehicle:vehicles.Automobile :: Number of Passengers: 4	vehicle.id = 26 STOPPED FOR REASON:  The vehicle(id): [ 26 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:vehicles.Automobile :: Number of Passengers: 1	vehicle.id = 27 STOPPED FOR REASON:  The vehicle(id): [ 27 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:vehicles.Bus :: Number of Passengers: 15	vehicle.id = 9 STOPPED FOR REASON:  The driver has had illegal luggage, thus the bus can not got through!

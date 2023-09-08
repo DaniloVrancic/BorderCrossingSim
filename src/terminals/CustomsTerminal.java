@@ -54,18 +54,19 @@ public abstract class CustomsTerminal extends Terminal{
 			processVehicleTruck(processingTime);
 		}
 		System.out.println("Finished processing: " + this.vehicleAtTerminal.getVehicleId()); //DELETE LATER
-		this.status = TerminalStatus.FINISHED_AND_WAITING;
 	}
 	
 	private void processVehicleAutomobile(int processingTime) throws InterruptedException
 	{
 			System.out.println("Processing automobile id: " + this.vehicleAtTerminal.getVehicleId()); //DELETE LATER
 			Thread.sleep(processingTime); //Sleep for given time;
+			this.status = TerminalStatus.VEHICLE_PASSED;
 	}
 	
 	
 	private void processVehicleBus(int processingTime) throws InterruptedException
 	{
+		this.status = TerminalStatus.AVAILABLE;
 		Thread.sleep(processingTime);
 		BusPassenger driver = (BusPassenger)this.vehicleAtTerminal.driver;
 		if(driver.hasIllegalLuggage())
@@ -76,7 +77,7 @@ public abstract class CustomsTerminal extends Terminal{
 			StoppedVehicleManager.addStoppedVehicle(this.vehicleAtTerminal, DRIVER_ILLEGAL_LUGGAGE_EXPLANATION);
 			infoLogger.info("<BUS REMOVED CAUSE OF DRIVER ILLEGAL LUGGAGE> " + this.vehicleAtTerminal.getVehicleId());
 			
-			status = TerminalStatus.AVAILABLE; //Free up the terminal from the vehicle that was being processed
+			status = TerminalStatus.VEHICLE_PUNISHED; //Free up the terminal from the vehicle that was being processed
 			return; //No need to continue processing after this if the driver is evicted
 		}  //UNLESS THE DRIVER CHECK IS ALSO NECESSARY
 		
@@ -95,18 +96,21 @@ public abstract class CustomsTerminal extends Terminal{
 					passengersToRemove.add(bp);				
 				}
 			}
-		}
+		} //CHECK EVERY PASSENGER ON THE BUS
 		this.vehicleAtTerminal.passengers.removeAll(passengersToRemove);
+		this.status = TerminalStatus.VEHICLE_PASSED; //If the code executed to here, then the bus has passed
 	}
 	
 	private void processVehicleTruck(int processingTime)
 	{
+		boolean removed = false;
+		
 		Truck truckAtTerminal = (Truck)this.vehicleAtTerminal;
 		if(truckAtTerminal.isDocumentationNecessary())
 		{
 			truckAtTerminal.customsDocument = Optional.of(new CustomsDocument());
 			System.out.println("CREATING customs document!"); //DELETE LATER
-		}
+		} //end if
 		
 		if(!truckAtTerminal.customsDocument.equals(Optional.empty()))
 		{
@@ -121,8 +125,29 @@ public abstract class CustomsTerminal extends Terminal{
 				System.out.println("TRUCK IS OVERWEIGHT, REMOVING FROM CUSTOMS TERMINALS"); //DELETE THIS LATER
 				StoppedVehicleManager.addStoppedVehicle(truckAtTerminal, VEHICLE_OVER_DECLARED_WEIGHT_EXPLANATION);
 				infoLogger.info("<TRUCK REMOVED CAUSE OF OVERWEIGHT CARGO> " + truckAtTerminal.getVehicleId());
+				removed = true;
 			}//end if
 			
 		}//end if
+		
+		try
+		{
+			Thread.sleep(processingTime);
+		}
+		catch(InterruptedException ex)
+		{
+			errorLogger.severe("<INTERRUPTED WHILE SLEEPING>: " + ex.getMessage());
+		}
+		
+		if(removed == true)
+		{
+			this.status = TerminalStatus.VEHICLE_PUNISHED;
+		}
+		else
+		{
+			this.status = TerminalStatus.VEHICLE_PASSED;			
+		}
+		
+		
 	}
 }

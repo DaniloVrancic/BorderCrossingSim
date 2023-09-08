@@ -3,7 +3,8 @@ package terminals;
 public enum TerminalStatus {
 
 	AVAILABLE,
-	FINISHED_AND_WAITING,
+	VEHICLE_PUNISHED,
+	VEHICLE_PASSED,
 	BLOCKED,
 	PROCESSING;
 }

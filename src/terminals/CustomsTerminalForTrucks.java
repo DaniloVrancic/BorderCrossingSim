@@ -18,7 +18,7 @@ public class CustomsTerminalForTrucks extends CustomsTerminal{
 		super();
 	}
 	
-	private static final int TIME_PLACEHOLDER = 100;
+	private static final int TIME_TO_WAIT_AT_CUSTOMS = 1000;
 	
 	public void processVehicle()
 	{
@@ -27,7 +27,7 @@ public class CustomsTerminalForTrucks extends CustomsTerminal{
 			if(this.vehicleAtTerminal instanceof Truck)
 			{
 				this.status = TerminalStatus.PROCESSING;
-				super.processVehicle(TIME_PLACEHOLDER);
+				super.processVehicle(TIME_TO_WAIT_AT_CUSTOMS);
 			}
 			infoLogger.info("Finished with truck (id): " + this.vehicleAtTerminal.getVehicleId());
 		}

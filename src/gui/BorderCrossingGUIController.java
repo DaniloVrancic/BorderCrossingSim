@@ -3,21 +3,34 @@ package gui;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.logging.Logger;
 
 import javafx.application.Platform;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.StrokeType;
+import logger.LoggerManager;
 import passengers.BusPassenger;
 import passengers.Passenger;
 import terminals.CustomsTerminal;
@@ -38,25 +51,28 @@ public class BorderCrossingGUIController implements Initializable
 	    public ListView<Vehicle<?>> topFiveListView;
 	 	
 	 	@FXML
-	 	public Rectangle policeTerminal1Rectangle;
+	 	public Pane policeTerminal1Pane;
 	 	
 	 	@FXML
-	 	public Rectangle policeTerminal2Rectangle;
+	 	public Pane policeTerminal2Pane;
 	 	
 	 	@FXML
-	 	public Rectangle policeTerminalTrucksRectangle;
+	 	public Pane policeTerminalTrucksPane;
 	 	
 	 	@FXML
-	 	public Rectangle customsTerminal1Rectangle;
+	 	public Pane customsTerminal1Pane;
 	 	
 	 	@FXML
-	 	public Rectangle customsTerminalTrucksRectangle;
+	 	public Pane customsTerminalTrucksPane;
 	 	
 	 	
 
 	    public static BlockingQueue<Vehicle<?>> vehicleQueue;
+	    public static HashMap<Terminal,Pane> terminalToPaneMap;
 	    
 	    public static boolean IS_PAUSED = false;
+	    
+	    List<Terminal> allTerminals = new ArrayList<>();
 
 
 	    public void setVehicleQueue(BlockingQueue<Vehicle<?>> vehicleQueue) {
@@ -65,38 +81,88 @@ public class BorderCrossingGUIController implements Initializable
 	        updateListView();
 	    }
 
-	    private void updateRectangle(Rectangle rec, Terminal t) {
+	    private void updatePane(Terminal t) {
+	    	
+	    	Pane pane = terminalToPaneMap.get(t);
 	        Vehicle<?> item = t.getVehicleAtTerminal();
-
+	        
 	        if (item == null) {
-	            // Handle the case where item is null (optional)
+	            
+	            // Set the background color, border, etc. back to their default values
+	            pane.setStyle("-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-width: 0.8;");
+	            pane.getChildren().clear(); // Clear any existing content
 	        } else {
-	            // Create an HBox to hold the icon and text
-	            HBox content = new HBox(5); // 5 is the spacing between icon and text (you can adjust this)
-
-	            // Determine the appropriate icon based on the vehicle type
-	            ImageView icon = new ImageView();
-	            if (item instanceof Automobile) {
-	                icon.setImage(new Image(getClass().getResourceAsStream("carIcon.png")));
-	            } else if (item instanceof Bus) {
-	                icon.setImage(new Image(getClass().getResourceAsStream("busIcon.png")));
-	            } else if (item instanceof Truck) {
-	                icon.setImage(new Image(getClass().getResourceAsStream("truckIcon.png")));
-	            }
-	            icon.setFitWidth(28);
-	            icon.setFitHeight(28);
-
-	            // Create a label for the text
-	            Label label = new Label(item.getClass().getSimpleName() + "\tID: " + item.getVehicleId());
-
-	            // Add the icon and label to the HBox
-	            content.getChildren().addAll(icon, label);
-
-	            // Set the content of the rectangle
-	            //rec.setContent(content);
-	            rec.setClip(content); //FIX LATER, NOT APPROPRIATE METHOD!!!!!!!!!!!!!!!!!!!!
+	        	drawPaneWithVehicle(pane, item);
 	        }
 	    }
+	    
+	    private void updatePane(Pane pane) {
+	    	Terminal t = null;
+	    	for(Map.Entry<Terminal,Pane> entry : terminalToPaneMap.entrySet()) //Find the Terminal that corresponds to the pane
+	    	{
+	    		if(entry.getValue().equals(pane))
+	    		{
+	    			t = entry.getKey();
+	    		}
+	    	}
+	    	
+	    	if(t == null)
+	    	{
+	    		throw new NullPointerException("The terminal to the corresponding pane has not been found!");
+	    	}
+	    	
+	        Vehicle<?> item = t.getVehicleAtTerminal();
+	        
+	        if (item == null) {
+	            
+	            // Set the background color, border, etc. back to their default values
+	            pane.setStyle("-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-width: 0.8;");
+	            pane.getChildren().clear(); // Clear any existing content
+	        } else {
+	            
+	            drawPaneWithVehicle(pane, item);
+	        }
+	    }
+
+		private void drawPaneWithVehicle(Pane pane, Vehicle<?> item) {
+			HBox content = new HBox(5);
+			content.setStyle("-fx-background-color: transparent;");
+			
+			// Determine the appropriate icon based on the vehicle type
+			ImageView icon = new ImageView();
+			if (item instanceof Automobile) {
+			    icon.setImage(new Image(getClass().getResourceAsStream("carIcon.png")));
+			} else if (item instanceof Bus) {
+			    icon.setImage(new Image(getClass().getResourceAsStream("busIcon.png")));
+			} else if (item instanceof Truck) {
+			    icon.setImage(new Image(getClass().getResourceAsStream("truckIcon.png")));
+			}
+			
+			icon.setFitWidth(32);
+			icon.setFitHeight(32);
+         
+
+			// Create a label for the text
+			Label label = new Label(item.getClass().getSimpleName() + "\nID: " + item.getVehicleId());
+			label.setWrapText(true);  // Enable text wrapping
+			label.setTextFill(Color.BLACK);
+			label.setAlignment(Pos.CENTER);
+			
+
+			content.setAlignment(Pos.CENTER);
+			HBox.setHgrow(content, Priority.ALWAYS);
+
+			// Adjust the spacing and padding as needed
+			content.setSpacing(10);  // Adjust the spacing between the icon and label
+			content.setPadding(new Insets(10, 10, 10, 10));  // Add some padding
+			// Set the content of the pane to the HBox
+			content.getChildren().addAll(icon, label);
+			pane.setStyle("-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-width: 0.8;");
+			
+			pane.getChildren().setAll(content); // Set the content of the pane
+		}
+
+
 	    private void updateListView() {
 	        if (vehicleQueue != null) {
 	            topFiveListView.getItems().clear();
@@ -118,14 +184,14 @@ public class BorderCrossingGUIController implements Initializable
 	        }
 	    }
 	    
-	    private void updateScene()
-	    {
-	    	updateListView();
-	    	updateRectangle(policeTerminal1Rectangle, PoliceTerminalsManager.availablePoliceTerminalsForOthers.get(0));
-	    	updateRectangle(policeTerminal2Rectangle, PoliceTerminalsManager.availablePoliceTerminalsForOthers.get(1));
-	    	updateRectangle(policeTerminalTrucksRectangle, PoliceTerminalsManager.availablePoliceTerminalsForTrucks.get(0));
-	    	updateRectangle(customsTerminal1Rectangle, CustomsTerminalsManager.availableCustomsTerminalsForOthers.get(0));
-	    	updateRectangle(customsTerminalTrucksRectangle, CustomsTerminalsManager.availableCustomsTerminalsForTrucks.get(0));
+	    private void updateScene() {
+	        updateListView();
+	        
+	        for(Terminal t : terminalToPaneMap.keySet())
+	        {
+	       	updatePane(t);	        	
+	        }
+	       
 	    }
 
 	    // Define a custom cell for the ListView
@@ -163,7 +229,31 @@ public class BorderCrossingGUIController implements Initializable
 			final int NUMBER_OF_TRUCKS_AT_START 	= 10;
 			final int NUMBER_OF_CARS_AT_START 		= 35;
 			/////////////////////////////////
+			List<Terminal> allTerminals = new ArrayList<>();
+			allTerminals.addAll(PoliceTerminalsManager.availablePoliceTerminals);
+			allTerminals.addAll(CustomsTerminalsManager.availableCustomsTerminals);
 
+			try
+			{
+				terminalToPaneMap = new HashMap<>();
+				terminalToPaneMap.put(PoliceTerminalsManager.availablePoliceTerminals.get(0), policeTerminal1Pane);
+				terminalToPaneMap.put(PoliceTerminalsManager.availablePoliceTerminals.get(1), policeTerminal2Pane);
+				terminalToPaneMap.put(PoliceTerminalsManager.availablePoliceTerminals.get(2), policeTerminalTrucksPane);
+				terminalToPaneMap.put(CustomsTerminalsManager.availableCustomsTerminals.get(0), customsTerminal1Pane);
+				terminalToPaneMap.put(CustomsTerminalsManager.availableCustomsTerminals.get(1), customsTerminalTrucksPane);
+			}
+			catch (Exception ex)
+			{
+				Logger errorLogger = LoggerManager.getErrorLogger();
+				errorLogger.severe(ex.getMessage());
+			}
+			
+			//policeTerminal1Pane.getChildren().addListener((ListChangeListener<Node>) change -> { updatePane(policeTerminal1Pane);});
+			//policeTerminal2Pane.getChildren().addListener((ListChangeListener<Node>) change -> { updatePane(policeTerminal2Pane);});
+			//policeTerminalTrucksPane.getChildren().addListener((ListChangeListener<Node>) change -> { updatePane(policeTerminalTrucksPane);});
+			//customsTerminal1Pane.getChildren().addListener((ListChangeListener<Node>) change -> { updatePane(customsTerminal1Pane);});
+			//customsTerminalTrucksPane.getChildren().addListener((ListChangeListener<Node>) change -> { updatePane(customsTerminalTrucksPane);});
+			
 			try {
 			
 			//IdentificationGenerator generator = new IdentificationGenerator();
@@ -203,6 +293,8 @@ public class BorderCrossingGUIController implements Initializable
 			 // Initialize the ListView with the top 5 vehicles from the queue
 			topFiveListView.setCellFactory(list -> new VehicleListCell());
 			//updateListView();
+			
+			
 	        
 	        Thread t = new Thread(new Runnable() {
 
@@ -211,10 +303,10 @@ public class BorderCrossingGUIController implements Initializable
 					while(true)
 					{
 						try {
-							Thread.sleep(500);
+							Thread.sleep(100);
 							synchronized(vehicleQueue) {
 								Platform.runLater(() -> updateScene());
-								if(vehicleQueue.isEmpty())
+								if(vehicleQueue.isEmpty() && allTerminalsEmpty(allTerminals))
 								{
 									return;
 								}
@@ -235,7 +327,20 @@ public class BorderCrossingGUIController implements Initializable
 			
 		}
 	
-	
+		private boolean allTerminalsEmpty(List<Terminal> allTerminals)
+		{
+			allTerminals.addAll(PoliceTerminalsManager.availablePoliceTerminals);
+			allTerminals.addAll(CustomsTerminalsManager.availableCustomsTerminals);
+			
+			for(Terminal t : allTerminals)
+			{
+				if(t.getVehicleAtTerminal() != null)
+				{
+					return false;
+				}
+			}
+			return true;
+		}
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////	HELPFUL METHODS	////////////////////////////////////
@@ -263,4 +368,26 @@ public class BorderCrossingGUIController implements Initializable
 			Collections.shuffle(listToShuffle);
 			return listToShuffle;
 		}
+	
+	public static void colorPaneofTerminal(Terminal terminal, Color color) {
+	    Pane paneToColor = terminalToPaneMap.get(terminal);
+	    
+	    
+	    
+	    // Convert the Color object to a CSS-friendly format
+	    String cssColor = String.format("#%02X%02X%02X",
+	            (int)(color.getRed() * 255),
+	            (int)(color.getGreen() * 255),
+	            (int)(color.getBlue() * 255));
+
+	    paneToColor.setStyle("-fx-background-color: " + cssColor + ";");
+	    for(Node n : paneToColor.getChildren())
+	    	{
+	    	 if(n instanceof ImageView || n instanceof Label)
+	    	 {
+	    		 n.setStyle("-fx-background-color: " + cssColor + ";");
+	    	 }
+	    	}
+	    
+	}
 }

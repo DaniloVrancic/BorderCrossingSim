@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import exceptions.IllegalNumberOfPassengers;
+import gui.BorderCrossingGUIController;
+import javafx.scene.paint.Color;
 import passengers.Passenger;
 import terminals.CustomsTerminal;
 import terminals.CustomsTerminalForOthers;
@@ -16,6 +18,7 @@ import util.random.RandomGenerator;
 public class Automobile extends Vehicle<Passenger> implements Serializable{
 
 	private static int MAX_AUTOMOBILE_CAPACITY = 5;
+	
 	public Automobile() {
 		super(PoliceTerminalsManager.availablePoliceTerminalsForOthers);
 		
@@ -63,7 +66,7 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 	        while (assignedPoliceTerminal == null) {
 	            synchronized (availablePoliceTerminals) {
 	                for (PoliceTerminal terminal : availablePoliceTerminals) {
-	                    if (terminal.isAvailable() && terminal instanceof PoliceTerminalForOthers) //if it is available, the object will lock
+	                    if (terminal instanceof PoliceTerminalForOthers && terminal.isAvailable()) //if it is available, the object will lock
 	                    {
 	                    	assignedPoliceTerminal = (PoliceTerminalForOthers) terminal;
 	                        break;
@@ -78,17 +81,24 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 	        // Assign the vehicle to the terminal
 	        synchronized (assignedPoliceTerminal) {
 	        	assignedPoliceTerminal.setVehicleAndRemoveFromQueue();
-	            //availableTerminals.remove(assignedTerminal); // Remove terminal from available list
 	        }
 
 	        assignedPoliceTerminal.processVehicle();
-	        assignedPoliceTerminal.release(); //release the lock after isAvailable locks it once it returns true
 
-	        if(assignedPoliceTerminal.getVehicleAtTerminal() == null)
+	        if(assignedPoliceTerminal.getVehicleAtTerminal() == null) //Condition is true if the vehicle got thrown out, rejected at the terminal
 	        {
 	        	synchronized (availablePoliceTerminals) {
+	        		BorderCrossingGUIController.colorPaneofTerminal(assignedPoliceTerminal, Color.RED);
+	        		try
+	        		{
+	        			Thread.sleep(750);
+	        		}
+	        		catch(InterruptedException ex)
+	        		{
+	        			errorLogger.severe(ex.getMessage());
+	        		}
      	        	assignedPoliceTerminal.setVehicleAtTerminal(null);
-     	        	//availablePoliceTerminals.add(assignedPoliceTerminal); // Return the terminal to the available list when processing is done
+     	        	assignedPoliceTerminal.release(); //release the lock after isAvailable locks it once it returns true
      	        	availablePoliceTerminals.notifyAll();
 	        		}
      	        	return;
@@ -101,12 +111,12 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 	        while (assignedCustomsTerminal == null) {
 	            synchronized (availableCustomsTerminals) {
 	                for (CustomsTerminal terminal : availableCustomsTerminals) {
-	                    if (terminal.isAvailable() && terminal instanceof CustomsTerminalForOthers) //if it is available, the object will lock
+	                    if (terminal instanceof CustomsTerminalForOthers && terminal.isAvailable()) //if it is available, the object will lock
 	                    {
 	                    	assignedCustomsTerminal = (CustomsTerminalForOthers) terminal;
 	                    	synchronized (availablePoliceTerminals) {
 	            	        	assignedPoliceTerminal.setVehicleAtTerminal(null);
-	            	          //  availableTerminals.add(assignedTerminal); // Return the terminal to the available list when processing is done
+	            	        	assignedPoliceTerminal.release(); //release the lock after isAvailable locks it once it returns true
 	            	            availablePoliceTerminals.notifyAll();
 	            	        }
 	                        break;
@@ -124,10 +134,10 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 	    	        }
 	    	        
 	    	        assignedCustomsTerminal.processVehicle();
-	    	        assignedCustomsTerminal.release();
 	            
 	            synchronized (availableCustomsTerminals) {
 		        	assignedCustomsTerminal.setVehicleAtTerminal(null);
+		        	assignedCustomsTerminal.release();
 		            availableCustomsTerminals.notifyAll();
 		        }
 	        
