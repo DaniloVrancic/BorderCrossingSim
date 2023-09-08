@@ -77,7 +77,7 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 
 	        // Assign the vehicle to the terminal
 	        synchronized (assignedPoliceTerminal) {
-	        	assignedPoliceTerminal.setVehicleAtTerminal(this);
+	        	assignedPoliceTerminal.setVehicleAndRemoveFromQueue();
 	            //availableTerminals.remove(assignedTerminal); // Remove terminal from available list
 	        }
 

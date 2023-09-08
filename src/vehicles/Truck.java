@@ -90,7 +90,7 @@ public class Truck extends Vehicle<Passenger> implements Serializable{
 
 	        // Assign the vehicle to the terminal
 	        synchronized (assignedPoliceTerminal) {
-	            assignedPoliceTerminal.setVehicleAtTerminal(this);
+	            assignedPoliceTerminal.setVehicleAndRemoveFromQueue();
 	          //  availableTerminals.remove(assignedTerminal); // Remove terminal from available list
 	        }
 
@@ -106,7 +106,10 @@ public class Truck extends Vehicle<Passenger> implements Serializable{
 	        		}
      	        	return;
 	        } //If the vehicle got thrown out, the vehicle at terminal will be set to null, and that will be a flag that no more processing is necessary
-	        
+	        synchronized (availablePoliceTerminals) {
+	        availablePoliceTerminals.notifyAll();
+	        }
+	        	//NEED TO SET TO NULL VEHICLES IN POLICE TERMINAL ONCE THEY ARE VALID AND ASSIGNED TO A CUSTOMS TERMINAL!!!!!!!!!!!!
 	        //CUSTOMS PROCESSING >>
 	        List<CustomsTerminal> availableCustomsTerminals = CustomsTerminalsManager.availableCustomsTerminalsForTrucks;
 	        CustomsTerminalForTrucks assignedCustomsTerminal = null;

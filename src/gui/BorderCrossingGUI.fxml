@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BorderCrossingGUIController">
+   <center>
+      <AnchorPane style="-fx-min-width: 60%;" BorderPane.alignment="BOTTOM_CENTER">
+         <children>
+            <VBox alignment="CENTER" maxHeight="50000.0" prefHeight="400.0" prefWidth="340.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER" maxHeight="200.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #0000AA;" VBox.vgrow="SOMETIMES">
+                     <children>
+                        <Rectangle fx:id="customsTerminal1Rectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="150.0">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="150.0">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                        <Rectangle fx:id="customsTerminalTrucksRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" layoutX="107.0" layoutY="64.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="200.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #00AA00;" VBox.vgrow="SOMETIMES">
+                     <children>
+                        <Rectangle fx:id="policeTerminal1Rectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="150.0">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                        <Rectangle fx:id="policeTerminal2Rectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="150.0">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                        <Rectangle fx:id="policeTerminalTrucksRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #AA0000;" VBox.vgrow="SOMETIMES">
+                     <children>
+                        <ListView fx:id="topFiveListView" prefHeight="140.0" prefWidth="200.0" HBox.hgrow="NEVER" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="15.0" top="15.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+   <right>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="210.0" style="-fx-border-color: black; -fx-border-width: 0.5;" text="Event log:" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="messagesTextArea" editable="false" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="180.0" style="-fx-background-color: grey;" wrapText="true" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="Ebrima" size="14.0" />
+               </font>
+            </TextArea>
+         </children>
+         <BorderPane.margin>
+            <Insets top="1.0" />
+         </BorderPane.margin>
+      </VBox>
+   </right>
+   <left>
+      <VBox prefHeight="400.0" prefWidth="180.0" style="-fx-min-width: 35%;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="27.0" prefWidth="180.0" style="-fx-border-color: black; -fx-border-width: 0.5;" text="Selected vehicle info:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="selectedVehicleInfoTextArea" editable="false" prefHeight="380.0" prefWidth="180.0" style="-fx-background-color: grey;" text="Test text:&#10;Hello my dear nibbers&#10;how are you doing todaaayyyy&#10;" wrapText="true" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="Ebrima" size="14.0" />
+               </font>
+            </TextArea>
+         </children>
+      </VBox>
+   </left>
+</BorderPane>

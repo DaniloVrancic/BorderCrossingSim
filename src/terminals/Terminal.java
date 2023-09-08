@@ -2,8 +2,9 @@
 	
 	import java.util.concurrent.locks.ReentrantLock;
 	import java.util.logging.Logger;
-	
-	import logger.LoggerManager;
+
+import gui.BorderCrossingGUIController;
+import logger.LoggerManager;
 	import vehicles.Vehicle;
 	
 	public abstract class Terminal {
@@ -39,6 +40,14 @@
 	    	this.vehicleAtTerminal = vehicle;
 	    }
 	
+	    public void setVehicleAndRemoveFromQueue()
+	    {
+	    	setVehicleAtTerminal(BorderCrossingGUIController.vehicleQueue.poll()); //removes from queue and takes the reference
+	    	if(!BorderCrossingGUIController.vehicleQueue.isEmpty())
+	    	{
+	    		BorderCrossingGUIController.vehicleQueue.peek().start();
+	    	}
+	    }
 	
 	
 	    public void blockTerminal()

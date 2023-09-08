@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-09-07T11:11:41.050638700Z</date>
+  <millis>1694085101050</millis>
+  <nanos>638700</nanos>
+  <sequence>384</sequence>
+  <logger>ErrorLogger</logger>
+  <level>SEVERE</level>
+  <class>terminals.PoliceTerminal</class>
+  <method>processVehicle</method>
+  <thread>94</thread>
+  <message>&lt;Processing Vehicle exception&gt;: Cannot read field "passengers" because "vehicle" is null</message>
+</record>
+<record>
+  <date>2023-09-07T11:11:42.704178500Z</date>
+  <millis>1694085102704</millis>
+  <nanos>178500</nanos>
+  <sequence>387</sequence>
+  <logger>ErrorLogger</logger>
+  <level>SEVERE</level>
+  <class>vehicles.seriazilabledatastructure.SerializableList</class>
+  <method>serializeList</method>
+  <thread>123</thread>
+  <message>&lt;Serialization failure&gt;: java.util.Optional</message>
+</record>
+<record>
+  <date>2023-09-07T11:12:01.491798800Z</date>
+  <millis>1694085121491</millis>
+  <nanos>798800</nanos>
+  <sequence>398</sequence>
+  <logger>ErrorLogger</logger>
+  <level>SEVERE</level>
+  <class>terminals.PoliceTerminal</class>
+  <method>processVehicle</method>
+  <thread>106</thread>
+  <message>&lt;Processing Vehicle exception&gt;: Cannot invoke "vehicles.Vehicle.getVehicleId()" because "this.vehicleAtTerminal" is null</message>
+</record>
+<record>
+  <date>2023-09-07T11:12:07.997728700Z</date>
+  <millis>1694085127997</millis>
+  <nanos>728700</nanos>
+  <sequence>404</sequence>
+  <logger>ErrorLogger</logger>
+  <level>SEVERE</level>
+  <class>terminals.PoliceTerminal</class>
+  <method>processVehicle</method>
+  <thread>86</thread>
+  <message>&lt;Processing Vehicle exception&gt;: Cannot read field "passengers" because "vehicle" is null</message>
+</record>

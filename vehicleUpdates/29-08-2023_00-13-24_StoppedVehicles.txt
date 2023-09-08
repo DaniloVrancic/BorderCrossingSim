@@ -1,0 +1,1 @@
+Vehicle:vehicles.Bus :: Number of Passengers: 29	vehicle.id = 9 STOPPED FOR REASON:  The driver has had illegal luggage, thus the bus can not got through!
