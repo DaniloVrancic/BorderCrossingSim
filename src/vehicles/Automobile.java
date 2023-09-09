@@ -81,6 +81,8 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 	        // Assign the vehicle to the terminal
 	        synchronized (assignedPoliceTerminal) {
 	        	assignedPoliceTerminal.setVehicleAndRemoveFromQueue();
+	        	BorderCrossingGUIController.listViewNeedsRefresh = true;
+	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
 	        }
 
 	        assignedPoliceTerminal.processVehicle();
@@ -98,6 +100,7 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 	        			errorLogger.severe(ex.getMessage());
 	        		}
      	        	assignedPoliceTerminal.setVehicleAtTerminal(null);
+     	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
      	        	assignedPoliceTerminal.release(); //release the lock after isAvailable locks it once it returns true
      	        	availablePoliceTerminals.notifyAll();
 	        		}
@@ -116,6 +119,7 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 	                    	assignedCustomsTerminal = (CustomsTerminalForOthers) terminal;
 	                    	synchronized (availablePoliceTerminals) {
 	            	        	assignedPoliceTerminal.setVehicleAtTerminal(null);
+	            	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
 	            	        	assignedPoliceTerminal.release(); //release the lock after isAvailable locks it once it returns true
 	            	            availablePoliceTerminals.notifyAll();
 	            	        }
@@ -131,12 +135,14 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 	             // Assign the vehicle to the terminal
 	    	        synchronized (assignedCustomsTerminal) {
 	    	        	assignedCustomsTerminal.setVehicleAtTerminal(this);
+	    	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
 	    	        }
 	    	        
 	    	        assignedCustomsTerminal.processVehicle();
 	            
 	            synchronized (availableCustomsTerminals) {
 		        	assignedCustomsTerminal.setVehicleAtTerminal(null);
+		        	BorderCrossingGUIController.terminalsNeedRefresh = true;
 		        	assignedCustomsTerminal.release();
 		            availableCustomsTerminals.notifyAll();
 		        }

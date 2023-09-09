@@ -1,0 +1,46 @@
+Vehicle:TYPE: Automobile
+ID: 20
+Number of Passengers: 5
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Pierre Volkov
+Gender: Male
+Passport Number: 662204819
+Nationality: TJK
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Layla Williams
+Gender: Female
+Passport Number: 393313293
+Nationality: PHL
+---
+
+==========
+---
+Name: Bogdan Smith
+Gender: Male
+Passport Number: 063360876
+Nationality: IRL
+---
+
+==========
+---
+Name: Tommaso Moretti
+Gender: Male
+Passport Number: 112256730
+Nationality: NZL
+---
+
+==========
+---
+Name: Sora Hoffmann
+Gender: Female
+Passport Number: 821097201
+Nationality: BIH
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 20 ] driver has an invalid document and therefore can't cross the border.

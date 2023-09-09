@@ -1,0 +1,70 @@
+Vehicle:TYPE: Bus
+ID: 12
+Number of Passengers: 8
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Ivan Volkov
+Gender: Male
+Passport Number: 939580029
+Nationality: KAZ
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Zachary Semyonov
+Gender: Male
+Passport Number: 012972325
+Nationality: SVN
+---
+
+==========
+---
+Name: Bogdan Wagner
+Gender: Male
+Passport Number: 973440027
+Nationality: CAN
+---
+
+==========
+---
+Name: Ella Allen
+Gender: Female
+Passport Number: 728291139
+Nationality: UZB
+---
+
+==========
+---
+Name: Sora Schwarz
+Gender: Female
+Passport Number: 039251665
+Nationality: GBR
+---
+
+==========
+---
+Name: Logan Novikov
+Gender: Male
+Passport Number: 232444315
+Nationality: ZAF
+---
+
+==========
+---
+Name: Sora Fournier
+Gender: Female
+Passport Number: 735907043
+Nationality: TKM
+---
+
+==========
+---
+Name: Yulia Robinson
+Gender: Female
+Passport Number: 245040025
+Nationality: SGP
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 12 ] driver has an invalid document and therefore can't cross the border.

@@ -121,12 +121,25 @@ abstract public class Vehicle<T extends Passenger> extends Thread implements Ser
     {
     	StringBuilder sb = new StringBuilder();
     	
-    	sb.append(this.getClass().getName());
-    	sb.append(" :: ");
-    	sb.append("Number of Passengers: ");
-    	sb.append(this.numOfPassengers);
-    	sb.append("\tvehicle.id = ");
-    	sb.append(this.getVehicleId());
+    	sb.append("TYPE: "); sb.append(this.getClass().getSimpleName());
+    	sb.append("\n");
+    	sb.append("ID: "); sb.append(this.getVehicleId());
+    	sb.append("\n");
+    	sb.append("Number of Passengers: "); sb.append(this.passengers.size() + 1);
+    	sb.append("\n-------------\n");
+    	sb.append("PASSENGERS INFO:");
+    	sb.append("\n==========\n");
+    	sb.append("DRIVER: ");
+    	sb.append(this.driver);
+    	if(this.numOfPassengers > 1)
+    	{
+    		sb.append("OTHER PASSENGERS: \n");
+    		for(Passenger p : this.passengers)
+    		{
+    			sb.append("\n==========\n");
+    			sb.append(p);
+    		}    		
+    	}
     	return sb.toString();
     }
     

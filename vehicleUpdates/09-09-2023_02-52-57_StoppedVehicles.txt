@@ -1,0 +1,57 @@
+Vehicle:TYPE: Automobile
+ID: 39
+Number of Passengers: 1
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Nina Santoro
+Gender: Female
+Passport Number: 779319627
+Nationality: NZL
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 39 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:TYPE: Automobile
+ID: 49
+Number of Passengers: 2
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Alexander Martin
+Gender: Male
+Passport Number: 102293596
+Nationality: AZE
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Harper David
+Gender: Female
+Passport Number: 664602814
+Nationality: SMR
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 49 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:TYPE: Truck
+ID: 17
+Number of Passengers: 2
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: John Robert
+Gender: Male
+Passport Number: 143833312
+Nationality: SMR
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Matthew Schmitt
+Gender: Male
+Passport Number: 414413657
+Nationality: AUS
+---
+ STOPPED FOR REASON:  The vehicle was over the declared cargo limit, thus denied border cross!

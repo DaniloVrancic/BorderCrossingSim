@@ -77,12 +77,10 @@ public class Identification implements Serializable{
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("----------\tIDENTIFICATION\t----------\n");
         sb.append("Name: " + this.fullName + "\n");
         sb.append("Gender: " + this.gender + "\n");
         sb.append("Passport Number: " + this.passportNumber + "\n");
         sb.append("Nationality: " + this.nationality + "\n");
-        sb.append("----------------------------------------");
 
         return sb.toString();
     }

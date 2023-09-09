@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
+import gui.BorderCrossingGUIController;
 import passengers.Passenger;
 import passengers.PunishedPassenger;
 import passengers.PunishedPersonManager;
@@ -75,7 +76,7 @@ public abstract class PoliceTerminal extends Terminal{
 	public void processVehicle(int processingTime)
 	{
 		status = TerminalStatus.PROCESSING;
-		System.out.println("Processing vehicle: " + this.vehicleAtTerminal.getClass().getSimpleName() + " vehicle_id: " +this.vehicleAtTerminal.getVehicleId() + " ON POLICE TERMINAL: " + this.id);
+		//System.out.println("Processing vehicle: " + this.vehicleAtTerminal.getClass().getSimpleName() + " vehicle_id: " +this.vehicleAtTerminal.getVehicleId() + " ON POLICE TERMINAL: " + this.id);
 		try
 		{
 			//System.out.println("Processing Driver: " + this.vehicleAtTerminal.driver.getFullName() + " of vehicle id:" + this.vehicleAtTerminal.getVehicleId() + " TYPE: (" + this.getVehicleAtTerminal().getClass().getSimpleName() + " )"); //DELETE LATER, TESTING PURPOSES
@@ -83,7 +84,8 @@ public abstract class PoliceTerminal extends Terminal{
 			
 			if(!driverPassed)
 			{
-				System.out.println("PUNISHING Driver: " + this.vehicleAtTerminal.driver.getFullName() + " of vehicle id:" + this.vehicleAtTerminal.getVehicleId() + " TYPE: (" + this.getVehicleAtTerminal().getClass().getSimpleName() + " )");
+				BorderCrossingGUIController.getInstance().updateRelevantEventsTextArea("PUNISHING DRIVER: " + this.vehicleAtTerminal.driver.getFullName() + "\nof vehicle (ID):" + this.vehicleAtTerminal.getVehicleId() + "\nTYPE: ( " + this.getVehicleAtTerminal().getClass().getSimpleName() + " )");
+				//System.out.println("PUNISHING Driver: " + this.vehicleAtTerminal.driver.getFullName() + " of vehicle id:" + this.vehicleAtTerminal.getVehicleId() + " TYPE: (" + this.getVehicleAtTerminal().getClass().getSimpleName() + " )");
 				PunishedPersonManager.addPunishment(new PunishedPassenger(this.vehicleAtTerminal.driver, DRIVER_IDENTIFICATION_INVALID_EXPLANATION(), this.vehicleAtTerminal));
 				StoppedVehicleManager.addStoppedVehicle(this.vehicleAtTerminal, VEHICLE_DRIVER_HAS_INVALID_DOCUMENT_EXPLANATION());
 				//vehicleAtTerminal = null; //MAYBE DELETE!?
@@ -137,7 +139,8 @@ public abstract class PoliceTerminal extends Terminal{
 				synchronized(vehicle.passengers)
 				{
 					PunishedPersonManager.addPunishment(new PunishedPassenger(p, PASSENGER_IDENTIFICATION_INVALID_EXPLANATION(p), this.vehicleAtTerminal));
-					System.out.println("PUNISHING AND REMOVING PASSENGER: " + p.getFullName() + " FROM VEHICLE (ID) :" + this.vehicleAtTerminal.getVehicleId() + " TYPE: " + this.vehicleAtTerminal.getClass().getSimpleName()); //REMOVE THIS LINE LATER
+					BorderCrossingGUIController.getInstance().updateRelevantEventsTextArea("PUNISHING and REMOVING passenger: " + p.getFullName() + " from VEHICLE(ID): " + this.vehicleAtTerminal.getVehicleId() + " TYPE: " + this.vehicleAtTerminal.getClass().getSimpleName());
+					//System.out.println("PUNISHING AND REMOVING PASSENGER: " + p.getFullName() + " FROM VEHICLE (ID) :" + this.vehicleAtTerminal.getVehicleId() + " TYPE: " + this.vehicleAtTerminal.getClass().getSimpleName()); //REMOVE THIS LINE LATER
 					passengersToRemove.add(p);		//Punish the passenger with Invalid documents and throw him out of the Passenger list
 				}
 			}

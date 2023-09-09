@@ -1,0 +1,1 @@
+Vehicle:Automobile :: Number of Passengers: 1	vehicle.id = 50 STOPPED FOR REASON:  The vehicle(id): [ 50 ] driver has an invalid document and therefore can't cross the border.

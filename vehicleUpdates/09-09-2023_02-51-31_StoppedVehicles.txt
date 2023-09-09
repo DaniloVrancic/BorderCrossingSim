@@ -1,0 +1,76 @@
+Vehicle:TYPE: Automobile
+ID: 28
+Number of Passengers: 4
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Tamara White
+Gender: Female
+Passport Number: 467929122
+Nationality: MNE
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Emanuele Popov
+Gender: Male
+Passport Number: 730230984
+Nationality: ARM
+---
+
+==========
+---
+Name: Maria Simon
+Gender: Female
+Passport Number: 779372812
+Nationality: TKM
+---
+
+==========
+---
+Name: Anna Kostic
+Gender: Female
+Passport Number: 909189185
+Nationality: SMR
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 28 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:TYPE: Automobile
+ID: 43
+Number of Passengers: 4
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Alina Djokovic
+Gender: Female
+Passport Number: 050572720
+Nationality: IRL
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Simone Miller
+Gender: Male
+Passport Number: 091570155
+Nationality: BLR
+---
+
+==========
+---
+Name: Emma Semyonov
+Gender: Female
+Passport Number: 971627898
+Nationality: CAN
+---
+
+==========
+---
+Name: Ivana Bogdanov
+Gender: Female
+Passport Number: 963000210
+Nationality: MCO
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 43 ] driver has an invalid document and therefore can't cross the border.

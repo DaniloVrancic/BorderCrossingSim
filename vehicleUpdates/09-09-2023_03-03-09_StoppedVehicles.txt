@@ -1,0 +1,118 @@
+Vehicle:TYPE: Bus
+ID: 9
+Number of Passengers: 15
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Aki Popov
+Gender: Female
+Passport Number: 371062969
+Nationality: FRA
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Addison Wright
+Gender: Female
+Passport Number: 283654741
+Nationality: CAN
+---
+
+==========
+---
+Name: Alice Roux
+Gender: Female
+Passport Number: 252854603
+Nationality: PHL
+---
+
+==========
+---
+Name: Ren Takahashi
+Gender: Male
+Passport Number: 743375385
+Nationality: BLR
+---
+
+==========
+---
+Name: Tamara Simic
+Gender: Female
+Passport Number: 226627291
+Nationality: UKR
+---
+
+==========
+---
+Name: Isabella Lombardi
+Gender: Female
+Passport Number: 609847446
+Nationality: UZB
+---
+
+==========
+---
+Name: Riku Sokolov
+Gender: Male
+Passport Number: 906335952
+Nationality: FRA
+---
+
+==========
+---
+Name: Alessandro Hernandez
+Gender: Male
+Passport Number: 893611388
+Nationality: GBR
+---
+
+==========
+---
+Name: Hayato Jackson
+Gender: Male
+Passport Number: 849513504
+Nationality: BIH
+---
+
+==========
+---
+Name: Ren Lombardi
+Gender: Male
+Passport Number: 975759965
+Nationality: CHE
+---
+
+==========
+---
+Name: Maximilian Hayashi
+Gender: Male
+Passport Number: 077501280
+Nationality: RUS
+---
+
+==========
+---
+Name: Maxim Marino
+Gender: Male
+Passport Number: 441367650
+Nationality: BIH
+---
+
+==========
+---
+Name: Manon Hofmann
+Gender: Female
+Passport Number: 403900390
+Nationality: LUX
+---
+
+==========
+---
+Name: Marie Matsumoto
+Gender: Female
+Passport Number: 324513275
+Nationality: KGZ
+---
+ STOPPED FOR REASON:  The driver has had illegal luggage, thus the bus can not got through!

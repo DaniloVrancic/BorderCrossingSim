@@ -1,0 +1,270 @@
+Vehicle:TYPE: Truck
+ID: 25
+Number of Passengers: 2
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Brooklyn Fournier
+Gender: Female
+Passport Number: 211088292
+Nationality: UZB
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Harper Leroy
+Gender: Female
+Passport Number: 860792507
+Nationality: ARM
+---
+ STOPPED FOR REASON:  The vehicle was over the declared cargo limit, thus denied border cross!
+Vehicle:TYPE: Automobile
+ID: 31
+Number of Passengers: 5
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Maximilian Esposito
+Gender: Male
+Passport Number: 796307757
+Nationality: SGP
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Viktor Kostic
+Gender: Male
+Passport Number: 811553644
+Nationality: MNE
+---
+
+==========
+---
+Name: Hannah Green
+Gender: Female
+Passport Number: 066303508
+Nationality: IRL
+---
+
+==========
+---
+Name: Igor Vorobev
+Gender: Male
+Passport Number: 184158621
+Nationality: SMR
+---
+
+==========
+---
+Name: Elisa Rodriguez
+Gender: Female
+Passport Number: 068062950
+Nationality: KGZ
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 31 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:TYPE: Truck
+ID: 5
+Number of Passengers: 3
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Hikaru Fontana
+Gender: Male
+Passport Number: 982907039
+Nationality: IND
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Isabelle Kovacevic
+Gender: Female
+Passport Number: 033098243
+Nationality: MNE
+---
+
+==========
+---
+Name: Milica Conti
+Gender: Female
+Passport Number: 572636604
+Nationality: UKR
+---
+ STOPPED FOR REASON:  The vehicle was over the declared cargo limit, thus denied border cross!
+Vehicle:TYPE: Truck
+ID: 23
+Number of Passengers: 2
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Sergei Clark
+Gender: Male
+Passport Number: 585645168
+Nationality: UKR
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Jonas Novikov
+Gender: Male
+Passport Number: 848623805
+Nationality: IND
+---
+ STOPPED FOR REASON:  The vehicle was over the declared cargo limit, thus denied border cross!
+Vehicle:TYPE: Bus
+ID: 15
+Number of Passengers: 18
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Victoria Richard
+Gender: Female
+Passport Number: 321926701
+Nationality: TKM
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Brandon Wagner
+Gender: Male
+Passport Number: 867942169
+Nationality: CAN
+---
+
+==========
+---
+Name: Sofija Bianchi
+Gender: Female
+Passport Number: 526948279
+Nationality: ARM
+---
+
+==========
+---
+Name: Quentin Marino
+Gender: Male
+Passport Number: 527229570
+Nationality: CHE
+---
+
+==========
+---
+Name: Ayumi Bruno
+Gender: Female
+Passport Number: 028207776
+Nationality: ZAF
+---
+
+==========
+---
+Name: Alice Matsumoto
+Gender: Female
+Passport Number: 874750357
+Nationality: ITA
+---
+
+==========
+---
+Name: Riley Stevanovic
+Gender: Female
+Passport Number: 369960291
+Nationality: SVN
+---
+
+==========
+---
+Name: Brooklyn Lewis
+Gender: Female
+Passport Number: 989739887
+Nationality: NZL
+---
+
+==========
+---
+Name: Elizabeth Schröder
+Gender: Female
+Passport Number: 667953239
+Nationality: ZAF
+---
+
+==========
+---
+Name: Clara Kozlov
+Gender: Female
+Passport Number: 705277177
+Nationality: UZB
+---
+
+==========
+---
+Name: Gabriel Vukovic
+Gender: Male
+Passport Number: 880749973
+Nationality: CHE
+---
+
+==========
+---
+Name: Raphael Smirnov
+Gender: Male
+Passport Number: 209697221
+Nationality: SRB
+---
+
+==========
+---
+Name: Paul Yamada
+Gender: Male
+Passport Number: 115537298
+Nationality: IRL
+---
+
+==========
+---
+Name: Lukas Kobayashi
+Gender: Male
+Passport Number: 572893361
+Nationality: UZB
+---
+
+==========
+---
+Name: Alberto Kozlov
+Gender: Male
+Passport Number: 816188690
+Nationality: RUS
+---
+
+==========
+---
+Name: Oksana Kovacevic
+Gender: Female
+Passport Number: 397225356
+Nationality: JPN
+---
+
+==========
+---
+Name: Noah Takahashi
+Gender: Male
+Passport Number: 862289614
+Nationality: SGP
+---
+
+==========
+---
+Name: Natalia Schwarz
+Gender: Female
+Passport Number: 919455086
+Nationality: SRB
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 15 ] driver has an invalid document and therefore can't cross the border.

@@ -80,8 +80,9 @@ public class Passenger implements Serializable{
 	{
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("PUTNIK: " + this.fullName + "\n");
+		sb.append("---\n");
 		sb.append(document);
+		sb.append("---\n");
 		
 		return sb.toString();
 	}

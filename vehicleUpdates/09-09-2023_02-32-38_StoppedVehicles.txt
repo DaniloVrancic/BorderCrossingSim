@@ -1,0 +1,294 @@
+Vehicle:TYPE: Bus
+ID: 15
+Number of Passengers: 38
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Evelyn Schneider
+Gender: Female
+Passport Number: 105972616
+Nationality: CAN
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Yana Lefèvre
+Gender: Female
+Passport Number: 496298716
+Nationality: BLR
+---
+
+==========
+---
+Name: Cameron Pavlov
+Gender: Male
+Passport Number: 696656874
+Nationality: IND
+---
+
+==========
+---
+Name: Quentin Roux
+Gender: Male
+Passport Number: 202021272
+Nationality: TJK
+---
+
+==========
+---
+Name: Filippo Robinson
+Gender: Male
+Passport Number: 666823383
+Nationality: KGZ
+---
+
+==========
+---
+Name: Jelena Hernandez
+Gender: Female
+Passport Number: 801369061
+Nationality: CAN
+---
+
+==========
+---
+Name: Étienne Kimura
+Gender: Male
+Passport Number: 931269824
+Nationality: JPN
+---
+
+==========
+---
+Name: Yui Romano
+Gender: Female
+Passport Number: 230121441
+Nationality: TKM
+---
+
+==========
+---
+Name: Mio King
+Gender: Female
+Passport Number: 579424024
+Nationality: CHE
+---
+
+==========
+---
+Name: Yuka Djor?evic
+Gender: Female
+Passport Number: 705578128
+Nationality: KGZ
+---
+
+==========
+---
+Name: Noémie Wright
+Gender: Female
+Passport Number: 454466601
+Nationality: LUX
+---
+
+==========
+---
+Name: Hina Laurent
+Gender: Female
+Passport Number: 741753109
+Nationality: CHE
+---
+
+==========
+---
+Name: Luis Thomas
+Gender: Male
+Passport Number: 687571374
+Nationality: SVN
+---
+
+==========
+---
+Name: Joseph Nikolic
+Gender: Male
+Passport Number: 986003843
+Nationality: IRL
+---
+
+==========
+---
+Name: Aaron Volkov
+Gender: Male
+Passport Number: 388226162
+Nationality: ITA
+---
+
+==========
+---
+Name: Ryan Hofmann
+Gender: Male
+Passport Number: 322675877
+Nationality: IND
+---
+
+==========
+---
+Name: Dusan Vukovic
+Gender: Male
+Passport Number: 429056829
+Nationality: KAZ
+---
+
+==========
+---
+Name: Sora Simon
+Gender: Male
+Passport Number: 346778111
+Nationality: BIH
+---
+
+==========
+---
+Name: Yuka Smirnov
+Gender: Female
+Passport Number: 292374567
+Nationality: KAZ
+---
+
+==========
+---
+Name: Lina Santoro
+Gender: Female
+Passport Number: 221451452
+Nationality: FRA
+---
+
+==========
+---
+Name: Camille Barbieri
+Gender: Female
+Passport Number: 355358378
+Nationality: CAN
+---
+
+==========
+---
+Name: Takeru Dubois
+Gender: Male
+Passport Number: 410324978
+Nationality: JPN
+---
+
+==========
+---
+Name: Djordje Hofmann
+Gender: Male
+Passport Number: 645516420
+Nationality: UKR
+---
+
+==========
+---
+Name: Simone Walker
+Gender: Male
+Passport Number: 696271957
+Nationality: MKD
+---
+
+==========
+---
+Name: Daiki Ferrari
+Gender: Male
+Passport Number: 215728719
+Nationality: JPN
+---
+
+==========
+---
+Name: Federico De Luca
+Gender: Male
+Passport Number: 969749280
+Nationality: PHL
+---
+
+==========
+---
+Name: Francesca Schröder
+Gender: Female
+Passport Number: 403556991
+Nationality: SRB
+---
+
+==========
+---
+Name: Lily Semyonov
+Gender: Female
+Passport Number: 345714474
+Nationality: TKM
+---
+
+==========
+---
+Name: Giulia Djuric
+Gender: Female
+Passport Number: 654646099
+Nationality: UKR
+---
+
+==========
+---
+Name: Aubrey Scott
+Gender: Female
+Passport Number: 842847067
+Nationality: MKD
+---
+
+==========
+---
+Name: Mila King
+Gender: Female
+Passport Number: 530841513
+Nationality: GBR
+---
+
+==========
+---
+Name: Andrew Santoro
+Gender: Male
+Passport Number: 016816342
+Nationality: BIH
+---
+
+==========
+---
+Name: Mio Kobayashi
+Gender: Female
+Passport Number: 686858335
+Nationality: SRB
+---
+
+==========
+---
+Name: Aleksandar Neumann
+Gender: Male
+Passport Number: 041177506
+Nationality: UZB
+---
+
+==========
+---
+Name: Oksana Rizzo
+Gender: Female
+Passport Number: 544734638
+Nationality: AZE
+---
+
+==========
+---
+Name: Yuka Lewis
+Gender: Female
+Passport Number: 704089523
+Nationality: MKD
+---
+ STOPPED FOR REASON:  The driver has had illegal luggage, thus the bus can not got through!

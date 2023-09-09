@@ -46,10 +46,11 @@ public final class CustomsDocument {
 	public String toString()
 	{
 		StringBuffer sb = new StringBuffer();
-		sb.append("DOCUMENT> Declared weight: ");
-		sb.append(this.declaredWeight);
-		sb.append(" Actual weight: ");
-		sb.append(this.actualWeight);
+		sb.append("<CUSTOMS_DOCUMENT>\nDeclared weight: ");
+		sb.append(this.declaredWeight + "\n");
+		sb.append("Actual weight: ");
+		sb.append(this.actualWeight + "\n");
+		sb.append("</CUSTOMS_DOCUMENT>");
 		return sb.toString();
 	}
 	

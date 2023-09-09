@@ -1,0 +1,286 @@
+Vehicle:TYPE: Bus
+ID: 15
+Number of Passengers: 35
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Elena Leroy
+Gender: Female
+Passport Number: 110285349
+Nationality: IND
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Filip Fontana
+Gender: Male
+Passport Number: 764358010
+Nationality: ARM
+---
+
+==========
+---
+Name: Aria Schulz
+Gender: Female
+Passport Number: 958991637
+Nationality: IRL
+---
+
+==========
+---
+Name: Sergei Lukic
+Gender: Male
+Passport Number: 709956349
+Nationality: MNE
+---
+
+==========
+---
+Name: Yamato Braun
+Gender: Male
+Passport Number: 435066253
+Nationality: ITA
+---
+
+==========
+---
+Name: Hannah Muller
+Gender: Female
+Passport Number: 612242426
+Nationality: MNE
+---
+
+==========
+---
+Name: Sofia Hayashi
+Gender: Female
+Passport Number: 775813136
+Nationality: TJK
+---
+
+==========
+---
+Name: Nathan Smirnov
+Gender: Male
+Passport Number: 312314048
+Nationality: BEL
+---
+
+==========
+---
+Name: Avery Schwarz
+Gender: Female
+Passport Number: 666552072
+Nationality: PHL
+---
+
+==========
+---
+Name: Kaito Jovanovic
+Gender: Male
+Passport Number: 104007484
+Nationality: RUS
+---
+
+==========
+---
+Name: Kazuki Smirnov
+Gender: Male
+Passport Number: 073029000
+Nationality: FRA
+---
+
+==========
+---
+Name: Ekaterina Nakamura
+Gender: Female
+Passport Number: 935184425
+Nationality: UKR
+---
+
+==========
+---
+Name: Felix Williams
+Gender: Male
+Passport Number: 291255666
+Nationality: CHE
+---
+
+==========
+---
+Name: Lola Neumann
+Gender: Female
+Passport Number: 819220517
+Nationality: ITA
+---
+
+==========
+---
+Name: Tatiana Ilic
+Gender: Female
+Passport Number: 734987704
+Nationality: BEL
+---
+
+==========
+---
+Name: Maria Marino
+Gender: Female
+Passport Number: 344321079
+Nationality: PHL
+---
+
+==========
+---
+Name: Mila Mori
+Gender: Female
+Passport Number: 714426057
+Nationality: GBR
+---
+
+==========
+---
+Name: Hannah Lebedev
+Gender: Female
+Passport Number: 971937670
+Nationality: MNE
+---
+
+==========
+---
+Name: Daria Schneider
+Gender: Female
+Passport Number: 089884415
+Nationality: PHL
+---
+
+==========
+---
+Name: Ivan Jones
+Gender: Male
+Passport Number: 462319924
+Nationality: CHE
+---
+
+==========
+---
+Name: Tim Schneider
+Gender: Male
+Passport Number: 949634884
+Nationality: LUX
+---
+
+==========
+---
+Name: Laura Smirnov
+Gender: Female
+Passport Number: 386860083
+Nationality: BIH
+---
+
+==========
+---
+Name: Christopher Semyonov
+Gender: Male
+Passport Number: 452535412
+Nationality: BLR
+---
+
+==========
+---
+Name: Ryo Robinson
+Gender: Male
+Passport Number: 857819501
+Nationality: AUS
+---
+
+==========
+---
+Name: Samuel Kobayashi
+Gender: Male
+Passport Number: 679480632
+Nationality: SVN
+---
+
+==========
+---
+Name: Zoey Ivanov
+Gender: Female
+Passport Number: 313429472
+Nationality: MCO
+---
+
+==========
+---
+Name: Magdalena Fischer
+Gender: Female
+Passport Number: 282863952
+Nationality: NZL
+---
+
+==========
+---
+Name: Yuka Suzuki
+Gender: Female
+Passport Number: 941842707
+Nationality: ZAF
+---
+
+==========
+---
+Name: Ivan Conti
+Gender: Male
+Passport Number: 068920324
+Nationality: CHE
+---
+
+==========
+---
+Name: Alexei Kuznetsov
+Gender: Male
+Passport Number: 316507141
+Nationality: KGZ
+---
+
+==========
+---
+Name: Brooklyn Greco
+Gender: Female
+Passport Number: 140798685
+Nationality: MCO
+---
+
+==========
+---
+Name: Marie Stojanovic
+Gender: Female
+Passport Number: 214774917
+Nationality: LUX
+---
+
+==========
+---
+Name: Alessandro Hoffmann
+Gender: Male
+Passport Number: 780652751
+Nationality: AZE
+---
+
+==========
+---
+Name: Christopher Vasilev
+Gender: Male
+Passport Number: 598874063
+Nationality: BEL
+---
+
+==========
+---
+Name: Scarlett Carter
+Gender: Female
+Passport Number: 681406282
+Nationality: IND
+---
+ STOPPED FOR REASON:  The driver has had illegal luggage, thus the bus can not got through!

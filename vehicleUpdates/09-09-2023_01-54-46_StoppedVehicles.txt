@@ -1,0 +1,12 @@
+Vehicle:TYPE: Automobile
+ID: 26
+Number of Passengers: 2
+-------------
+PASSENGERS:
+ STOPPED FOR REASON:  The vehicle(id): [ 26 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:TYPE: Automobile
+ID: 37
+Number of Passengers: 1
+-------------
+PASSENGERS:
+ STOPPED FOR REASON:  The vehicle(id): [ 37 ] driver has an invalid document and therefore can't cross the border.

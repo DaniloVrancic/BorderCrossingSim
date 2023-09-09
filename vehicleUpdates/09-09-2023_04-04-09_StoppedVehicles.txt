@@ -1,0 +1,111 @@
+Vehicle:TYPE: Truck
+ID: 14
+Number of Passengers: 2
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Simone Braun
+Gender: Male
+Passport Number: 818254159
+Nationality: SMR
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Luis Kuznetsov
+Gender: Male
+Passport Number: 595372900
+Nationality: MCO
+---
+ STOPPED FOR REASON:  The vehicle was over the declared cargo limit, thus denied border cross!
+Vehicle:TYPE: Automobile
+ID: 42
+Number of Passengers: 5
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Marko David
+Gender: Male
+Passport Number: 319976945
+Nationality: SRB
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Marko Vasilev
+Gender: Male
+Passport Number: 249453486
+Nationality: AZE
+---
+
+==========
+---
+Name: Alessandro Gallo
+Gender: Male
+Passport Number: 426552701
+Nationality: HRV
+---
+
+==========
+---
+Name: Takumi Allen
+Gender: Male
+Passport Number: 374455903
+Nationality: SMR
+---
+
+==========
+---
+Name: Bogdan Lopez
+Gender: Male
+Passport Number: 153280052
+Nationality: FRA
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 42 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:TYPE: Truck
+ID: 8
+Number of Passengers: 3
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Hikaru Anderson
+Gender: Male
+Passport Number: 401119533
+Nationality: CHE
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Francesca Robert
+Gender: Female
+Passport Number: 942864090
+Nationality: HRV
+---
+
+==========
+---
+Name: Jovana Michel
+Gender: Female
+Passport Number: 249553805
+Nationality: ZAF
+---
+ STOPPED FOR REASON:  The vehicle was over the declared cargo limit, thus denied border cross!
+Vehicle:TYPE: Automobile
+ID: 35
+Number of Passengers: 1
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Giacomo Nikolic
+Gender: Male
+Passport Number: 712035985
+Nationality: BLR
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 35 ] driver has an invalid document and therefore can't cross the border.

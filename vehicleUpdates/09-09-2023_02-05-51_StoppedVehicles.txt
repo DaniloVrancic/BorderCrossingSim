@@ -1,0 +1,72 @@
+Vehicle:TYPE: Automobile
+ID: 43
+Number of Passengers: 1
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Isabelle Sato
+Gender: Female
+Passport Number: 319973110
+Nationality: IRL
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 43 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:TYPE: Truck
+ID: 17
+Number of Passengers: 1
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Andrei Hoffmann
+Gender: Male
+Passport Number: 930670052
+Nationality: UKR
+---
+ STOPPED FOR REASON:  The vehicle was over the declared cargo limit, thus denied border cross!
+Vehicle:TYPE: Automobile
+ID: 39
+Number of Passengers: 5
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Baptiste Roux
+Gender: Male
+Passport Number: 362050726
+Nationality: RUS
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Greta King
+Gender: Female
+Passport Number: 807301135
+Nationality: MCO
+---
+
+==========
+---
+Name: Felix Bernard
+Gender: Male
+Passport Number: 574685745
+Nationality: BEL
+---
+
+==========
+---
+Name: Dragan Vorobev
+Gender: Male
+Passport Number: 157619736
+Nationality: RUS
+---
+
+==========
+---
+Name: Eleanor Kobayashi
+Gender: Female
+Passport Number: 415961029
+Nationality: PHL
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 39 ] driver has an invalid document and therefore can't cross the border.

@@ -1,0 +1,35 @@
+Vehicle:TYPE: Automobile
+ID: 37
+Number of Passengers: 2
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Alexander Ferrari
+Gender: Male
+Passport Number: 168797169
+Nationality: BLR
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Lina Vasilev
+Gender: Female
+Passport Number: 072920849
+Nationality: TJK
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 37 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:TYPE: Automobile
+ID: 1
+Number of Passengers: 1
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Milica Wagner
+Gender: Female
+Passport Number: 386499312
+Nationality: ZAF
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 1 ] driver has an invalid document and therefore can't cross the border.

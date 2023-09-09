@@ -21,6 +21,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -30,6 +31,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
+import javafx.scene.input.MouseEvent;
 import logger.LoggerManager;
 import passengers.BusPassenger;
 import passengers.Passenger;
@@ -46,7 +48,17 @@ import vehicles.Vehicle;
 
 public class BorderCrossingGUIController implements Initializable
 {
-
+	/// VALUES THAT SERVE OPTIMIZATION ---
+	public static boolean listViewNeedsRefresh;
+	public static boolean terminalsNeedRefresh;
+	/// VALUES THAT SERVE OPTIMIZATION ---
+	
+	private static BorderCrossingGUIController instance;
+	
+	public static BorderCrossingGUIController getInstance() {
+        return instance;
+    }
+	
 	 	@FXML
 	    public ListView<Vehicle<?>> topFiveListView;
 	 	
@@ -65,6 +77,11 @@ public class BorderCrossingGUIController implements Initializable
 	 	@FXML
 	 	public Pane customsTerminalTrucksPane;
 	 	
+	 	@FXML
+	 	public TextArea selectedVehicleInfoTextArea;
+	 	
+	 	@FXML
+	 	public TextArea relevantEventsTextArea;	 	
 	 	
 
 	    public static BlockingQueue<Vehicle<?>> vehicleQueue;
@@ -73,6 +90,7 @@ public class BorderCrossingGUIController implements Initializable
 	    public static boolean IS_PAUSED = false;
 	    
 	    List<Terminal> allTerminals = new ArrayList<>();
+	    private Vehicle<?> selectedVehicle;
 
 
 	    public void setVehicleQueue(BlockingQueue<Vehicle<?>> vehicleQueue) {
@@ -80,6 +98,8 @@ public class BorderCrossingGUIController implements Initializable
 	        // Update the ListView when the vehicleQueue is set
 	        updateListView();
 	    }
+	    
+	    
 
 	    private void updatePane(Terminal t) {
 	    	
@@ -123,6 +143,7 @@ public class BorderCrossingGUIController implements Initializable
 	            drawPaneWithVehicle(pane, item);
 	        }
 	    }
+	   
 
 		private void drawPaneWithVehicle(Pane pane, Vehicle<?> item) {
 			HBox content = new HBox(5);
@@ -165,33 +186,72 @@ public class BorderCrossingGUIController implements Initializable
 
 	    private void updateListView() {
 	        if (vehicleQueue != null) {
-	            topFiveListView.getItems().clear();
+	        	
+	        		topFiveListView.getItems().clear();					
+				
 	            // Add the top 5 vehicles to the ListView
 	            int count = 0;
-	            for (Vehicle<?> vehicle : vehicleQueue) {
-	                topFiveListView.getItems().add(vehicle);
-	                count++;
-	                if (count >= 5) {
-	                    break;
-	                }
-	            }
+	            
+	            	for (Vehicle<?> vehicle : vehicleQueue) {
+	            		topFiveListView.getItems().add(vehicle);
+	            		count++;
+	            		if (count >= 5) {
+	            			break;
+	            		}
+	            	}	        						
+				
 
 	            // Add empty cells if needed
-	            while (count < 5) {
-	                topFiveListView.getItems().add(null);
-	                count++;
-	            }
+	            
+	            	while (count < 5) {
+	            		topFiveListView.getItems().add(null);
+	            		count++;
+	            	}					
+				
 	        }
 	    }
 	    
+	    private void updateSelectedVehicleInfoTextArea()
+	    {
+	    	if(selectedVehicle == null)
+	    	{
+	    		selectedVehicleInfoTextArea.clear();
+	    	}
+	    	else
+	    	{
+	    		selectedVehicleInfoTextArea.clear();
+	    		String textToDisplay = selectedVehicle.toString(); //TEST THIS!!!!!!!!!!!!!!!!!!!
+	    		selectedVehicleInfoTextArea.setText(textToDisplay);
+	    	}
+	    }
+	    
+	    public void updateRelevantEventsTextArea(String newEventText)
+	    {
+	    	StringBuffer sb = new StringBuffer();
+	    	
+	    	sb.append(newEventText);
+	    	sb.append("\n----------------\n");
+	    	this.relevantEventsTextArea.appendText(sb.toString());
+	    }
+	    
 	    private void updateScene() {
-	        updateListView();
+	    	
+	    	if(listViewNeedsRefresh)
+	    	{
+	    		synchronized (topFiveListView) {
+	    			updateListView();				
+	    			listViewNeedsRefresh = false;					
+				}
+	    	}
 	        
-	        for(Terminal t : terminalToPaneMap.keySet())
-	        {
-	       	updatePane(t);	        	
-	        }
-	       
+	    	if(terminalsNeedRefresh)
+	    	{
+	    		for(Terminal t : terminalToPaneMap.keySet())
+	    		{
+	    			updatePane(t);	        	
+	    		}
+	    		terminalsNeedRefresh = false;
+	    	}
 	    }
 
 	    // Define a custom cell for the ListView
@@ -229,10 +289,15 @@ public class BorderCrossingGUIController implements Initializable
 			final int NUMBER_OF_TRUCKS_AT_START 	= 10;
 			final int NUMBER_OF_CARS_AT_START 		= 35;
 			/////////////////////////////////
+			instance = this;
+			
+			selectedVehicle = null;
 			List<Terminal> allTerminals = new ArrayList<>();
 			allTerminals.addAll(PoliceTerminalsManager.availablePoliceTerminals);
 			allTerminals.addAll(CustomsTerminalsManager.availableCustomsTerminals);
 
+			listViewNeedsRefresh = true;
+			terminalsNeedRefresh = true;
 			try
 			{
 				terminalToPaneMap = new HashMap<>();
@@ -241,6 +306,14 @@ public class BorderCrossingGUIController implements Initializable
 				terminalToPaneMap.put(PoliceTerminalsManager.availablePoliceTerminals.get(2), policeTerminalTrucksPane);
 				terminalToPaneMap.put(CustomsTerminalsManager.availableCustomsTerminals.get(0), customsTerminal1Pane);
 				terminalToPaneMap.put(CustomsTerminalsManager.availableCustomsTerminals.get(1), customsTerminalTrucksPane);
+				
+				mapTerminalToPane(PoliceTerminalsManager.availablePoliceTerminals.get(0), policeTerminal1Pane);
+				mapTerminalToPane(PoliceTerminalsManager.availablePoliceTerminals.get(1), policeTerminal2Pane);
+				mapTerminalToPane(PoliceTerminalsManager.availablePoliceTerminals.get(2), policeTerminalTrucksPane);
+				mapTerminalToPane(CustomsTerminalsManager.availableCustomsTerminals.get(0), customsTerminal1Pane);
+				mapTerminalToPane(CustomsTerminalsManager.availableCustomsTerminals.get(1), customsTerminalTrucksPane);
+				
+				
 			}
 			catch (Exception ex)
 			{
@@ -384,10 +457,39 @@ public class BorderCrossingGUIController implements Initializable
 	    for(Node n : paneToColor.getChildren())
 	    	{
 	    	 if(n instanceof ImageView || n instanceof Label)
-	    	 {
+	    	 	{
 	    		 n.setStyle("-fx-background-color: " + cssColor + ";");
-	    	 }
+	    	 	}
 	    	}
 	    
 	}
+	
+	private static void mapTerminalToPane(Terminal terminal, Pane pane)
+	{
+		pane.getProperties().put(pane, terminal);
+	}
+	
+	private static Terminal getTerminalFromPane(Pane pane)
+	{
+		return (Terminal)pane.getProperties().get(pane);
+	}
+	
+	public void selectVehicleFromTerminal(MouseEvent event)
+	{
+		Pane selectedPane = (Pane)event.getSource();
+		Terminal t = getTerminalFromPane(selectedPane);
+		this.selectedVehicle = t.getVehicleAtTerminal();
+		updateSelectedVehicleInfoTextArea();
+	}
+	
+	
+	public void selectVehicleFromList(MouseEvent event) {
+		
+			this.selectedVehicle = (Vehicle<?>) topFiveListView.getSelectionModel().getSelectedItem();
+			System.out.println(selectedVehicle);
+			updateSelectedVehicleInfoTextArea();			
+		
+	}
+	
+
 }

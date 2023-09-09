@@ -1,0 +1,58 @@
+Vehicle:TYPE: Automobile
+ID: 27
+Number of Passengers: 3
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Aubrey Watanabe
+Gender: Female
+Passport Number: 857082344
+Nationality: PHL
+---
+
+==========
+---
+Name: Aubrey White
+Gender: Female
+Passport Number: 369673339
+Nationality: PHL
+---
+
+==========
+---
+Name: Greta Smith
+Gender: Female
+Passport Number: 578843927
+Nationality: BLR
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 27 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:TYPE: Bus
+ID: 12
+Number of Passengers: 3
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Ayaka Stojanovic
+Gender: Female
+Passport Number: 404808572
+Nationality: CHE
+---
+
+==========
+---
+Name: Sanja Weber
+Gender: Female
+Passport Number: 544830770
+Nationality: GBR
+---
+
+==========
+---
+Name: Haruka Martin
+Gender: Female
+Passport Number: 748852422
+Nationality: SRB
+---
+ STOPPED FOR REASON:  The driver has had illegal luggage, thus the bus can not got through!

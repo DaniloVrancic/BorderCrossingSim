@@ -1,0 +1,124 @@
+Vehicle:TYPE: Bus
+ID: 3
+Number of Passengers: 9
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Daria Yamada
+Gender: Female
+Passport Number: 738238763
+Nationality: MNE
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Clara Ricci
+Gender: Female
+Passport Number: 845969578
+Nationality: TJK
+---
+
+==========
+---
+Name: Quentin Petit
+Gender: Male
+Passport Number: 377797822
+Nationality: CAN
+---
+
+==========
+---
+Name: Emilia Nikolic
+Gender: Female
+Passport Number: 355278809
+Nationality: BEL
+---
+
+==========
+---
+Name: Sofia Wagner
+Gender: Female
+Passport Number: 010588767
+Nationality: SRB
+---
+
+==========
+---
+Name: Magdalena Hill
+Gender: Female
+Passport Number: 869840375
+Nationality: FRA
+---
+
+==========
+---
+Name: Tatiana Barbieri
+Gender: Female
+Passport Number: 778186674
+Nationality: KGZ
+---
+
+==========
+---
+Name: Elisa Vinogradov
+Gender: Female
+Passport Number: 250541865
+Nationality: MCO
+---
+
+==========
+---
+Name: Mio Lebedev
+Gender: Female
+Passport Number: 084959246
+Nationality: HRV
+---
+ STOPPED FOR REASON:  The driver has had illegal luggage, thus the bus can not got through!
+Vehicle:TYPE: Automobile
+ID: 32
+Number of Passengers: 5
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Aubrey Muller
+Gender: Female
+Passport Number: 410503757
+Nationality: USA
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Nikola Bianchi
+Gender: Male
+Passport Number: 023212017
+Nationality: RUS
+---
+
+==========
+---
+Name: Jasmina Wagner
+Gender: Female
+Passport Number: 377517605
+Nationality: BEL
+---
+
+==========
+---
+Name: Sarah Volkov
+Gender: Female
+Passport Number: 339626972
+Nationality: HRV
+---
+
+==========
+---
+Name: Éléna Ricci
+Gender: Female
+Passport Number: 826287406
+Nationality: ARM
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 32 ] driver has an invalid document and therefore can't cross the border.

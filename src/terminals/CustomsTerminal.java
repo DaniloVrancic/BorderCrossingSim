@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import gui.BorderCrossingGUIController;
 import passengers.BusPassenger;
 import passengers.Passenger;
 import passengers.PunishedPassenger;
@@ -40,7 +41,8 @@ public abstract class CustomsTerminal extends Terminal{
 	
 	public void processVehicle(int processingTime) throws InterruptedException
 	{
-		System.out.println("Processing vehicle: " + this.vehicleAtTerminal.getClass().getSimpleName() + " vehicle_id: " +this.vehicleAtTerminal.getVehicleId() + " ON CUSTOMS TERMINAL: " + this.id);
+		
+		//System.out.println("Processing vehicle: " + this.vehicleAtTerminal.getClass().getSimpleName() + " vehicle_id: " +this.vehicleAtTerminal.getVehicleId() + " ON CUSTOMS TERMINAL: " + this.id);
 		if(this.vehicleAtTerminal instanceof Automobile)
 		{
 			processVehicleAutomobile(processingTime);
@@ -53,12 +55,12 @@ public abstract class CustomsTerminal extends Terminal{
 		{
 			processVehicleTruck(processingTime);
 		}
-		System.out.println("Finished processing: " + this.vehicleAtTerminal.getVehicleId()); //DELETE LATER
+		BorderCrossingGUIController.getInstance().updateRelevantEventsTextArea("Finished processing vehicle(ID): " + this.vehicleAtTerminal.getVehicleId());
+		//System.out.println("Finished processing: " + this.vehicleAtTerminal.getVehicleId()); //DELETE LATER
 	}
 	
 	private void processVehicleAutomobile(int processingTime) throws InterruptedException
 	{
-			System.out.println("Processing automobile id: " + this.vehicleAtTerminal.getVehicleId()); //DELETE LATER
 			Thread.sleep(processingTime); //Sleep for given time;
 			this.status = TerminalStatus.VEHICLE_PASSED;
 	}
@@ -71,7 +73,8 @@ public abstract class CustomsTerminal extends Terminal{
 		BusPassenger driver = (BusPassenger)this.vehicleAtTerminal.driver;
 		if(driver.hasIllegalLuggage())
 		{
-			System.out.println("DRIVER: "+ driver.getFullName() +" HAS ILLEGAL LUGGAGE AND BUS IS BEING REMOVED!"); //DELETE LATER
+			BorderCrossingGUIController.getInstance().updateRelevantEventsTextArea("Driver: "+ driver.getFullName() +" HAS ILLEGAL LUGGAGE AND BUS(ID): " + this.vehicleAtTerminal.getVehicleId() + "IS BEING REMOVED!");
+			//System.out.println("DRIVER: "+ driver.getFullName() +" HAS ILLEGAL LUGGAGE AND BUS IS BEING REMOVED!"); //DELETE LATER
 
 			PunishedPersonManager.addPunishment(new PunishedPassenger(driver, DRIVER_ILLEGAL_LUGGAGE_EXPLANATION, this.vehicleAtTerminal));
 			StoppedVehicleManager.addStoppedVehicle(this.vehicleAtTerminal, DRIVER_ILLEGAL_LUGGAGE_EXPLANATION);
@@ -92,7 +95,8 @@ public abstract class CustomsTerminal extends Terminal{
 				{
 					infoLogger.info("<PASSENGER ILLEGAL LUGGAGE AT CUSTOMS>: " + PASSENGER_ILLEGAL_LUGGAGE_EXPLANATION + "\tPassenger Name: " + bp.getFullName());
 					PunishedPersonManager.addPunishment(new PunishedPassenger(bp, PASSENGER_ILLEGAL_LUGGAGE_EXPLANATION, this.vehicleAtTerminal));
-					System.out.println("PERSON:" + bp.getFullName() + " HAS ILLEGAL LUGGAGE AND IS GETTING THROWN OUT!"); //DELETE LATER
+					BorderCrossingGUIController.getInstance().updateRelevantEventsTextArea("Passenger: "+ bp.getFullName() +" has illegal luggage and will get REMOVED!");
+					//System.out.println("PERSON:" + bp.getFullName() + " HAS ILLEGAL LUGGAGE AND IS GETTING THROWN OUT!"); //DELETE LATER
 					passengersToRemove.add(bp);				
 				}
 			}
@@ -109,20 +113,24 @@ public abstract class CustomsTerminal extends Terminal{
 		if(truckAtTerminal.isDocumentationNecessary())
 		{
 			truckAtTerminal.customsDocument = Optional.of(new CustomsDocument());
-			System.out.println("CREATING customs document!"); //DELETE LATER
+			BorderCrossingGUIController.getInstance().updateRelevantEventsTextArea("Creating CUSTOMS_DOCUMENT for Truck(ID): " + truckAtTerminal.getVehicleId());
+			//System.out.println("CREATING customs document!"); //DELETE LATER
 		} //end if
 		
 		if(!truckAtTerminal.customsDocument.equals(Optional.empty()))
 		{
 			CustomsDocument cdocument = truckAtTerminal.customsDocument.get();
-			System.out.println(cdocument); //DELETE LATER
+			
+			BorderCrossingGUIController.getInstance().updateRelevantEventsTextArea("TRUCK(ID): " + truckAtTerminal.getVehicleId() + " DOCUMENT:\n" + cdocument.toString());
+			//System.out.println(cdocument); //DELETE LATER
 			
 			int declaredWeight = cdocument.getDeclaredWeight();
 			int actualWeight = cdocument.getActualWeight();
 			
 			if(actualWeight > declaredWeight)
 			{
-				System.out.println("TRUCK IS OVERWEIGHT, REMOVING FROM CUSTOMS TERMINALS"); //DELETE THIS LATER
+				BorderCrossingGUIController.getInstance().updateRelevantEventsTextArea("Truck(ID): " + truckAtTerminal.getVehicleId() + " is overweight, REMOVING from customs terminal");
+				//System.out.println("TRUCK IS OVERWEIGHT, REMOVING FROM CUSTOMS TERMINALS"); //DELETE THIS LATER
 				StoppedVehicleManager.addStoppedVehicle(truckAtTerminal, VEHICLE_OVER_DECLARED_WEIGHT_EXPLANATION);
 				infoLogger.info("<TRUCK REMOVED CAUSE OF OVERWEIGHT CARGO> " + truckAtTerminal.getVehicleId());
 				removed = true;

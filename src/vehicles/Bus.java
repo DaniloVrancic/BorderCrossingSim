@@ -77,6 +77,8 @@ public class Bus extends Vehicle<BusPassenger> implements Serializable{
 	        // Assign the vehicle to the terminal
 	        synchronized (assignedPoliceTerminal) {
 	        	assignedPoliceTerminal.setVehicleAndRemoveFromQueue();
+	        	BorderCrossingGUIController.listViewNeedsRefresh = true;
+	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
 	        }
 
 	        assignedPoliceTerminal.processVehicle();
@@ -95,6 +97,7 @@ public class Bus extends Vehicle<BusPassenger> implements Serializable{
 	        			errorLogger.severe(ex.getMessage());
 	        		}
      	        	assignedPoliceTerminal.setVehicleAtTerminal(null);
+     	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
      	        	assignedPoliceTerminal.release();
      	        	availablePoliceTerminals.notifyAll();
 	        		}
@@ -113,6 +116,7 @@ public class Bus extends Vehicle<BusPassenger> implements Serializable{
 	                    	assignedCustomsTerminal = (CustomsTerminalForOthers) terminal;
 	                    	 synchronized (availablePoliceTerminals) {
 	             	        	assignedPoliceTerminal.setVehicleAtTerminal(null);
+	             	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
 	             	        	assignedPoliceTerminal.release();
 	             	        	availablePoliceTerminals.notifyAll();
 	             	        }
@@ -128,12 +132,14 @@ public class Bus extends Vehicle<BusPassenger> implements Serializable{
 	             // Assign the vehicle to the terminal
 	    	        synchronized (assignedCustomsTerminal) {
 	    	        	assignedCustomsTerminal.setVehicleAtTerminal(this);
+	    	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
 	    	        }
 	    	        
 	    	        assignedCustomsTerminal.processVehicle();
 	            
 	            synchronized (availableCustomsTerminals) {
 		        	assignedCustomsTerminal.setVehicleAtTerminal(null);
+		        	BorderCrossingGUIController.terminalsNeedRefresh = true;
 		        	assignedCustomsTerminal.release();
 		            availableCustomsTerminals.notifyAll();
 		        }

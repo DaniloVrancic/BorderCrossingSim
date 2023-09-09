@@ -1,0 +1,270 @@
+Vehicle:TYPE: Bus
+ID: 15
+Number of Passengers: 33
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Miyu Gallo
+Gender: Female
+Passport Number: 848835401
+Nationality: TKM
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Tsubasa Schulz
+Gender: Male
+Passport Number: 498891836
+Nationality: BIH
+---
+
+==========
+---
+Name: Alberto Watanabe
+Gender: Male
+Passport Number: 303244869
+Nationality: PHL
+---
+
+==========
+---
+Name: Daiki Thomas
+Gender: Male
+Passport Number: 322488559
+Nationality: SVN
+---
+
+==========
+---
+Name: Clara Barbieri
+Gender: Female
+Passport Number: 243054674
+Nationality: CHE
+---
+
+==========
+---
+Name: Marko Esposito
+Gender: Male
+Passport Number: 105627084
+Nationality: HRV
+---
+
+==========
+---
+Name: Christopher Stojanovic
+Gender: Male
+Passport Number: 293378873
+Nationality: HRV
+---
+
+==========
+---
+Name: Hikaru Schneider
+Gender: Male
+Passport Number: 662601524
+Nationality: SMR
+---
+
+==========
+---
+Name: Ayaka Gonzalez
+Gender: Female
+Passport Number: 486868663
+Nationality: AZE
+---
+
+==========
+---
+Name: Riccardo Nakamura
+Gender: Male
+Passport Number: 488508649
+Nationality: CAN
+---
+
+==========
+---
+Name: Ella Lukic
+Gender: Female
+Passport Number: 177406960
+Nationality: AZE
+---
+
+==========
+---
+Name: Joshua Smirnov
+Gender: Male
+Passport Number: 640559104
+Nationality: PHL
+---
+
+==========
+---
+Name: Louis Kuznetsov
+Gender: Male
+Passport Number: 002472037
+Nationality: CAN
+---
+
+==========
+---
+Name: Alexander Muller
+Gender: Male
+Passport Number: 938304531
+Nationality: TJK
+---
+
+==========
+---
+Name: Aleksandar Hoffmann
+Gender: Male
+Passport Number: 237101043
+Nationality: KGZ
+---
+
+==========
+---
+Name: Alessio Djokovic
+Gender: Male
+Passport Number: 187285743
+Nationality: SMR
+---
+
+==========
+---
+Name: Simon Barbieri
+Gender: Male
+Passport Number: 210336015
+Nationality: ARM
+---
+
+==========
+---
+Name: Emma Miller
+Gender: Female
+Passport Number: 695311219
+Nationality: PHL
+---
+
+==========
+---
+Name: Natalia Zaitsev
+Gender: Female
+Passport Number: 662220826
+Nationality: SVN
+---
+
+==========
+---
+Name: Sora Volkov
+Gender: Female
+Passport Number: 657278435
+Nationality: MNE
+---
+
+==========
+---
+Name: Ella Bernard
+Gender: Female
+Passport Number: 097480709
+Nationality: SVN
+---
+
+==========
+---
+Name: Addison Robert
+Gender: Female
+Passport Number: 042769026
+Nationality: BEL
+---
+
+==========
+---
+Name: Théo Takahashi
+Gender: Male
+Passport Number: 482614919
+Nationality: IRL
+---
+
+==========
+---
+Name: Benoît Esposito
+Gender: Male
+Passport Number: 276375090
+Nationality: MCO
+---
+
+==========
+---
+Name: Alexei Kato
+Gender: Male
+Passport Number: 043160743
+Nationality: MCO
+---
+
+==========
+---
+Name: Marko Michel
+Gender: Male
+Passport Number: 266121335
+Nationality: AZE
+---
+
+==========
+---
+Name: Leonardo Johnson
+Gender: Male
+Passport Number: 711391444
+Nationality: PHL
+---
+
+==========
+---
+Name: Yuto Hofmann
+Gender: Male
+Passport Number: 738532831
+Nationality: MKD
+---
+
+==========
+---
+Name: Cameron Vinogradov
+Gender: Male
+Passport Number: 140757569
+Nationality: CHE
+---
+
+==========
+---
+Name: Jovan Braun
+Gender: Male
+Passport Number: 106549237
+Nationality: MCO
+---
+
+==========
+---
+Name: Miroslav King
+Gender: Male
+Passport Number: 083442504
+Nationality: CHE
+---
+
+==========
+---
+Name: Aaron Hoffmann
+Gender: Male
+Passport Number: 723940193
+Nationality: FRA
+---
+
+==========
+---
+Name: Zachary David
+Gender: Male
+Passport Number: 819648534
+Nationality: LUX
+---
+ STOPPED FOR REASON:  The driver has had illegal luggage, thus the bus can not got through!

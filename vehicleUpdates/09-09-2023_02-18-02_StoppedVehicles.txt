@@ -1,0 +1,13 @@
+Vehicle:TYPE: Automobile
+ID: 20
+Number of Passengers: 1
+-------------
+PASSENGERS INFO:
+==========
+DRIVER: ---
+Name: Lea Bernard
+Gender: Female
+Passport Number: 081208794
+Nationality: CAN
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 20 ] driver has an invalid document and therefore can't cross the border.

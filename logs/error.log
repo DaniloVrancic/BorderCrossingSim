@@ -2,38 +2,26 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-09-08T18:54:49.585137800Z</date>
-  <millis>1694199289585</millis>
-  <nanos>137800</nanos>
-  <sequence>420</sequence>
+  <date>2023-09-09T02:41:23.108776500Z</date>
+  <millis>1694227283108</millis>
+  <nanos>776500</nanos>
+  <sequence>455</sequence>
   <logger>ErrorLogger</logger>
   <level>SEVERE</level>
   <class>vehicles.seriazilabledatastructure.SerializableList</class>
   <method>serializeList</method>
-  <thread>47</thread>
-  <message>&lt;Serialization failure&gt;: terminals.PoliceTerminalForOthers</message>
+  <thread>80</thread>
+  <message>&lt;Serialization failure&gt;: java.util.Optional</message>
 </record>
 <record>
-  <date>2023-09-08T18:55:14.086692900Z</date>
-  <millis>1694199314086</millis>
-  <nanos>692900</nanos>
-  <sequence>444</sequence>
+  <date>2023-09-09T02:41:44.023664500Z</date>
+  <millis>1694227304023</millis>
+  <nanos>664500</nanos>
+  <sequence>480</sequence>
   <logger>ErrorLogger</logger>
   <level>SEVERE</level>
   <class>vehicles.seriazilabledatastructure.SerializableList</class>
   <method>serializeList</method>
-  <thread>39</thread>
-  <message>&lt;Serialization failure&gt;: terminals.PoliceTerminalForOthers</message>
-</record>
-<record>
-  <date>2023-09-08T18:55:29.250328500Z</date>
-  <millis>1694199329250</millis>
-  <nanos>328500</nanos>
-  <sequence>458</sequence>
-  <logger>ErrorLogger</logger>
-  <level>SEVERE</level>
-  <class>vehicles.seriazilabledatastructure.SerializableList</class>
-  <method>serializeList</method>
-  <thread>79</thread>
+  <thread>74</thread>
   <message>&lt;Serialization failure&gt;: terminals.PoliceTerminalForOthers</message>
 </record>
