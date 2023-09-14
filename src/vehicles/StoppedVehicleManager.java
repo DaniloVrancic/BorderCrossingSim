@@ -12,8 +12,9 @@ import vehicles.writetofilehashmap.WriteToFileHashMap;
 public class StoppedVehicleManager {
 	private static ReentrantLock lock = new ReentrantLock();
 	private static Logger errorLogger = LoggerManager.getErrorLogger();
+	private static String PATH_TO_STOPPED_VEHICLES_TEXT_FILE = getTerminalStatusFileName();
 
-    private static Map<Vehicle<?>, String> stoppedVehicles = new WriteToFileHashMap<>(getTerminalStatusFileName());
+    public static Map<Vehicle<?>, String> stoppedVehicles = new WriteToFileHashMap<>(getTerminalStatusFileName()); //To be used as a mechanism to write to files, at the same time when adding elements to the hashMap
 
     public static void addStoppedVehicle(Vehicle<?> vehicle, String reason) {
     	lock.lock();
@@ -26,6 +27,11 @@ public class StoppedVehicleManager {
     	{
     		lock.unlock();
     	}
+    }
+    
+    public static String getStoppedVehiclesPath()
+    {
+    	return PATH_TO_STOPPED_VEHICLES_TEXT_FILE;
     }
 
     

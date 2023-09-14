@@ -33,24 +33,24 @@ abstract public class Vehicle<T extends Passenger> extends Thread implements Ser
     protected static final Logger infoLogger = LoggerManager.getInfoLogger();
     protected static final Logger errorLogger = LoggerManager.getErrorLogger();
     ////////////////////// LIST OF POLICE TERMINALS THAT WORK WITH THE VEHICLES
-    protected List<PoliceTerminal> availablePoliceTerminals;
+    transient protected List<PoliceTerminal> availablePoliceTerminals;
     ///////////////////////////////////////////////////////////////////////////
 
-    protected int numOfPassengers;
+    transient protected int numOfPassengers;
 
-    public T driver;
-    public List<T> passengers;
+    transient public T driver;
+    transient public List<T> passengers;
     
-    private static int numberOfVehiclesCreated = 0;
     protected int id;
     
+    private static int numberOfVehiclesCreated = 0;
 
     public int getVehicleId() {
 		return id;
 	}
 
 	protected static IdentificationGenerator generator = new IdentificationGenerator(); //Used for the generation of random Passengers
-
+	protected static int TIME_TO_WAIT_AFTER_PUNISHMENT = 750;
     ///////////////////////////////////////////////////////////////
 
     public Vehicle()
@@ -129,7 +129,7 @@ abstract public class Vehicle<T extends Passenger> extends Thread implements Ser
     	sb.append("\n-------------\n");
     	sb.append("PASSENGERS INFO:");
     	sb.append("\n==========\n");
-    	sb.append("DRIVER: ");
+    	sb.append("DRIVER:\n");
     	sb.append(this.driver);
     	if(this.numOfPassengers > 1)
     	{

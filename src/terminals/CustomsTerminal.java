@@ -55,7 +55,7 @@ public abstract class CustomsTerminal extends Terminal{
 		{
 			processVehicleTruck(processingTime);
 		}
-		BorderCrossingGUIController.getInstance().updateRelevantEventsTextArea("Finished processing vehicle(ID): " + this.vehicleAtTerminal.getVehicleId());
+		BorderCrossingGUIController.getInstance().updateRelevantEventsTextArea("Finished processing vehicle(ID): " + this.vehicleAtTerminal.getVehicleId() + " \nType: " + this.vehicleAtTerminal.getClass().getSimpleName());
 		//System.out.println("Finished processing: " + this.vehicleAtTerminal.getVehicleId()); //DELETE LATER
 	}
 	
@@ -95,7 +95,7 @@ public abstract class CustomsTerminal extends Terminal{
 				{
 					infoLogger.info("<PASSENGER ILLEGAL LUGGAGE AT CUSTOMS>: " + PASSENGER_ILLEGAL_LUGGAGE_EXPLANATION + "\tPassenger Name: " + bp.getFullName());
 					PunishedPersonManager.addPunishment(new PunishedPassenger(bp, PASSENGER_ILLEGAL_LUGGAGE_EXPLANATION, this.vehicleAtTerminal));
-					BorderCrossingGUIController.getInstance().updateRelevantEventsTextArea("Passenger: "+ bp.getFullName() +" has illegal luggage and will get REMOVED!");
+					BorderCrossingGUIController.getInstance().updateRelevantEventsTextArea("Passenger: "+ bp.getFullName() +" has illegal luggage and will get REMOVED from Bus(ID): " + this.vehicleAtTerminal.getVehicleId());
 					//System.out.println("PERSON:" + bp.getFullName() + " HAS ILLEGAL LUGGAGE AND IS GETTING THROWN OUT!"); //DELETE LATER
 					passengersToRemove.add(bp);				
 				}

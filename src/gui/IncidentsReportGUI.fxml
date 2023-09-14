@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="874.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.IncidentsReportController">
+   <children>
+      <HBox prefHeight="523.0" prefWidth="874.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox prefHeight="523.0" prefWidth="370.0" HBox.hgrow="SOMETIMES">
+               <children>
+                  <TreeView fx:id="incidentTreeView" prefHeight="450.0" prefWidth="472.0" VBox.vgrow="ALWAYS" />
+                  <Pane prefHeight="150.0" prefWidth="472.0" VBox.vgrow="NEVER">
+                     <children>
+                        <CheckBox fx:id="passedWithIncidentCheckBox" layoutX="72.0" layoutY="65.0" mnemonicParsing="false" selected="true" text="Passed but with incident">
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox fx:id="didNotPassCheckBox" layoutX="272.0" layoutY="65.0" mnemonicParsing="false" selected="true" text="Didn't pass">
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </CheckBox>
+                        <Label alignment="TOP_LEFT" text="Show vehicles that:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="18.0" top="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+            <TextArea fx:id="incidentTextArea" editable="false" prefHeight="523.0" prefWidth="300.0" text="This is some generic test TEXT!" wrapText="true" HBox.hgrow="SOMETIMES">
+               <font>
+                  <Font name="Consolas" size="15.0" />
+               </font>
+            </TextArea>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

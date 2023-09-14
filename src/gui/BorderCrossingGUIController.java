@@ -1,5 +1,6 @@
 package gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,13 +12,19 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Logger;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -31,6 +38,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.scene.input.MouseEvent;
 import logger.LoggerManager;
 import passengers.BusPassenger;
@@ -48,16 +57,20 @@ import vehicles.Vehicle;
 
 public class BorderCrossingGUIController implements Initializable
 {
+	///////////////////////////////////////
+	final int BORDER_CROSSING_GUI_REFRESH_RATE_TIME = 100;
 	/// VALUES THAT SERVE OPTIMIZATION ---
 	public static boolean listViewNeedsRefresh;
 	public static boolean terminalsNeedRefresh;
 	/// VALUES THAT SERVE OPTIMIZATION ---
-	
+	/// SINGLETON PATTERN - FOR ACCESSING THE COMPONENTS FROM OTHER CLASSES -----------
 	private static BorderCrossingGUIController instance;
-	
 	public static BorderCrossingGUIController getInstance() {
         return instance;
     }
+	
+	////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////	NODES AND GUI COMPONENTS	////////////////
 	
 	 	@FXML
 	    public ListView<Vehicle<?>> topFiveListView;
@@ -81,17 +94,27 @@ public class BorderCrossingGUIController implements Initializable
 	 	public TextArea selectedVehicleInfoTextArea;
 	 	
 	 	@FXML
-	 	public TextArea relevantEventsTextArea;	 	
+	 	public TextArea relevantEventsTextArea;
 	 	
+	 	@FXML
+	 	public Label durationLabel;
+	 	
+	 	///////////////////////////////////////////////
+	 	
+	 	///////////////////////////////////////////////
 
-	    public static BlockingQueue<Vehicle<?>> vehicleQueue;
+	    public static BlockingQueue<Vehicle<?>> vehicleQueue;	//The queue of vehicles 
 	    public static HashMap<Terminal,Pane> terminalToPaneMap;
 	    
 	    public static boolean IS_PAUSED = false;
 	    
 	    List<Terminal> allTerminals = new ArrayList<>();
-	    private Vehicle<?> selectedVehicle;
-
+	    private Vehicle<?> selectedVehicle; //When clicking on the vehicles on screen, will serve as a placeholder for the selected vehicle
+	    
+	    //FOR KEEPING TRACK OF THE TIME
+	    private Timeline timeline;
+	    private int secondsElapsed = 0;
+	    // FOR KEEPING TRACK OF THE TIME
 
 	    public void setVehicleQueue(BlockingQueue<Vehicle<?>> vehicleQueue) {
 	        this.vehicleQueue = vehicleQueue;
@@ -252,6 +275,8 @@ public class BorderCrossingGUIController implements Initializable
 	    		}
 	    		terminalsNeedRefresh = false;
 	    	}
+	    	
+	    	
 	    }
 
 	    // Define a custom cell for the ListView
@@ -298,7 +323,7 @@ public class BorderCrossingGUIController implements Initializable
 
 			listViewNeedsRefresh = true;
 			terminalsNeedRefresh = true;
-			try
+			try  //MAPS THE TERMINALS TO THEIR CORRESPONDING PANES ON THE GUI
 			{
 				terminalToPaneMap = new HashMap<>();
 				terminalToPaneMap.put(PoliceTerminalsManager.availablePoliceTerminals.get(0), policeTerminal1Pane);
@@ -314,49 +339,27 @@ public class BorderCrossingGUIController implements Initializable
 				mapTerminalToPane(CustomsTerminalsManager.availableCustomsTerminals.get(1), customsTerminalTrucksPane);
 				
 				
-			}
+			} //end of try block
 			catch (Exception ex)
 			{
 				Logger errorLogger = LoggerManager.getErrorLogger();
 				errorLogger.severe(ex.getMessage());
-			}
+			} //end of catch block
 			
-			//policeTerminal1Pane.getChildren().addListener((ListChangeListener<Node>) change -> { updatePane(policeTerminal1Pane);});
-			//policeTerminal2Pane.getChildren().addListener((ListChangeListener<Node>) change -> { updatePane(policeTerminal2Pane);});
-			//policeTerminalTrucksPane.getChildren().addListener((ListChangeListener<Node>) change -> { updatePane(policeTerminalTrucksPane);});
-			//customsTerminal1Pane.getChildren().addListener((ListChangeListener<Node>) change -> { updatePane(customsTerminal1Pane);});
-			//customsTerminalTrucksPane.getChildren().addListener((ListChangeListener<Node>) change -> { updatePane(customsTerminalTrucksPane);});
+			
 			
 			try {
-			
-			//IdentificationGenerator generator = new IdentificationGenerator();
 			List<Vehicle<?>> listToShuffle = fillAndShuffleList(NUMBER_OF_BUSES_AT_START, NUMBER_OF_TRUCKS_AT_START,
 					NUMBER_OF_CARS_AT_START);
 			
-			this.vehicleQueue = new LinkedBlockingQueue<>(listToShuffle);
-
-			
-			
-			List<CustomsTerminal> customsTerminals = new ArrayList<>();
-			
-		        
-
+			vehicleQueue = new LinkedBlockingQueue<>(listToShuffle);
 		        // Start vehicle threads
 		        
 		            Vehicle<?> vehicle = vehicleQueue.peek();
 		            Thread vehicleThread = new Thread(vehicle);
 		            vehicleThread.start();
 		        
-
-		        // Wait for all vehicle threads to finish
-//		        for (Thread thread : vehicleThreads) {
-//		            try {
-//		                thread.join();
-//		            } catch (InterruptedException e) {
-//		                e.printStackTrace();
-//		            }
-//		        }
-			System.out.println("FINISHED!");
+		            //System.out.println("FINISHED!");
 		} //end of try-block
 		catch(Exception ex)
 		{
@@ -367,7 +370,12 @@ public class BorderCrossingGUIController implements Initializable
 			topFiveListView.setCellFactory(list -> new VehicleListCell());
 			//updateListView();
 			
+			//SETUP TIMER
+			timeline = new Timeline(new KeyFrame(Duration.seconds(1), this::updateDurationLabel));
+			timeline.setCycleCount(Timeline.INDEFINITE);
+			timeline.play();
 			
+			//SETUP TIMER
 	        
 	        Thread t = new Thread(new Runnable() {
 
@@ -376,14 +384,16 @@ public class BorderCrossingGUIController implements Initializable
 					while(true)
 					{
 						try {
-							Thread.sleep(100);
-							synchronized(vehicleQueue) {
+							Thread.sleep(BORDER_CROSSING_GUI_REFRESH_RATE_TIME);
+							
 								Platform.runLater(() -> updateScene());
 								if(vehicleQueue.isEmpty() && allTerminalsEmpty(allTerminals))
 								{
+									timeline.pause();
+									
 									return;
 								}
-							}
+							
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -464,6 +474,17 @@ public class BorderCrossingGUIController implements Initializable
 	    
 	}
 	
+    private void updateDurationLabel(ActionEvent event) {
+        secondsElapsed++;
+        int hours = secondsElapsed / 3600;
+        int minutes = (secondsElapsed % 3600) / 60;
+        int seconds = secondsElapsed % 60;
+        
+
+        String timeString = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        durationLabel.setText(timeString);
+    }
+	
 	private static void mapTerminalToPane(Terminal terminal, Pane pane)
 	{
 		pane.getProperties().put(pane, terminal);
@@ -490,6 +511,29 @@ public class BorderCrossingGUIController implements Initializable
 			updateSelectedVehicleInfoTextArea();			
 		
 	}
+	
+	@FXML
+	public void handleVehicleQueueButtonClick(ActionEvent event) {
+	    try {
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/VehicleQueue.fxml"));
+	        Parent root = loader.load();
+
+	        Stage stage = new Stage();
+	        stage.setTitle("Vehicle Queue");
+	        stage.setScene(new Scene(root));
+
+	        // Set the controller for the new window
+	        //VehicleQueueController controller = loader.getController();
+	        //controller.initialize(null,null);
+	        Platform.runLater(() -> {
+	            stage.show();
+	        });
+	        
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+
 	
 
 }

@@ -1,1 +1,0 @@
-Vehicle:vehicles.Truck :: Number of Passengers: 2	vehicle.id = 17 STOPPED FOR REASON:  The vehicle was over the declared cargo limit, thus denied border cross!

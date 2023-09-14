@@ -11,6 +11,7 @@ import terminals.CustomsTerminal;
 import terminals.CustomsTerminalForOthers;
 import terminals.PoliceTerminal;
 import terminals.PoliceTerminalForOthers;
+import terminals.TerminalStatus;
 import terminals.managers.CustomsTerminalsManager;
 import terminals.managers.PoliceTerminalsManager;
 import util.random.RandomGenerator;
@@ -87,22 +88,23 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 
 	        assignedPoliceTerminal.processVehicle();
 
-	        if(assignedPoliceTerminal.getVehicleAtTerminal() == null) //Condition is true if the vehicle got thrown out, rejected at the terminal
+	        if(assignedPoliceTerminal.getStatus() == TerminalStatus.VEHICLE_PUNISHED) //Condition is true if the vehicle got thrown out, rejected at the terminal
 	        {
 	        	synchronized (availablePoliceTerminals) {
 	        		BorderCrossingGUIController.colorPaneofTerminal(assignedPoliceTerminal, Color.RED);
 	        		try
 	        		{
-	        			Thread.sleep(750);
+	        			Thread.sleep(TIME_TO_WAIT_AFTER_PUNISHMENT);
 	        		}
 	        		catch(InterruptedException ex)
 	        		{
 	        			errorLogger.severe(ex.getMessage());
 	        		}
+	        		assignedPoliceTerminal.setStatus(TerminalStatus.AVAILABLE);
      	        	assignedPoliceTerminal.setVehicleAtTerminal(null);
      	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
      	        	assignedPoliceTerminal.release(); //release the lock after isAvailable locks it once it returns true
-     	        	availablePoliceTerminals.notifyAll();
+     	        	availablePoliceTerminals.notify();
 	        		}
      	        	return;
 	        } //If the vehicle got thrown out, the vehicle at terminal will be set to null, and that will be a flag that no more processing is necessary
@@ -118,10 +120,12 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 	                    {
 	                    	assignedCustomsTerminal = (CustomsTerminalForOthers) terminal;
 	                    	synchronized (availablePoliceTerminals) {
+	                    		
+	                    		assignedPoliceTerminal.setStatus(TerminalStatus.AVAILABLE);
 	            	        	assignedPoliceTerminal.setVehicleAtTerminal(null);
 	            	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
 	            	        	assignedPoliceTerminal.release(); //release the lock after isAvailable locks it once it returns true
-	            	            availablePoliceTerminals.notifyAll();
+	            	            availablePoliceTerminals.notify();
 	            	        }
 	                        break;
 	                    }
@@ -141,10 +145,23 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 	    	        assignedCustomsTerminal.processVehicle();
 	            
 	            synchronized (availableCustomsTerminals) {
+	            	if(assignedCustomsTerminal.getStatus().equals(TerminalStatus.VEHICLE_PUNISHED))
+	            	{
+	            		BorderCrossingGUIController.colorPaneofTerminal(assignedCustomsTerminal, Color.RED);
+	            		try
+	            		{
+	            			Thread.sleep(TIME_TO_WAIT_AFTER_PUNISHMENT);
+	            		}
+	            		catch(InterruptedException ex)
+	            		{
+	            			errorLogger.severe("<WAITING INTERRUPTED ERROR>: " + ex.getMessage());
+	            		}
+	            	}
+	            	assignedCustomsTerminal.setStatus(TerminalStatus.AVAILABLE);
 		        	assignedCustomsTerminal.setVehicleAtTerminal(null);
 		        	BorderCrossingGUIController.terminalsNeedRefresh = true;
 		        	assignedCustomsTerminal.release();
-		            availableCustomsTerminals.notifyAll();
+		            availableCustomsTerminals.notify();
 		        }
 	        
 	    } catch (InterruptedException e) {

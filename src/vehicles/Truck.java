@@ -24,7 +24,7 @@ import vehicles.documents.CustomsDocument;
 public class Truck extends Vehicle<Passenger> implements Serializable{
 
 	private static int MAX_TRUCK_CAPACITY = 3;
-	private static int TIME_TO_WAIT_AFTER_PUNISHMENT = 750;
+	
 	
 	private boolean documentationNecessary;
 	public Optional<CustomsDocument> customsDocument = Optional.empty(); //Will be filled by the CustomsTerminal
@@ -118,7 +118,7 @@ public class Truck extends Vehicle<Passenger> implements Serializable{
      	        	assignedPoliceTerminal.setVehicleAtTerminal(null);
      	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
      	        	assignedPoliceTerminal.release();
-     	        	availablePoliceTerminals.notifyAll();
+     	        	availablePoliceTerminals.notify();
 	        		}
      	        	return;
 	        } //If the vehicle got thrown out, the vehicle at terminal will be set to null, and that will be a flag that no more processing is necessary
@@ -176,7 +176,7 @@ public class Truck extends Vehicle<Passenger> implements Serializable{
 	            	assignedCustomsTerminal.setVehicleAtTerminal(null);
 	            	BorderCrossingGUIController.terminalsNeedRefresh = true;
 	            	assignedCustomsTerminal.release();
-		            availableCustomsTerminals.notifyAll();
+		            availableCustomsTerminals.notify();
 		        }
 	    } catch (InterruptedException e) {
 	        e.printStackTrace();

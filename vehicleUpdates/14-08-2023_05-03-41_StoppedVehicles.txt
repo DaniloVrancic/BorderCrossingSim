@@ -1,1 +1,0 @@
-Vehicle:vehicles.Bus :: Number of Passengers: 1	vehicle.id = 12 STOPPED FOR REASON:  The vehicle(id): [ 12 ] driver has an invalid document and therefore can't cross the border.

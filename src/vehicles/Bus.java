@@ -11,6 +11,7 @@ import terminals.CustomsTerminal;
 import terminals.CustomsTerminalForOthers;
 import terminals.PoliceTerminal;
 import terminals.PoliceTerminalForOthers;
+import terminals.TerminalStatus;
 import terminals.managers.CustomsTerminalsManager;
 import terminals.managers.PoliceTerminalsManager;
 import util.random.RandomGenerator;
@@ -84,18 +85,19 @@ public class Bus extends Vehicle<BusPassenger> implements Serializable{
 	        assignedPoliceTerminal.processVehicle();
 
 	        
-	        if(assignedPoliceTerminal.getVehicleAtTerminal() == null)
+	        if(assignedPoliceTerminal.getStatus() == TerminalStatus.VEHICLE_PUNISHED) //This happens if the Vehicle was punished
 	        {
 	        	synchronized (availablePoliceTerminals) {
 	        		BorderCrossingGUIController.colorPaneofTerminal(assignedPoliceTerminal, Color.RED);
 	        		try
 	        		{
-	        			Thread.sleep(750);
+	        			Thread.sleep(TIME_TO_WAIT_AFTER_PUNISHMENT);
 	        		}
 	        		catch(InterruptedException ex)
 	        		{
 	        			errorLogger.severe(ex.getMessage());
 	        		}
+	        		assignedPoliceTerminal.setStatus(TerminalStatus.AVAILABLE);
      	        	assignedPoliceTerminal.setVehicleAtTerminal(null);
      	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
      	        	assignedPoliceTerminal.release();
@@ -111,14 +113,15 @@ public class Bus extends Vehicle<BusPassenger> implements Serializable{
 	        while (assignedCustomsTerminal == null) {
 	            synchronized (availableCustomsTerminals) {
 	                for (CustomsTerminal terminal : availableCustomsTerminals) {
-	                    if (terminal.isAvailable() && terminal instanceof CustomsTerminalForOthers) //if it is available, the object will lock
+	                    if (terminal instanceof CustomsTerminalForOthers && terminal.isAvailable()) //if it is available, the object will lock
 	                    {
 	                    	assignedCustomsTerminal = (CustomsTerminalForOthers) terminal;
 	                    	 synchronized (availablePoliceTerminals) {
+	                    		assignedPoliceTerminal.setStatus(TerminalStatus.AVAILABLE);
 	             	        	assignedPoliceTerminal.setVehicleAtTerminal(null);
 	             	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
 	             	        	assignedPoliceTerminal.release();
-	             	        	availablePoliceTerminals.notifyAll();
+	             	        	availablePoliceTerminals.notify();
 	             	        }
 	                        break;
 	                    }
@@ -138,10 +141,23 @@ public class Bus extends Vehicle<BusPassenger> implements Serializable{
 	    	        assignedCustomsTerminal.processVehicle();
 	            
 	            synchronized (availableCustomsTerminals) {
+	            	if(assignedCustomsTerminal.getStatus().equals(TerminalStatus.VEHICLE_PUNISHED))
+	            	{
+	            		BorderCrossingGUIController.colorPaneofTerminal(assignedCustomsTerminal, Color.RED);
+	            		try
+	            		{
+	            			Thread.sleep(TIME_TO_WAIT_AFTER_PUNISHMENT);
+	            		}
+	            		catch(InterruptedException ex)
+	            		{
+	            			errorLogger.severe("<WAITING INTERRUPTED ERROR>: " + ex.getMessage());
+	            		}
+	            	}
+	            	assignedCustomsTerminal.setStatus(TerminalStatus.AVAILABLE);
 		        	assignedCustomsTerminal.setVehicleAtTerminal(null);
 		        	BorderCrossingGUIController.terminalsNeedRefresh = true;
 		        	assignedCustomsTerminal.release();
-		            availableCustomsTerminals.notifyAll();
+		            availableCustomsTerminals.notify();
 		        }
 	        
 	        

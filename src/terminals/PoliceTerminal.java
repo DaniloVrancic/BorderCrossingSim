@@ -96,6 +96,7 @@ public abstract class PoliceTerminal extends Terminal{
 			else
 			{
 				status = TerminalStatus.VEHICLE_PASSED;
+				
 			}
 			
 			processPassengers(this.vehicleAtTerminal, processingTime);

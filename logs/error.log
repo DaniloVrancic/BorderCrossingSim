@@ -1,27 +1,4 @@
 <?xml version="1.0" encoding="windows-1252" standalone="no"?>
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
-<record>
-  <date>2023-09-09T02:41:23.108776500Z</date>
-  <millis>1694227283108</millis>
-  <nanos>776500</nanos>
-  <sequence>455</sequence>
-  <logger>ErrorLogger</logger>
-  <level>SEVERE</level>
-  <class>vehicles.seriazilabledatastructure.SerializableList</class>
-  <method>serializeList</method>
-  <thread>80</thread>
-  <message>&lt;Serialization failure&gt;: java.util.Optional</message>
-</record>
-<record>
-  <date>2023-09-09T02:41:44.023664500Z</date>
-  <millis>1694227304023</millis>
-  <nanos>664500</nanos>
-  <sequence>480</sequence>
-  <logger>ErrorLogger</logger>
-  <level>SEVERE</level>
-  <class>vehicles.seriazilabledatastructure.SerializableList</class>
-  <method>serializeList</method>
-  <thread>74</thread>
-  <message>&lt;Serialization failure&gt;: terminals.PoliceTerminalForOthers</message>
-</record>
+</log>
