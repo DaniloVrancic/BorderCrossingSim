@@ -27,7 +27,7 @@ public class Truck extends Vehicle<Passenger> implements Serializable{
 	
 	
 	private boolean documentationNecessary;
-	public Optional<CustomsDocument> customsDocument = Optional.empty(); //Will be filled by the CustomsTerminal
+	transient public Optional<CustomsDocument> customsDocument = Optional.empty(); //Will be filled by the CustomsTerminal
 	
 	public Truck() {
 		super();
@@ -98,9 +98,9 @@ public class Truck extends Vehicle<Passenger> implements Serializable{
 	            assignedPoliceTerminal.setVehicleAndRemoveFromQueue();
 	            BorderCrossingGUIController.listViewNeedsRefresh = true;
 	            BorderCrossingGUIController.terminalsNeedRefresh = true;
+	            assignedPoliceTerminal.processVehicle();
 	        }
-
-	        assignedPoliceTerminal.processVehicle();
+	        //assignedPoliceTerminal.processVehicle(); WAS HERE FOR ALL 3
 
 	        if(assignedPoliceTerminal.getStatus() == TerminalStatus.VEHICLE_PUNISHED) //This happens if the Vehicle was punished
 	        {
@@ -154,9 +154,9 @@ public class Truck extends Vehicle<Passenger> implements Serializable{
 	    	        synchronized (assignedCustomsTerminal) {
 	    	        	assignedCustomsTerminal.setVehicleAtTerminal(this);
 	    	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
+	    	        	assignedCustomsTerminal.processVehicle();
 	    	        }
 	    	        
-	    	        assignedCustomsTerminal.processVehicle();
 	    	        
 	            
 	            synchronized (availableCustomsTerminals) {
@@ -174,6 +174,7 @@ public class Truck extends Vehicle<Passenger> implements Serializable{
 	            	}
 	            	assignedCustomsTerminal.setStatus(TerminalStatus.AVAILABLE);
 	            	assignedCustomsTerminal.setVehicleAtTerminal(null);
+	            	this.setPassed(true); //set the passed flag of the vehicle to true
 	            	BorderCrossingGUIController.terminalsNeedRefresh = true;
 	            	assignedCustomsTerminal.release();
 		            availableCustomsTerminals.notify();

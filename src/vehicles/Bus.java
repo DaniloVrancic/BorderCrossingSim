@@ -80,9 +80,9 @@ public class Bus extends Vehicle<BusPassenger> implements Serializable{
 	        	assignedPoliceTerminal.setVehicleAndRemoveFromQueue();
 	        	BorderCrossingGUIController.listViewNeedsRefresh = true;
 	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
+	        	assignedPoliceTerminal.processVehicle();
 	        }
 
-	        assignedPoliceTerminal.processVehicle();
 
 	        
 	        if(assignedPoliceTerminal.getStatus() == TerminalStatus.VEHICLE_PUNISHED) //This happens if the Vehicle was punished
@@ -155,6 +155,7 @@ public class Bus extends Vehicle<BusPassenger> implements Serializable{
 	            	}
 	            	assignedCustomsTerminal.setStatus(TerminalStatus.AVAILABLE);
 		        	assignedCustomsTerminal.setVehicleAtTerminal(null);
+		        	this.setPassed(true);
 		        	BorderCrossingGUIController.terminalsNeedRefresh = true;
 		        	assignedCustomsTerminal.release();
 		            availableCustomsTerminals.notify();

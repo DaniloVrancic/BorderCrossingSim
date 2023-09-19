@@ -11,14 +11,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="874.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.IncidentsReportController">
    <children>
       <HBox prefHeight="523.0" prefWidth="874.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox prefHeight="523.0" prefWidth="370.0" HBox.hgrow="SOMETIMES">
                <children>
-                  <TreeView fx:id="incidentTreeView" prefHeight="450.0" prefWidth="472.0" VBox.vgrow="ALWAYS" />
+                  <TreeView fx:id="incidentTreeView" onContextMenuRequested="#selectItem" onMouseClicked="#selectItem" prefHeight="450.0" prefWidth="472.0" VBox.vgrow="ALWAYS" />
                   <Pane prefHeight="150.0" prefWidth="472.0" VBox.vgrow="NEVER">
                      <children>
                         <CheckBox fx:id="passedWithIncidentCheckBox" layoutX="72.0" layoutY="65.0" mnemonicParsing="false" selected="true" text="Passed but with incident">

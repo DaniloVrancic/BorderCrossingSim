@@ -24,7 +24,7 @@ public class VehicleQueueController implements Initializable{
 	
 	@FXML
 	public ListView<Vehicle<?>> allVehiclesListView;
-	Object allVehiclesListViewMonitor = new Object();
+	
 
 	
 	public BlockingQueue<Vehicle<?>> vehicleQueue;

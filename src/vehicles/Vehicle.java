@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
 
+import custom_interfaces.Punishable;
 import exceptions.IllegalNumberOfPassengers;
 import logger.LoggerManager;
 import passengers.Passenger;
@@ -42,6 +43,7 @@ abstract public class Vehicle<T extends Passenger> extends Thread implements Ser
     transient public List<T> passengers;
     
     protected int id;
+    protected boolean passed;
     
     private static int numberOfVehiclesCreated = 0;
 
@@ -57,6 +59,7 @@ abstract public class Vehicle<T extends Passenger> extends Thread implements Ser
     {
     	passengers = new LinkedList<T>();
     	this.id = ++numberOfVehiclesCreated;
+    	this.passed = false;
     }
     
     /**
@@ -67,6 +70,7 @@ abstract public class Vehicle<T extends Passenger> extends Thread implements Ser
         this.availablePoliceTerminals = availableTerminals;
         passengers = new LinkedList<T>();
         this.id = ++numberOfVehiclesCreated;
+        this.passed = false;
     }
 
     
@@ -76,6 +80,7 @@ abstract public class Vehicle<T extends Passenger> extends Thread implements Ser
     	passengers = new LinkedList<T>();
     	this.setNumOfPassengers(numOfPassengers);
     	this.id = ++numberOfVehiclesCreated;
+    	this.passed = false;
     }
     /**
      * Sets the number of passengers in the vehicle.
@@ -141,6 +146,16 @@ abstract public class Vehicle<T extends Passenger> extends Thread implements Ser
     		}    		
     	}
     	return sb.toString();
+    }
+    
+    public boolean isPassed()
+    {
+    	return this.passed;
+    }
+    
+    public void setPassed(boolean passed)
+    {
+    	this.passed = passed;
     }
     
     @Override

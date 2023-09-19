@@ -105,7 +105,7 @@
          <children>
             <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="46.0" prefWidth="700.0" style="-fx-background-color: #2c3445; -fx-border-color: #0a0a0a; -fx-border-width: 0.5;" HBox.hgrow="ALWAYS">
                <children>
-                  <Button fx:id="incidentsReportButton" alignment="CENTER" layoutX="210.0" layoutY="8.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" text="Incidents Report" wrapText="true">
+                  <Button fx:id="incidentsReportButton" alignment="CENTER" layoutX="210.0" layoutY="8.0" mnemonicParsing="false" onAction="#clickIncidentsReportButton" prefHeight="30.0" prefWidth="140.0" text="Incidents Report" wrapText="true">
                      <font>
                         <Font name="Ebrima" size="14.0" />
                      </font>

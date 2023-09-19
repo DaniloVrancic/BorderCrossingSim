@@ -44,6 +44,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Border Crossing Simulator");
 			primaryStage.show();
+			
 		}
 		catch(Exception ex)
 		{

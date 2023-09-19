@@ -8,18 +8,19 @@ import gui.BorderCrossingGUIController;
 import passengers.BusPassenger;
 import passengers.Passenger;
 import passengers.PunishedPassenger;
-import passengers.PunishedPersonManager;
+import passengers.PunishmentManager;
 import vehicles.Automobile;
 import vehicles.Bus;
 import vehicles.StoppedVehicleManager;
 import vehicles.Truck;
 import vehicles.documents.CustomsDocument;
+import vehicles.PunishedVehicle;
 
 public abstract class CustomsTerminal extends Terminal{
 	
 	
 	//////////////////////////// EXCEPTION EXPLANATIONS ////////////////////////////////
-	private static final String DRIVER_ILLEGAL_LUGGAGE_EXPLANATION = "The driver has had illegal luggage, thus the bus can not got through!";
+	private static final String DRIVER_ILLEGAL_LUGGAGE_EXPLANATION = "The driver has had illegal luggage detected at checkup!";
 	private static final String PASSENGER_ILLEGAL_LUGGAGE_EXPLANATION = "The passenger has had illegal luggage, he is removed from the vehicle!";
 	private static final String VEHICLE_OVER_DECLARED_WEIGHT_EXPLANATION = "The vehicle was over the declared cargo limit, thus denied border cross!";
 	
@@ -76,7 +77,8 @@ public abstract class CustomsTerminal extends Terminal{
 			BorderCrossingGUIController.getInstance().updateRelevantEventsTextArea("Driver: "+ driver.getFullName() +" HAS ILLEGAL LUGGAGE AND BUS(ID): " + this.vehicleAtTerminal.getVehicleId() + "IS BEING REMOVED!");
 			//System.out.println("DRIVER: "+ driver.getFullName() +" HAS ILLEGAL LUGGAGE AND BUS IS BEING REMOVED!"); //DELETE LATER
 
-			PunishedPersonManager.addPunishment(new PunishedPassenger(driver, DRIVER_ILLEGAL_LUGGAGE_EXPLANATION, this.vehicleAtTerminal));
+			PunishmentManager.addPunishment(new PunishedVehicle(this.vehicleAtTerminal, DRIVER_ILLEGAL_LUGGAGE_EXPLANATION));
+			PunishmentManager.addPunishment(new PunishedPassenger(driver, DRIVER_ILLEGAL_LUGGAGE_EXPLANATION, this.vehicleAtTerminal));
 			StoppedVehicleManager.addStoppedVehicle(this.vehicleAtTerminal, DRIVER_ILLEGAL_LUGGAGE_EXPLANATION);
 			infoLogger.info("<BUS REMOVED CAUSE OF DRIVER ILLEGAL LUGGAGE> " + this.vehicleAtTerminal.getVehicleId());
 			
@@ -94,7 +96,7 @@ public abstract class CustomsTerminal extends Terminal{
 				synchronized(this.vehicleAtTerminal.passengers)
 				{
 					infoLogger.info("<PASSENGER ILLEGAL LUGGAGE AT CUSTOMS>: " + PASSENGER_ILLEGAL_LUGGAGE_EXPLANATION + "\tPassenger Name: " + bp.getFullName());
-					PunishedPersonManager.addPunishment(new PunishedPassenger(bp, PASSENGER_ILLEGAL_LUGGAGE_EXPLANATION, this.vehicleAtTerminal));
+					PunishmentManager.addPunishment(new PunishedPassenger(bp, PASSENGER_ILLEGAL_LUGGAGE_EXPLANATION, this.vehicleAtTerminal));
 					BorderCrossingGUIController.getInstance().updateRelevantEventsTextArea("Passenger: "+ bp.getFullName() +" has illegal luggage and will get REMOVED from Bus(ID): " + this.vehicleAtTerminal.getVehicleId());
 					//System.out.println("PERSON:" + bp.getFullName() + " HAS ILLEGAL LUGGAGE AND IS GETTING THROWN OUT!"); //DELETE LATER
 					passengersToRemove.add(bp);				
@@ -131,7 +133,8 @@ public abstract class CustomsTerminal extends Terminal{
 			{
 				BorderCrossingGUIController.getInstance().updateRelevantEventsTextArea("Truck(ID): " + truckAtTerminal.getVehicleId() + " is overweight, REMOVING from customs terminal");
 				//System.out.println("TRUCK IS OVERWEIGHT, REMOVING FROM CUSTOMS TERMINALS"); //DELETE THIS LATER
-				StoppedVehicleManager.addStoppedVehicle(truckAtTerminal, VEHICLE_OVER_DECLARED_WEIGHT_EXPLANATION);
+				PunishmentManager.addPunishment(new PunishedVehicle(truckAtTerminal, VEHICLE_OVER_DECLARED_WEIGHT_EXPLANATION)); //Adds the punishment to be serialized
+				StoppedVehicleManager.addStoppedVehicle(truckAtTerminal, VEHICLE_OVER_DECLARED_WEIGHT_EXPLANATION); //adds, kind of a text log to what happened
 				infoLogger.info("<TRUCK REMOVED CAUSE OF OVERWEIGHT CARGO> " + truckAtTerminal.getVehicleId());
 				removed = true;
 			}//end if

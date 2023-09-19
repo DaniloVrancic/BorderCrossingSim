@@ -84,9 +84,9 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 	        	assignedPoliceTerminal.setVehicleAndRemoveFromQueue();
 	        	BorderCrossingGUIController.listViewNeedsRefresh = true;
 	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
+	        	assignedPoliceTerminal.processVehicle();
 	        }
 
-	        assignedPoliceTerminal.processVehicle();
 
 	        if(assignedPoliceTerminal.getStatus() == TerminalStatus.VEHICLE_PUNISHED) //Condition is true if the vehicle got thrown out, rejected at the terminal
 	        {
@@ -159,6 +159,7 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 	            	}
 	            	assignedCustomsTerminal.setStatus(TerminalStatus.AVAILABLE);
 		        	assignedCustomsTerminal.setVehicleAtTerminal(null);
+		        	this.setPassed(true); //Set the flag that the vehicle passed the border crossing
 		        	BorderCrossingGUIController.terminalsNeedRefresh = true;
 		        	assignedCustomsTerminal.release();
 		            availableCustomsTerminals.notify();

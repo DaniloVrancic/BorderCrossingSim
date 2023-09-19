@@ -52,6 +52,7 @@ import terminals.managers.PoliceTerminalsManager;
 import util.random.IdentificationGenerator;
 import vehicles.Automobile;
 import vehicles.Bus;
+import vehicles.PunishedVehicle;
 import vehicles.Truck;
 import vehicles.Vehicle;
 
@@ -68,6 +69,11 @@ public class BorderCrossingGUIController implements Initializable
 	public static BorderCrossingGUIController getInstance() {
         return instance;
     }
+	
+	/////////////IMAGE LOCATIONS////////////////////////////////////////////////
+	String CAR_ICON_LOCATION 	= "carIcon.png";
+	String BUS_ICON_LOCATION 	= "busIcon.png";
+	String TRUCK_ICON_LOCATION	= "truckIcon.png";
 	
 	////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////	NODES AND GUI COMPONENTS	////////////////
@@ -175,11 +181,11 @@ public class BorderCrossingGUIController implements Initializable
 			// Determine the appropriate icon based on the vehicle type
 			ImageView icon = new ImageView();
 			if (item instanceof Automobile) {
-			    icon.setImage(new Image(getClass().getResourceAsStream("carIcon.png")));
+			    icon.setImage(new Image(getClass().getResourceAsStream(CAR_ICON_LOCATION)));
 			} else if (item instanceof Bus) {
-			    icon.setImage(new Image(getClass().getResourceAsStream("busIcon.png")));
+			    icon.setImage(new Image(getClass().getResourceAsStream(BUS_ICON_LOCATION)));
 			} else if (item instanceof Truck) {
-			    icon.setImage(new Image(getClass().getResourceAsStream("truckIcon.png")));
+			    icon.setImage(new Image(getClass().getResourceAsStream(TRUCK_ICON_LOCATION)));
 			}
 			
 			icon.setFitWidth(32);
@@ -295,11 +301,11 @@ public class BorderCrossingGUIController implements Initializable
 	                // Determine the appropriate icon based on the vehicle type
 	                ImageView icon = new ImageView();
 	                if (item instanceof Automobile) {
-	                    icon.setImage(new Image(getClass().getResourceAsStream("carIcon.png")));
+	                    icon.setImage(new Image(getClass().getResourceAsStream(CAR_ICON_LOCATION)));
 	                } else if (item instanceof Bus) {
-	                    icon.setImage(new Image(getClass().getResourceAsStream("busIcon.png")));
+	                    icon.setImage(new Image(getClass().getResourceAsStream(BUS_ICON_LOCATION)));
 	                } else if (item instanceof Truck) {
-	                    icon.setImage(new Image(getClass().getResourceAsStream("truckIcon.png")));
+	                    icon.setImage(new Image(getClass().getResourceAsStream(TRUCK_ICON_LOCATION)));
 	                }
 	                icon.setFitWidth(28);
 	                icon.setFitHeight(28);
@@ -355,7 +361,7 @@ public class BorderCrossingGUIController implements Initializable
 			vehicleQueue = new LinkedBlockingQueue<>(listToShuffle);
 		        // Start vehicle threads
 		        
-		            Vehicle<?> vehicle = vehicleQueue.peek();
+		            Vehicle<?> vehicle = vehicleQueue.peek();       
 		            Thread vehicleThread = new Thread(vehicle);
 		            vehicleThread.start();
 		        
@@ -532,6 +538,30 @@ public class BorderCrossingGUIController implements Initializable
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
+	}
+	
+	@FXML
+	public void clickIncidentsReportButton(ActionEvent event)
+	{
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/IncidentsReportGUI.fxml"));
+			Parent root;
+			root = loader.load();
+
+			Stage stage = new Stage();
+			stage.setTitle("Incidents Report");
+			stage.setScene(new Scene(root));
+			
+			//Set the controller for the new window
+	        IncidentsReportController controller = loader.getController();
+	        controller.initialize(null,null);
+	        Platform.runLater(() -> {
+	            stage.show();
+	        });
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	

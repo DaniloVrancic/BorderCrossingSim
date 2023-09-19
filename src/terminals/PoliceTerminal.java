@@ -7,7 +7,8 @@ import java.util.concurrent.BlockingQueue;
 import gui.BorderCrossingGUIController;
 import passengers.Passenger;
 import passengers.PunishedPassenger;
-import passengers.PunishedPersonManager;
+import passengers.PunishmentManager;
+import vehicles.PunishedVehicle;
 import vehicles.StoppedVehicleManager;
 import vehicles.Vehicle;
 
@@ -69,7 +70,7 @@ public abstract class PoliceTerminal extends Terminal{
 	}
 	
 
-	public void setVehicleQueue(BlockingQueue<Vehicle<?>> vehicleQueue) {
+	public synchronized void setVehicleQueue(BlockingQueue<Vehicle<?>> vehicleQueue) {
 		this.vehicleQueue = vehicleQueue;
 	}
 	
@@ -86,7 +87,8 @@ public abstract class PoliceTerminal extends Terminal{
 			{
 				BorderCrossingGUIController.getInstance().updateRelevantEventsTextArea("PUNISHING DRIVER: " + this.vehicleAtTerminal.driver.getFullName() + "\nof vehicle (ID):" + this.vehicleAtTerminal.getVehicleId() + "\nTYPE: ( " + this.getVehicleAtTerminal().getClass().getSimpleName() + " )");
 				//System.out.println("PUNISHING Driver: " + this.vehicleAtTerminal.driver.getFullName() + " of vehicle id:" + this.vehicleAtTerminal.getVehicleId() + " TYPE: (" + this.getVehicleAtTerminal().getClass().getSimpleName() + " )");
-				PunishedPersonManager.addPunishment(new PunishedPassenger(this.vehicleAtTerminal.driver, DRIVER_IDENTIFICATION_INVALID_EXPLANATION(), this.vehicleAtTerminal));
+				PunishmentManager.addPunishment(new PunishedVehicle(this.vehicleAtTerminal, VEHICLE_DRIVER_HAS_INVALID_DOCUMENT_EXPLANATION())); //First add the vehicle that has been punished to the punishment map list
+				PunishmentManager.addPunishment(new PunishedPassenger(this.vehicleAtTerminal.driver, DRIVER_IDENTIFICATION_INVALID_EXPLANATION(), this.vehicleAtTerminal)); //Then add the driver as the passenger to that subsection
 				StoppedVehicleManager.addStoppedVehicle(this.vehicleAtTerminal, VEHICLE_DRIVER_HAS_INVALID_DOCUMENT_EXPLANATION());
 				//vehicleAtTerminal = null; //MAYBE DELETE!?
 				status = TerminalStatus.VEHICLE_PUNISHED; //Change the status of the terminal to indicate the vehicle didn't pass
@@ -139,7 +141,7 @@ public abstract class PoliceTerminal extends Terminal{
 			{
 				synchronized(vehicle.passengers)
 				{
-					PunishedPersonManager.addPunishment(new PunishedPassenger(p, PASSENGER_IDENTIFICATION_INVALID_EXPLANATION(p), this.vehicleAtTerminal));
+					PunishmentManager.addPunishment(new PunishedPassenger(p, PASSENGER_IDENTIFICATION_INVALID_EXPLANATION(p), this.vehicleAtTerminal));
 					BorderCrossingGUIController.getInstance().updateRelevantEventsTextArea("PUNISHING and REMOVING passenger: " + p.getFullName() + " from VEHICLE(ID): " + this.vehicleAtTerminal.getVehicleId() + " TYPE: " + this.vehicleAtTerminal.getClass().getSimpleName());
 					//System.out.println("PUNISHING AND REMOVING PASSENGER: " + p.getFullName() + " FROM VEHICLE (ID) :" + this.vehicleAtTerminal.getVehicleId() + " TYPE: " + this.vehicleAtTerminal.getClass().getSimpleName()); //REMOVE THIS LINE LATER
 					passengersToRemove.add(p);		//Punish the passenger with Invalid documents and throw him out of the Passenger list

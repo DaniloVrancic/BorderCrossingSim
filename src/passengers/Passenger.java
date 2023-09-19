@@ -1,6 +1,7 @@
 package passengers;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import logger.LoggerManager;
@@ -86,4 +87,22 @@ public class Passenger implements Serializable{
 		
 		return sb.toString();
 	}
+	
+	// In the Passenger class:
+
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) return true;
+	    if (obj == null || getClass() != obj.getClass()) return false;
+
+	    Passenger otherPassenger = (Passenger) obj;
+	    return Objects.equals(fullName, otherPassenger.fullName) &&
+	           Objects.equals(document, otherPassenger.document);
+	}
+
+	@Override
+	public int hashCode() {
+	    return Objects.hash(fullName, document);
+	}
+
 }
