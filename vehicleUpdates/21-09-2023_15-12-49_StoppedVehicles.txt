@@ -1,0 +1,365 @@
+Vehicle:TYPE: Truck
+ID: 5
+Number of Passengers: 2
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Jules Johnson
+Gender: Male
+Passport Number: 466922986
+Nationality: AZE
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Nenad Tanaka
+Gender: Male
+Passport Number: 572955934
+Nationality: TKM
+---
+ STOPPED FOR REASON:  The vehicle was over the declared cargo limit, thus denied border cross!
+Vehicle:TYPE: Bus
+ID: 6
+Number of Passengers: 19
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Brooklyn Lukic
+Gender: Female
+Passport Number: 074224647
+Nationality: UKR
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Paulina Djokovic
+Gender: Female
+Passport Number: 207492376
+Nationality: NZL
+---
+
+==========
+---
+Name: Hikaru Muller
+Gender: Male
+Passport Number: 836416955
+Nationality: NZL
+---
+
+==========
+---
+Name: Bianca Schwarz
+Gender: Female
+Passport Number: 188922714
+Nationality: AUS
+---
+
+==========
+---
+Name: Sophia Milosavljevic
+Gender: Female
+Passport Number: 934175856
+Nationality: MKD
+---
+
+==========
+---
+Name: Marija Fontana
+Gender: Female
+Passport Number: 187000995
+Nationality: AUS
+---
+
+==========
+---
+Name: Tatiana Lewis
+Gender: Female
+Passport Number: 443448425
+Nationality: MKD
+---
+
+==========
+---
+Name: Olivia Novikov
+Gender: Female
+Passport Number: 038855925
+Nationality: JPN
+---
+
+==========
+---
+Name: Chloe David
+Gender: Female
+Passport Number: 021693578
+Nationality: UKR
+---
+
+==========
+---
+Name: Samuele Fournier
+Gender: Male
+Passport Number: 774531770
+Nationality: SRB
+---
+
+==========
+---
+Name: Moritz Martin
+Gender: Male
+Passport Number: 917981926
+Nationality: CAN
+---
+
+==========
+---
+Name: Antonio Greco
+Gender: Male
+Passport Number: 346151434
+Nationality: TJK
+---
+
+==========
+---
+Name: Marija Petrov
+Gender: Female
+Passport Number: 379471184
+Nationality: CAN
+---
+
+==========
+---
+Name: Lola Greco
+Gender: Female
+Passport Number: 591442673
+Nationality: USA
+---
+
+==========
+---
+Name: Olivia Ferrari
+Gender: Female
+Passport Number: 356498995
+Nationality: SRB
+---
+
+==========
+---
+Name: Elizabeth Robert
+Gender: Female
+Passport Number: 975380322
+Nationality: SVN
+---
+
+==========
+---
+Name: Moritz Nakamura
+Gender: Male
+Passport Number: 303807173
+Nationality: JPN
+---
+
+==========
+---
+Name: Ben Robert
+Gender: Male
+Passport Number: 606597406
+Nationality: SVN
+---
+
+==========
+---
+Name: Masha Stojanovic
+Gender: Female
+Passport Number: 597505007
+Nationality: CAN
+---
+ STOPPED FOR REASON:  The driver has had illegal luggage detected at checkup!
+Vehicle:TYPE: Bus
+ID: 12
+Number of Passengers: 22
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Gaia Hall
+Gender: Female
+Passport Number: 046854411
+Nationality: MKD
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Matthias Leroy
+Gender: Male
+Passport Number: 504173725
+Nationality: CAN
+---
+
+==========
+---
+Name: Maxime Roux
+Gender: Male
+Passport Number: 747728411
+Nationality: LUX
+---
+
+==========
+---
+Name: Ivana Djokovic
+Gender: Female
+Passport Number: 320691813
+Nationality: IRL
+---
+
+==========
+---
+Name: Sakura Schneider
+Gender: Female
+Passport Number: 433055500
+Nationality: SVN
+---
+
+==========
+---
+Name: Felix White
+Gender: Male
+Passport Number: 848734215
+Nationality: TJK
+---
+
+==========
+---
+Name: Sora Smith
+Gender: Male
+Passport Number: 861494020
+Nationality: IRL
+---
+
+==========
+---
+Name: Elisa Lombardi
+Gender: Female
+Passport Number: 264704123
+Nationality: ZAF
+---
+
+==========
+---
+Name: Nora Neumann
+Gender: Female
+Passport Number: 676093052
+Nationality: USA
+---
+
+==========
+---
+Name: Yamato Lefèvre
+Gender: Male
+Passport Number: 463450422
+Nationality: IND
+---
+
+==========
+---
+Name: Jonathan Marino
+Gender: Male
+Passport Number: 213945019
+Nationality: KGZ
+---
+
+==========
+---
+Name: Ines Baker
+Gender: Female
+Passport Number: 471046070
+Nationality: ARM
+---
+
+==========
+---
+Name: David Ilic
+Gender: Male
+Passport Number: 896224143
+Nationality: CAN
+---
+
+==========
+---
+Name: Ana Nakamura
+Gender: Female
+Passport Number: 193569009
+Nationality: BLR
+---
+
+==========
+---
+Name: Ayumi Gonzalez
+Gender: Female
+Passport Number: 872487534
+Nationality: NZL
+---
+
+==========
+---
+Name: Ines Stojanovic
+Gender: Female
+Passport Number: 976107960
+Nationality: MKD
+---
+
+==========
+---
+Name: Laura Djor?evic
+Gender: Female
+Passport Number: 211287460
+Nationality: SVN
+---
+
+==========
+---
+Name: Édouard David
+Gender: Male
+Passport Number: 832104965
+Nationality: CHE
+---
+
+==========
+---
+Name: Anna Mori
+Gender: Female
+Passport Number: 214950583
+Nationality: UKR
+---
+
+==========
+---
+Name: Yuma Kuznetsov
+Gender: Male
+Passport Number: 670098683
+Nationality: GBR
+---
+
+==========
+---
+Name: Davide Kimura
+Gender: Male
+Passport Number: 018148257
+Nationality: TKM
+---
+
+==========
+---
+Name: Yuri Robert
+Gender: Male
+Passport Number: 819200505
+Nationality: PHL
+---
+ STOPPED FOR REASON:  The driver has had illegal luggage detected at checkup!

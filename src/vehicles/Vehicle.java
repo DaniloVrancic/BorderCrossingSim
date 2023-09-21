@@ -170,7 +170,7 @@ abstract public class Vehicle<T extends Passenger> extends Thread implements Ser
 
     @Override
     public int hashCode() {
-        return Objects.hash(driver, passengers);
+        return Objects.hash(this.getVehicleId());
     }
     
     

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BorderCrossingGUIController">
+   <center>
+      <AnchorPane prefWidth="81.0" style="-fx-min-width: 60%;" BorderPane.alignment="BOTTOM_CENTER">
+         <children>
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="605.0" prefWidth="503.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER" maxHeight="200.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #0000AA;" VBox.vgrow="SOMETIMES">
+                     <children>
+                        <Pane fx:id="customsTerminal1Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectVehicleFromTerminal" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-width: 0.8;" HBox.hgrow="NEVER">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Pane>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="1.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="150.0">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Rectangle>
+                        <Pane fx:id="customsTerminalTrucksPane" layoutX="10.0" layoutY="64.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectVehicleFromTerminal" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-width: 0.8;" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="200.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #00AA00;" VBox.vgrow="SOMETIMES">
+                     <children>
+                        <Pane fx:id="policeTerminal1Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectVehicleFromTerminal" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-width: 0.8;">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Pane>
+                        <Pane fx:id="policeTerminal2Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectVehicleFromTerminal" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-width: 0.8;">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Pane>
+                        <Pane fx:id="policeTerminalTrucksPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectVehicleFromTerminal" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-width: 0.8;" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="205.0" prefWidth="551.0" style="-fx-background-color: #AA0000;" VBox.vgrow="SOMETIMES">
+                     <children>
+                        <ListView fx:id="topFiveListView" maxHeight="-Infinity" onMouseClicked="#selectVehicleFromList" prefHeight="190.0" prefWidth="200.0" HBox.hgrow="NEVER" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="15.0" top="15.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+   <right>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #0a0a0a;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="210.0" style="-fx-border-color: black; -fx-border-width: 0.5;" text="Event log:" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="relevantEventsTextArea" editable="false" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="390.0" style="-fx-background-color: grey; -fx-border-color: #0a0a0a; -fx-border-width: 0.5;" wrapText="true" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="Ebrima" size="14.0" />
+               </font>
+            </TextArea>
+         </children>
+         <BorderPane.margin>
+            <Insets top="1.0" />
+         </BorderPane.margin>
+      </VBox>
+   </right>
+   <left>
+      <VBox prefHeight="503.0" prefWidth="209.0" style="-fx-min-width: 35%;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="27.0" prefWidth="211.0" style="-fx-border-color: black; -fx-border-width: 0.5;" text="Selected vehicle info:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="selectedVehicleInfoTextArea" editable="false" prefHeight="476.0" prefWidth="194.0" style="-fx-background-color: grey;" wrapText="true" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="Ebrima" size="14.0" />
+               </font>
+            </TextArea>
+         </children>
+      </VBox>
+   </left>
+   <bottom>
+      <HBox prefHeight="46.0" prefWidth="1151.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="46.0" prefWidth="700.0" style="-fx-background-color: #2c3445; -fx-border-color: #0a0a0a; -fx-border-width: 0.5;" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button fx:id="incidentsReportButton" alignment="CENTER" layoutX="210.0" layoutY="8.0" mnemonicParsing="false" onAction="#clickIncidentsReportButton" prefHeight="30.0" prefWidth="140.0" text="Incidents Report" wrapText="true">
+                     <font>
+                        <Font name="Ebrima" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="vehicleQueueButton" alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleVehicleQueueButtonClick" prefHeight="30.0" prefWidth="140.0" text="Vehicle Queue" wrapText="true">
+                     <font>
+                        <Font name="Ebrima" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="pauseButton" alignment="CENTER" layoutX="386.0" layoutY="8.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" text="Pause" wrapText="true">
+                     <font>
+                        <Font name="Ebrima" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane prefHeight="46.0" prefWidth="391.0" style="-fx-background-color: #8a8d94; -fx-border-color: #0a0a0a;" HBox.hgrow="NEVER">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" layoutX="-2.0" prefHeight="50.0" prefWidth="392.0">
+                     <children>
+                        <Label alignment="CENTER" text="Duration:" HBox.hgrow="NEVER">
+                           <font>
+                              <Font name="Consolas" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="durationLabel" alignment="CENTER" prefHeight="18.0" prefWidth="226.0" text="[Time elapsed (hh:mm:ss)]">
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Lucida Console" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="12.0" left="5.0" top="12.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

@@ -1,0 +1,61 @@
+Vehicle:TYPE: Truck
+ID: 5
+Number of Passengers: 1
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Baptiste Lewis
+Gender: Male
+Passport Number: 404975068
+Nationality: KGZ
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 5 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:TYPE: Automobile
+ID: 48
+Number of Passengers: 5
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Aria Lange
+Gender: Female
+Passport Number: 901093489
+Nationality: BIH
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Jelena Leroy
+Gender: Female
+Passport Number: 345493174
+Nationality: AZE
+---
+
+==========
+---
+Name: Emily Bernard
+Gender: Female
+Passport Number: 852085821
+Nationality: LUX
+---
+
+==========
+---
+Name: Leon Inoue
+Gender: Male
+Passport Number: 115079186
+Nationality: USA
+---
+
+==========
+---
+Name: Antoine Takahashi
+Gender: Male
+Passport Number: 169794612
+Nationality: BLR
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 48 ] driver has an invalid document and therefore can't cross the border.

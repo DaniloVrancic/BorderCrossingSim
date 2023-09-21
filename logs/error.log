@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-09-21T13:15:37.419053600Z</date>
+  <millis>1695302137419</millis>
+  <nanos>53600</nanos>
+  <sequence>388</sequence>
+  <logger>ErrorLogger</logger>
+  <level>SEVERE</level>
+  <class>vehicles.seriazilabledatastructure.SerializableHashMap</class>
+  <method>deserialize</method>
+  <thread>80</thread>
+  <message>&lt;Deserialization failure&gt;: serialization\passengers\21-09-2023_15-15-37_PunishedPassengers.ser (The system cannot find the file specified)</message>
+</record>
+</log>

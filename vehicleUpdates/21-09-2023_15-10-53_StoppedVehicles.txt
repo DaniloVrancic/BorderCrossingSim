@@ -1,0 +1,266 @@
+Vehicle:TYPE: Truck
+ID: 21
+Number of Passengers: 2
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Sara Braun
+Gender: Female
+Passport Number: 926510109
+Nationality: BEL
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Gaia Djor?evic
+Gender: Female
+Passport Number: 999991955
+Nationality: CHE
+---
+ STOPPED FOR REASON:  The vehicle was over the declared cargo limit, thus denied border cross!
+Vehicle:TYPE: Bus
+ID: 15
+Number of Passengers: 21
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Haruka Moore
+Gender: Female
+Passport Number: 592858924
+Nationality: MKD
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Petar Gallo
+Gender: Male
+Passport Number: 839349081
+Nationality: USA
+---
+
+==========
+---
+Name: Oksana Bianchi
+Gender: Female
+Passport Number: 149269639
+Nationality: FRA
+---
+
+==========
+---
+Name: Dusan Garcia
+Gender: Male
+Passport Number: 191661263
+Nationality: SGP
+---
+
+==========
+---
+Name: Natalia Neumann
+Gender: Female
+Passport Number: 375019851
+Nationality: CAN
+---
+
+==========
+---
+Name: Masha Lange
+Gender: Female
+Passport Number: 105520449
+Nationality: ZAF
+---
+
+==========
+---
+Name: Éléna Santoro
+Gender: Female
+Passport Number: 590303300
+Nationality: UZB
+---
+
+==========
+---
+Name: Jovan Barbieri
+Gender: Male
+Passport Number: 909153113
+Nationality: HRV
+---
+
+==========
+---
+Name: Jovana Volkov
+Gender: Female
+Passport Number: 950763726
+Nationality: TKM
+---
+
+==========
+---
+Name: Paulina Vinogradov
+Gender: Female
+Passport Number: 536366765
+Nationality: CHE
+---
+
+==========
+---
+Name: Sofia Wright
+Gender: Female
+Passport Number: 219272849
+Nationality: MKD
+---
+
+==========
+---
+Name: Emily Braun
+Gender: Female
+Passport Number: 158629344
+Nationality: SGP
+---
+
+==========
+---
+Name: Ivan Kozlov
+Gender: Male
+Passport Number: 046670275
+Nationality: BIH
+---
+
+==========
+---
+Name: Hannah Ito
+Gender: Female
+Passport Number: 025769324
+Nationality: SRB
+---
+
+==========
+---
+Name: Hiroshi Vincent
+Gender: Male
+Passport Number: 434096562
+Nationality: SVN
+---
+
+==========
+---
+Name: Éléna Schneider
+Gender: Female
+Passport Number: 736656939
+Nationality: SMR
+---
+
+==========
+---
+Name: Simon Bianchi
+Gender: Male
+Passport Number: 446686132
+Nationality: NZL
+---
+
+==========
+---
+Name: Julian Durand
+Gender: Male
+Passport Number: 544473269
+Nationality: SMR
+---
+
+==========
+---
+Name: Hannah Romano
+Gender: Female
+Passport Number: 278900431
+Nationality: PHL
+---
+
+==========
+---
+Name: Anna Carter
+Gender: Female
+Passport Number: 027109672
+Nationality: SGP
+---
+
+==========
+---
+Name: Andjela Brown
+Gender: Female
+Passport Number: 942797612
+Nationality: BEL
+---
+ STOPPED FOR REASON:  The driver has had illegal luggage detected at checkup!
+Vehicle:TYPE: Automobile
+ID: 32
+Number of Passengers: 1
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Marko Tanaka
+Gender: Male
+Passport Number: 609757764
+Nationality: IND
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 32 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:TYPE: Truck
+ID: 2
+Number of Passengers: 2
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Jovan Kozlov
+Gender: Male
+Passport Number: 908805143
+Nationality: CAN
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Matteo Volkov
+Gender: Male
+Passport Number: 195843593
+Nationality: SGP
+---
+ STOPPED FOR REASON:  The vehicle was over the declared cargo limit, thus denied border cross!
+Vehicle:TYPE: Truck
+ID: 19
+Number of Passengers: 3
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Sakura Brown
+Gender: Female
+Passport Number: 142670174
+Nationality: HRV
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Brooklyn Miller
+Gender: Female
+Passport Number: 543871616
+Nationality: UZB
+---
+
+==========
+---
+Name: Scarlett Petrovic
+Gender: Female
+Passport Number: 310706627
+Nationality: ITA
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 19 ] driver has an invalid document and therefore can't cross the border.

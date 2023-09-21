@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane minHeight="500.0" minWidth="350.0" style="-fx-background-color: #0a0a0a;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VehicleQueueController">
+   <center>
+      <BorderPane prefHeight="510.0" prefWidth="410.0" style="-fx-background-color: #0a0a0a;" BorderPane.alignment="CENTER">
+         <center>
+            <VBox alignment="TOP_CENTER" prefHeight="520.0" prefWidth="410.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ListView fx:id="allVehiclesListView" fixedCellSize="32.0" maxWidth="600.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="220.0" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets left="102.5" right="102.5" />
+                     </VBox.margin>
+                  </ListView>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>

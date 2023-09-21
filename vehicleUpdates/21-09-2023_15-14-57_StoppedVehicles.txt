@@ -1,0 +1,23 @@
+Vehicle:TYPE: Truck
+ID: 19
+Number of Passengers: 2
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Mihajlo Fontana
+Gender: Male
+Passport Number: 676929690
+Nationality: KAZ
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Marie Becker
+Gender: Female
+Passport Number: 411614470
+Nationality: TKM
+---
+ STOPPED FOR REASON:  The vehicle was over the declared cargo limit, thus denied border cross!

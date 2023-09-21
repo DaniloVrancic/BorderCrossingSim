@@ -1,0 +1,389 @@
+Vehicle:TYPE: Bus
+ID: 3
+Number of Passengers: 46
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Martina Kruger
+Gender: Female
+Passport Number: 291741548
+Nationality: ZAF
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Aki Muller
+Gender: Female
+Passport Number: 169031337
+Nationality: CHE
+---
+
+==========
+---
+Name: Sora Carter
+Gender: Male
+Passport Number: 522031658
+Nationality: IRL
+---
+
+==========
+---
+Name: Viktor Allen
+Gender: Male
+Passport Number: 013415835
+Nationality: RUS
+---
+
+==========
+---
+Name: Masha Becker
+Gender: Female
+Passport Number: 241302440
+Nationality: IRL
+---
+
+==========
+---
+Name: Lea Kobayashi
+Gender: Female
+Passport Number: 066041183
+Nationality: CAN
+---
+
+==========
+---
+Name: Elena Ristic
+Gender: Female
+Passport Number: 617544571
+Nationality: AZE
+---
+
+==========
+---
+Name: Francesca Weber
+Gender: Female
+Passport Number: 877401106
+Nationality: TJK
+---
+
+==========
+---
+Name: Tim Smith
+Gender: Male
+Passport Number: 359146349
+Nationality: TJK
+---
+
+==========
+---
+Name: Sofia Kato
+Gender: Female
+Passport Number: 777932308
+Nationality: AZE
+---
+
+==========
+---
+Name: Sara Thompson
+Gender: Female
+Passport Number: 720422613
+Nationality: JPN
+---
+
+==========
+---
+Name: Brooklyn Solovyov
+Gender: Female
+Passport Number: 297803142
+Nationality: FRA
+---
+
+==========
+---
+Name: Jovan Simic
+Gender: Male
+Passport Number: 891730050
+Nationality: IRL
+---
+
+==========
+---
+Name: Hina Suzuki
+Gender: Female
+Passport Number: 748721991
+Nationality: AZE
+---
+
+==========
+---
+Name: Baptiste White
+Gender: Male
+Passport Number: 439945715
+Nationality: GBR
+---
+
+==========
+---
+Name: Édouard Vinogradov
+Gender: Male
+Passport Number: 500617464
+Nationality: ITA
+---
+
+==========
+---
+Name: Baptiste Yamada
+Gender: Male
+Passport Number: 423223693
+Nationality: IND
+---
+
+==========
+---
+Name: Ava Neumann
+Gender: Female
+Passport Number: 862234535
+Nationality: TJK
+---
+
+==========
+---
+Name: Benjamin Sokolov
+Gender: Male
+Passport Number: 212711413
+Nationality: ITA
+---
+
+==========
+---
+Name: Stefan Koch
+Gender: Male
+Passport Number: 708253714
+Nationality: BIH
+---
+
+==========
+---
+Name: Sergei Baker
+Gender: Male
+Passport Number: 054530596
+Nationality: MKD
+---
+
+==========
+---
+Name: Ella Schulz
+Gender: Female
+Passport Number: 771461651
+Nationality: KGZ
+---
+
+==========
+---
+Name: Rin Sokolov
+Gender: Female
+Passport Number: 671554028
+Nationality: FRA
+---
+
+==========
+---
+Name: Yuto Thomas
+Gender: Male
+Passport Number: 176073127
+Nationality: SRB
+---
+
+==========
+---
+Name: Camille Baker
+Gender: Female
+Passport Number: 096225993
+Nationality: AUS
+---
+
+==========
+---
+Name: Katarina Garcia
+Gender: Female
+Passport Number: 816270083
+Nationality: IRL
+---
+
+==========
+---
+Name: Anna Durand
+Gender: Female
+Passport Number: 931561312
+Nationality: IRL
+---
+
+==========
+---
+Name: Riccardo Koch
+Gender: Male
+Passport Number: 983017182
+Nationality: IRL
+---
+
+==========
+---
+Name: Laura Volkov
+Gender: Female
+Passport Number: 895180452
+Nationality: RUS
+---
+
+==========
+---
+Name: Alexander Vincent
+Gender: Male
+Passport Number: 021506088
+Nationality: IND
+---
+
+==========
+---
+Name: Sofia Colombo
+Gender: Female
+Passport Number: 483776794
+Nationality: BEL
+---
+
+==========
+---
+Name: Pierre Young
+Gender: Male
+Passport Number: 744324519
+Nationality: MCO
+---
+
+==========
+---
+Name: Sofia Zaitsev
+Gender: Female
+Passport Number: 156370838
+Nationality: HRV
+---
+
+==========
+---
+Name: William Morozov
+Gender: Male
+Passport Number: 965759905
+Nationality: ARM
+---
+
+==========
+---
+Name: Raphael Hall
+Gender: Male
+Passport Number: 970970103
+Nationality: MKD
+---
+
+==========
+---
+Name: Miroslav Petrov
+Gender: Male
+Passport Number: 253675513
+Nationality: ITA
+---
+
+==========
+---
+Name: Eva Kruger
+Gender: Female
+Passport Number: 564386575
+Nationality: PHL
+---
+
+==========
+---
+Name: Zorana Kimura
+Gender: Female
+Passport Number: 075282013
+Nationality: UKR
+---
+
+==========
+---
+Name: Charlotte Vukovic
+Gender: Female
+Passport Number: 370859870
+Nationality: PHL
+---
+
+==========
+---
+Name: Francesca Nelson
+Gender: Female
+Passport Number: 014064676
+Nationality: TKM
+---
+
+==========
+---
+Name: Takumi Adams
+Gender: Male
+Passport Number: 029029853
+Nationality: MNE
+---
+
+==========
+---
+Name: Maxime Shimizu
+Gender: Male
+Passport Number: 680572114
+Nationality: ARM
+---
+
+==========
+---
+Name: Yui Koch
+Gender: Female
+Passport Number: 584987443
+Nationality: GBR
+---
+
+==========
+---
+Name: Layla Yamamoto
+Gender: Female
+Passport Number: 924226615
+Nationality: AZE
+---
+
+==========
+---
+Name: Lina Kato
+Gender: Female
+Passport Number: 016302520
+Nationality: MNE
+---
+
+==========
+---
+Name: Nemanja Rossi
+Gender: Male
+Passport Number: 254463396
+Nationality: HRV
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 3 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:TYPE: Automobile
+ID: 45
+Number of Passengers: 1
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Ben Simon
+Gender: Male
+Passport Number: 079534758
+Nationality: SGP
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 45 ] driver has an invalid document and therefore can't cross the border.
