@@ -16,7 +16,7 @@ public class CustomsTerminalForTrucks extends CustomsTerminal{
 		super();
 	}
 	
-	private static final int TIME_TO_WAIT_AT_CUSTOMS = 1000;
+	private static final int TIME_TO_WAIT_AT_CUSTOMS = 500;
 	
 	public void processVehicle()
 	{
