@@ -2,8 +2,6 @@ package terminals;
 
 import java.util.List;
 
-import vehicles.Automobile;
-import vehicles.Bus;
 import vehicles.Truck;
 
 public class CustomsTerminalForTrucks extends CustomsTerminal{

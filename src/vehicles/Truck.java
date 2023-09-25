@@ -10,10 +10,8 @@ import java.util.List;
 import java.util.Optional;
 import passengers.Passenger;
 import terminals.CustomsTerminal;
-import terminals.CustomsTerminalForOthers;
 import terminals.CustomsTerminalForTrucks;
 import terminals.PoliceTerminal;
-import terminals.PoliceTerminalForOthers;
 import terminals.PoliceTerminalForTrucks;
 import terminals.TerminalStatus;
 import terminals.managers.CustomsTerminalsManager;
@@ -22,6 +20,12 @@ import util.random.RandomGenerator;
 import vehicles.documents.CustomsDocument;
 
 public class Truck extends Vehicle<Passenger> implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6217013059556749987L;
+
 
 	private static int MAX_TRUCK_CAPACITY = 3;
 	
@@ -81,14 +85,16 @@ public class Truck extends Vehicle<Passenger> implements Serializable{
 	        while (assignedPoliceTerminal == null) {
 	            synchronized (availablePoliceTerminals) {
 	                for (PoliceTerminal terminal : availablePoliceTerminals) {
-	                    if (terminal instanceof PoliceTerminalForTrucks && terminal.isAvailable()) 
+	                    if (terminal instanceof PoliceTerminalForTrucks && terminal.isAvailable())
 	                    {
 	                        assignedPoliceTerminal = (PoliceTerminalForTrucks) terminal;
 	                        break;
 	                    }
 	                }
 	                if (assignedPoliceTerminal == null) {
-	                	availablePoliceTerminals.wait();
+	                							
+	                		availablePoliceTerminals.wait();
+						
 	                }
 	            }
 	        }
@@ -98,7 +104,21 @@ public class Truck extends Vehicle<Passenger> implements Serializable{
 	            assignedPoliceTerminal.setVehicleAndRemoveFromQueue();
 	            BorderCrossingGUIController.listViewNeedsRefresh = true;
 	            BorderCrossingGUIController.terminalsNeedRefresh = true;
+	            if(this.isPaused)
+	        	{
+	            	BorderCrossingGUIController.listViewNeedsRefresh = true;
+		            BorderCrossingGUIController.terminalsNeedRefresh = true;
+	        		this.waitVehicle();						    	        		
+	        	}
+	            assignedPoliceTerminal.waitWhileBlocked();
 	            assignedPoliceTerminal.processVehicle();
+	            if(this.isPaused)
+	        	{
+	            	BorderCrossingGUIController.listViewNeedsRefresh = true;
+		            BorderCrossingGUIController.terminalsNeedRefresh = true;
+	        		this.waitVehicle();						    	        		
+	        	}
+	            assignedPoliceTerminal.waitWhileBlocked();
 	        }
 	        //assignedPoliceTerminal.processVehicle(); WAS HERE FOR ALL 3
 
@@ -154,8 +174,27 @@ public class Truck extends Vehicle<Passenger> implements Serializable{
 	    	        synchronized (assignedCustomsTerminal) {
 	    	        	assignedCustomsTerminal.setVehicleAtTerminal(this);
 	    	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
-	    	        	assignedCustomsTerminal.processVehicle();
 	    	        }
+	    	        	if(this.isPaused)
+	    	        	{
+	    	        		BorderCrossingGUIController.listViewNeedsRefresh = true;
+	    		            BorderCrossingGUIController.terminalsNeedRefresh = true;
+	    	        		this.waitVehicle();						    	        		
+	    	        	}
+	    	        	synchronized (assignedCustomsTerminal) {
+	    	        		assignedCustomsTerminal.waitWhileBlocked();
+						}
+	    	        	assignedCustomsTerminal.processVehicle();
+	    	        	if(this.isPaused)
+	    	        	{
+	    	        		BorderCrossingGUIController.listViewNeedsRefresh = true;
+	    		            BorderCrossingGUIController.terminalsNeedRefresh = true;
+	    	        		this.waitVehicle();						    	        		
+	    	        	}
+	    	        	synchronized (assignedCustomsTerminal) {
+	    	        		assignedCustomsTerminal.waitWhileBlocked();
+						}
+	    	        
 	    	        
 	    	        
 	            

@@ -2,14 +2,9 @@ package vehicles.seriazilabledatastructure;
 
 import java.io.*;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.logging.Logger;
 
-import custom_interfaces.Punishable;
 import logger.LoggerManager;
-import passengers.PunishedPassenger;
-import vehicles.PunishedVehicle;
 
 public class SerializableHashMap<K, V> extends HashMap<K, V> implements Serializable {
 
@@ -18,6 +13,7 @@ public class SerializableHashMap<K, V> extends HashMap<K, V> implements Serializ
     private static Logger errorLogger = LoggerManager.getErrorLogger();
 
     private String filePath;
+    
 
     public SerializableHashMap(String filePath) {
         this.filePath = filePath;

@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import custom_interfaces.Punishable;
 import logger.LoggerManager;
 import passengers.PunishedPassenger;
 
@@ -31,7 +30,7 @@ public class SerializableList<T extends PunishedPassenger> extends ArrayList<T> 
 	
 	public String getFilePath()
 	{
-		return this.filePath;
+		return SerializableList.filePath;
 	}
 	
 	@Override

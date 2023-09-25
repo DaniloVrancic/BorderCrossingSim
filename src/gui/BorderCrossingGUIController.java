@@ -15,7 +15,6 @@ import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +24,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -34,25 +34,19 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.StrokeType;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.input.MouseEvent;
 import logger.LoggerManager;
 import passengers.BusPassenger;
 import passengers.Passenger;
-import terminals.CustomsTerminal;
-import terminals.PoliceTerminalForOthers;
 import terminals.Terminal;
 import terminals.managers.CustomsTerminalsManager;
 import terminals.managers.PoliceTerminalsManager;
-import util.random.IdentificationGenerator;
+import terminals.managers.TerminalBlocker;
 import vehicles.Automobile;
 import vehicles.Bus;
-import vehicles.PunishedVehicle;
 import vehicles.Truck;
 import vehicles.Vehicle;
 
@@ -69,6 +63,8 @@ public class BorderCrossingGUIController implements Initializable
 	public static BorderCrossingGUIController getInstance() {
         return instance;
     }
+	
+	private boolean isPaused = false;
 	
 	/////////////IMAGE LOCATIONS////////////////////////////////////////////////
 	String CAR_ICON_LOCATION 	= "carIcon.png";
@@ -99,11 +95,14 @@ public class BorderCrossingGUIController implements Initializable
 	 	@FXML
 	 	public TextArea selectedVehicleInfoTextArea;
 	 	
-	 	@FXML
+		@FXML
 	 	public TextArea relevantEventsTextArea;
 	 	
 	 	@FXML
 	 	public Label durationLabel;
+	 	
+	 	@FXML
+	 	public Button pauseButton;
 	 	
 	 	///////////////////////////////////////////////
 	 	
@@ -323,10 +322,10 @@ public class BorderCrossingGUIController implements Initializable
 			instance = this;
 			
 			selectedVehicle = null;
-			List<Terminal> allTerminals = new ArrayList<>();
+			allTerminals = new ArrayList<>();
 			allTerminals.addAll(PoliceTerminalsManager.availablePoliceTerminals);
 			allTerminals.addAll(CustomsTerminalsManager.availableCustomsTerminals);
-
+			
 			listViewNeedsRefresh = true;
 			terminalsNeedRefresh = true;
 			try  //MAPS THE TERMINALS TO THEIR CORRESPONDING PANES ON THE GUI
@@ -381,7 +380,13 @@ public class BorderCrossingGUIController implements Initializable
 			timeline.setCycleCount(Timeline.INDEFINITE);
 			timeline.play();
 			
-			//SETUP TIMER
+			//SETUP TIMER _ END
+			
+			//SETUP FILE LISTENER
+			Thread fileWatcherThread = new Thread(new TerminalBlocker());
+			fileWatcherThread.start();
+			
+			//SETUP FILE LISTENED _ END
 	        
 	        Thread t = new Thread(new Runnable() {
 
@@ -558,12 +563,55 @@ public class BorderCrossingGUIController implements Initializable
 	        Platform.runLater(() -> {
 	            stage.show();
 	        });
+	        
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	
+	@FXML
+	public void pauseButton_Click()
+	{
+		this.isPaused = !this.isPaused;
+		
+		if(this.isPaused == true)
+		{ //THIS IS WHEN IT ALL PAUSES
+			pauseButton.textProperty().setValue("Unpause");
+			timeline.pause();
+			System.out.println(allTerminals.size());
+			for(Terminal terminal : allTerminals)
+			{
+				synchronized (terminal) {
+					Vehicle<?> vehicleAtTerminal = terminal.getVehicleAtTerminal();
+					if(vehicleAtTerminal != null)
+					{
+							vehicleAtTerminal.setPaused(true);
+					}
+				}
+			}
+			
+			System.out.println("PAUSED VEHICLES");
+		}
+		else
+		{ //THIS IS WHEN IT ALL RESUMES
+			pauseButton.textProperty().setValue("Pause");
+			if(vehicleQueue.size() > 1 || !allTerminalsEmpty(allTerminals)) // if there are any more vehicles left to be processed
+			timeline.play();
+			System.out.println("UNPAUSED VEHICLES");
+			
+			for(Terminal terminal : allTerminals)
+			{
+				synchronized (terminal) {					
+					Vehicle<?> vehicleAtTerminal = terminal.getVehicleAtTerminal();
+					if(vehicleAtTerminal != null)
+					{
+						vehicleAtTerminal.resumeAllFromPause();
+						System.out.println("Vehicle ID: " + vehicleAtTerminal.getVehicleId() + " PAUSED?: " + vehicleAtTerminal.isPaused);
+					}
+				}
+			}
+		}
+	}
 
 }

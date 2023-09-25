@@ -18,6 +18,11 @@ import util.random.RandomGenerator;
 
 public class Bus extends Vehicle<BusPassenger> implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8419859775974951030L;
+	
 	private static int MAX_BUS_CAPACITY = 52;
 	
 	public Bus() {
@@ -80,7 +85,21 @@ public class Bus extends Vehicle<BusPassenger> implements Serializable{
 	        	assignedPoliceTerminal.setVehicleAndRemoveFromQueue();
 	        	BorderCrossingGUIController.listViewNeedsRefresh = true;
 	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
+	        	assignedPoliceTerminal.waitWhileBlocked();
+	        	if(this.isPaused)
+	        	{
+	        		BorderCrossingGUIController.listViewNeedsRefresh = true;
+		            BorderCrossingGUIController.terminalsNeedRefresh = true;
+	        		this.waitVehicle();						    	        		
+	        	}
 	        	assignedPoliceTerminal.processVehicle();
+	        	if(this.isPaused)
+	        	{
+	        		BorderCrossingGUIController.listViewNeedsRefresh = true;
+		            BorderCrossingGUIController.terminalsNeedRefresh = true;
+	        		this.waitVehicle();						    	        		
+	        	}
+	        	assignedPoliceTerminal.waitWhileBlocked();
 	        }
 
 
@@ -138,7 +157,26 @@ public class Bus extends Vehicle<BusPassenger> implements Serializable{
 	    	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
 	    	        }
 	    	        
+	    	        if(this.isPaused)
+	    	        {
+	    	        	BorderCrossingGUIController.listViewNeedsRefresh = true;
+	    	            BorderCrossingGUIController.terminalsNeedRefresh = true;
+	    	        	this.waitVehicle();						    	        		
+	    	        }
+	    	        synchronized (assignedCustomsTerminal) {
+						assignedCustomsTerminal.waitWhileBlocked();
+					}
+	    	        
 	    	        assignedCustomsTerminal.processVehicle();
+	    	        if(this.isPaused)
+		        	{
+		        		this.waitVehicle();						    	        		
+		        	}
+	    	        synchronized (assignedCustomsTerminal) {
+	    	        	BorderCrossingGUIController.listViewNeedsRefresh = true;
+	    	            BorderCrossingGUIController.terminalsNeedRefresh = true;
+						assignedCustomsTerminal.waitWhileBlocked();
+					}
 	            
 	            synchronized (availableCustomsTerminals) {
 	            	if(assignedCustomsTerminal.getStatus().equals(TerminalStatus.VEHICLE_PUNISHED))

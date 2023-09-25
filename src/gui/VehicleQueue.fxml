@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane minHeight="500.0" minWidth="350.0" style="-fx-background-color: #0a0a0a;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VehicleQueueController">
+<BorderPane minHeight="500.0" minWidth="350.0" style="-fx-background-color: #0a0a0a;" xmlns="http://javafx.com/javafx/17.0.8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VehicleQueueController">
    <center>
       <BorderPane prefHeight="510.0" prefWidth="410.0" style="-fx-background-color: #0a0a0a;" BorderPane.alignment="CENTER">
          <center>

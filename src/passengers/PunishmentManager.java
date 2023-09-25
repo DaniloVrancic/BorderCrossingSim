@@ -15,7 +15,7 @@ import vehicles.seriazilabledatastructure.SerializableHashMap;
 public class PunishmentManager {
 
 	private static String PATH_TO_LIST_OF_PUNISHED_SERIALIZED = getTerminalStatusFileName();
-    public static Map<PunishedVehicle, List<PunishedPassenger>> allPunishmentsMap = new SerializableHashMap(PATH_TO_LIST_OF_PUNISHED_SERIALIZED); //Vehicle of the punished person serves as the key to listing all the punished people of the vehicle
+    public static Map<PunishedVehicle, List<PunishedPassenger>> allPunishmentsMap = new SerializableHashMap<>(PATH_TO_LIST_OF_PUNISHED_SERIALIZED); //Vehicle of the punished person serves as the key to listing all the punished people of the vehicle
 
     public static void addPunishment(PunishedPassenger p) {
         PunishedVehicle p_vehicle = new PunishedVehicle(p.vehicleOfPunishedPerson,"");

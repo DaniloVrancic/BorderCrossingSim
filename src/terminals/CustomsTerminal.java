@@ -56,7 +56,10 @@ public abstract class CustomsTerminal extends Terminal{
 		{
 			processVehicleTruck(processingTime);
 		}
-		BorderCrossingGUIController.getInstance().updateRelevantEventsTextArea("Finished processing vehicle(ID): " + this.vehicleAtTerminal.getVehicleId() + " \nType: " + this.vehicleAtTerminal.getClass().getSimpleName());
+		if(BorderCrossingGUIController.getInstance() != null && BorderCrossingGUIController.getInstance().relevantEventsTextArea != null)
+		{
+			BorderCrossingGUIController.getInstance().updateRelevantEventsTextArea("Finished processing vehicle(ID): " + this.vehicleAtTerminal.getVehicleId() + " \nType: " + this.vehicleAtTerminal.getClass().getSimpleName());			
+		}
 		//System.out.println("Finished processing: " + this.vehicleAtTerminal.getVehicleId()); //DELETE LATER
 	}
 	

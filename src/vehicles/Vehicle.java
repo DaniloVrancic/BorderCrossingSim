@@ -6,13 +6,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
 
-import custom_interfaces.Punishable;
 import exceptions.IllegalNumberOfPassengers;
 import logger.LoggerManager;
 import passengers.Passenger;
 import terminals.PoliceTerminal;
-import terminals.PoliceTerminalForOthers;
-import terminals.PoliceTerminalForTrucks;
 import util.random.IdentificationGenerator;
 
 /**
@@ -30,16 +27,20 @@ import util.random.IdentificationGenerator;
  * @param passengers a list containing instances of the passenger type representing all passengers aboard the vehicle (excluding the driver).
  */
 abstract public class Vehicle<T extends Passenger> extends Thread implements Serializable{
-    //////////////////////// FIELDS /////////////////////////////
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7882185202373840111L;
+	//////////////////////// FIELDS /////////////////////////////
     protected static final Logger infoLogger = LoggerManager.getInfoLogger();
     protected static final Logger errorLogger = LoggerManager.getErrorLogger();
     ////////////////////// LIST OF POLICE TERMINALS THAT WORK WITH THE VEHICLES
-    transient protected List<PoliceTerminal> availablePoliceTerminals;
+    public static Object pauseObject = new Object();
     ///////////////////////////////////////////////////////////////////////////
 
     transient protected int numOfPassengers;
 
-    transient public T driver;
+    public T driver;
     transient public List<T> passengers;
     
     protected int id;
@@ -50,6 +51,13 @@ abstract public class Vehicle<T extends Passenger> extends Thread implements Ser
     public int getVehicleId() {
 		return id;
 	}
+    
+    public boolean isPaused = false;
+    
+    public synchronized void setPaused(boolean isPaused)
+    {
+    	this.isPaused = isPaused;
+    }
 
 	protected static IdentificationGenerator generator = new IdentificationGenerator(); //Used for the generation of random Passengers
 	protected static int TIME_TO_WAIT_AFTER_PUNISHMENT = 750;
@@ -67,7 +75,6 @@ abstract public class Vehicle<T extends Passenger> extends Thread implements Ser
      * @param availableTerminals
      */
     public Vehicle(List<PoliceTerminal> availableTerminals) {
-        this.availablePoliceTerminals = availableTerminals;
         passengers = new LinkedList<T>();
         this.id = ++numberOfVehiclesCreated;
         this.passed = false;
@@ -130,7 +137,10 @@ abstract public class Vehicle<T extends Passenger> extends Thread implements Ser
     	sb.append("\n");
     	sb.append("ID: "); sb.append(this.getVehicleId());
     	sb.append("\n");
-    	sb.append("Number of Passengers: "); sb.append(this.passengers.size() + 1);
+    	if(this.passengers != null)
+    	{    		
+    		sb.append("Number of Passengers: "); sb.append(this.passengers.size() + 1);
+    	}
     	sb.append("\n-------------\n");
     	sb.append("PASSENGERS INFO:");
     	sb.append("\n==========\n");
@@ -173,7 +183,33 @@ abstract public class Vehicle<T extends Passenger> extends Thread implements Ser
         return Objects.hash(this.getVehicleId());
     }
     
+    public void waitVehicle()
+    {
+    	try
+    	{
+    		
+    	synchronized (pauseObject) {
+    		while(this.isPaused == true)
+    		{
+    			pauseObject.wait();    			
+    		}
+    		
+    		
+									}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
     
+    
+    public void resumeAllFromPause()
+    {
+    	synchronized (pauseObject) {
+    		this.isPaused = false;
+    		pauseObject.notifyAll();
+		}
+    }
     
    
 

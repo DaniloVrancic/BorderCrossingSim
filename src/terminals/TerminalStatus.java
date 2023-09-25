@@ -5,6 +5,5 @@ public enum TerminalStatus {
 	AVAILABLE,
 	VEHICLE_PUNISHED,
 	VEHICLE_PASSED,
-	BLOCKED,
 	PROCESSING;
 }

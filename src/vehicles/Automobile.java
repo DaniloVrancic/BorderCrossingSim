@@ -18,6 +18,11 @@ import util.random.RandomGenerator;
 
 public class Automobile extends Vehicle<Passenger> implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2751190471417448193L;
+	
 	private static int MAX_AUTOMOBILE_CAPACITY = 5;
 	
 	public Automobile() {
@@ -84,7 +89,21 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 	        	assignedPoliceTerminal.setVehicleAndRemoveFromQueue();
 	        	BorderCrossingGUIController.listViewNeedsRefresh = true;
 	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
+	        	if(this.isPaused)
+	        	{
+	        		BorderCrossingGUIController.listViewNeedsRefresh = true;
+		            BorderCrossingGUIController.terminalsNeedRefresh = true;
+	        		this.waitVehicle();						    	        		
+	        	}
+	        	assignedPoliceTerminal.waitWhileBlocked();
 	        	assignedPoliceTerminal.processVehicle();
+	        	if(this.isPaused)
+	        	{
+	        		BorderCrossingGUIController.listViewNeedsRefresh = true;
+		            BorderCrossingGUIController.terminalsNeedRefresh = true;
+	        		this.waitVehicle();						    	        		
+	        	} //Maybe delete?
+	        	assignedPoliceTerminal.waitWhileBlocked();
 	        }
 
 
@@ -100,6 +119,7 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 	        		{
 	        			errorLogger.severe(ex.getMessage());
 	        		}
+	        		
 	        		assignedPoliceTerminal.setStatus(TerminalStatus.AVAILABLE);
      	        	assignedPoliceTerminal.setVehicleAtTerminal(null);
      	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
@@ -141,8 +161,25 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 	    	        	assignedCustomsTerminal.setVehicleAtTerminal(this);
 	    	        	BorderCrossingGUIController.terminalsNeedRefresh = true;
 	    	        }
-	    	        
+	    	        if(this.isPaused)
+	    	        {
+	    	        	BorderCrossingGUIController.listViewNeedsRefresh = true;
+	    	            BorderCrossingGUIController.terminalsNeedRefresh = true;
+	    	        	this.waitVehicle();						    	        		
+	    	        }
+	    	        synchronized (assignedCustomsTerminal) {
+	    	        	assignedCustomsTerminal.waitWhileBlocked();						
+	    	        }				
 	    	        assignedCustomsTerminal.processVehicle();
+	    	        if(this.isPaused)
+	    	        {
+	    	        	BorderCrossingGUIController.listViewNeedsRefresh = true;
+	    	            BorderCrossingGUIController.terminalsNeedRefresh = true;
+	    	        	this.waitVehicle();						    	        		
+	    	        } // maybe delete?
+	    	        synchronized (assignedCustomsTerminal) {
+	    	        	assignedCustomsTerminal.waitWhileBlocked();						
+	    	        }
 	            
 	            synchronized (availableCustomsTerminals) {
 	            	if(assignedCustomsTerminal.getStatus().equals(TerminalStatus.VEHICLE_PUNISHED))
