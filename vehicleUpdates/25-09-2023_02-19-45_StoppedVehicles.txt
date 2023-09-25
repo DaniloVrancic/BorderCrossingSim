@@ -1,0 +1,45 @@
+Vehicle:TYPE: Truck
+ID: 19
+Number of Passengers: 1
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Maria Lee
+Gender: Female
+Passport Number: 274099753
+Nationality: SRB
+---
+ STOPPED FOR REASON:  The vehicle was over the declared cargo limit, thus denied border cross!
+Vehicle:TYPE: Automobile
+ID: 28
+Number of Passengers: 3
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Tobias Johnson
+Gender: Male
+Passport Number: 519679324
+Nationality: IRL
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Emanuele Leroy
+Gender: Male
+Passport Number: 890512276
+Nationality: TKM
+---
+
+==========
+---
+Name: Gaia White
+Gender: Female
+Passport Number: 680463014
+Nationality: JPN
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 28 ] driver has an invalid document and therefore can't cross the border.

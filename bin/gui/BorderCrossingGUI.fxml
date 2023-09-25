@@ -13,13 +13,13 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BorderCrossingGUIController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/17.0.8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BorderCrossingGUIController">
    <center>
       <AnchorPane prefWidth="81.0" style="-fx-min-width: 60%;" BorderPane.alignment="BOTTOM_CENTER">
          <children>
             <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="605.0" prefWidth="503.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <HBox alignment="CENTER" maxHeight="200.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #0000AA;" VBox.vgrow="SOMETIMES">
+                  <HBox alignment="CENTER" maxHeight="200.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #2580c0;" VBox.vgrow="SOMETIMES">
                      <children>
                         <Pane fx:id="customsTerminal1Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectVehicleFromTerminal" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-width: 0.8;" HBox.hgrow="NEVER">
                            <HBox.margin>
@@ -34,7 +34,7 @@
                         <Pane fx:id="customsTerminalTrucksPane" layoutX="10.0" layoutY="64.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectVehicleFromTerminal" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-width: 0.8;" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" maxHeight="200.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #00AA00;" VBox.vgrow="SOMETIMES">
+                  <HBox alignment="CENTER" maxHeight="200.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #256090;" VBox.vgrow="SOMETIMES">
                      <children>
                         <Pane fx:id="policeTerminal1Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectVehicleFromTerminal" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-width: 0.8;">
                            <HBox.margin>
@@ -49,7 +49,7 @@
                         <Pane fx:id="policeTerminalTrucksPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectVehicleFromTerminal" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-width: 0.8;" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="205.0" prefWidth="551.0" style="-fx-background-color: #AA0000;" VBox.vgrow="SOMETIMES">
+                  <HBox alignment="CENTER" prefHeight="205.0" prefWidth="551.0" style="-fx-background-color: #184060;" VBox.vgrow="SOMETIMES">
                      <children>
                         <ListView fx:id="topFiveListView" maxHeight="-Infinity" onMouseClicked="#selectVehicleFromList" prefHeight="190.0" prefWidth="200.0" HBox.hgrow="NEVER" />
                      </children>
@@ -115,7 +115,7 @@
                         <Font name="Ebrima" size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="pauseButton" alignment="CENTER" layoutX="386.0" layoutY="8.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" text="Pause" wrapText="true">
+                  <Button fx:id="pauseButton" alignment="CENTER" layoutX="386.0" layoutY="8.0" mnemonicParsing="false" onAction="#pauseButton_Click" prefHeight="30.0" prefWidth="140.0" text="Pause" wrapText="true">
                      <font>
                         <Font name="Ebrima" size="14.0" />
                      </font>

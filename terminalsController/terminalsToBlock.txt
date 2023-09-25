@@ -1,5 +1,5 @@
+BlOCKED=C,1,1
 BLOCKED=P,0,0,1
-//BlOCKED=C,0,1
 
-//P,0,0,1
+//P,0,0,1/ss
 //C,0,1

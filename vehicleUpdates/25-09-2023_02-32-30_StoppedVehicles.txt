@@ -1,0 +1,62 @@
+Vehicle:TYPE: Truck
+ID: 14
+Number of Passengers: 3
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Branimir Kostic
+Gender: Male
+Passport Number: 145066816
+Nationality: KGZ
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Abigail Pavlovic
+Gender: Female
+Passport Number: 623915351
+Nationality: BLR
+---
+
+==========
+---
+Name: Baptiste Rossi
+Gender: Male
+Passport Number: 624818186
+Nationality: IND
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 14 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:TYPE: Truck
+ID: 21
+Number of Passengers: 3
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Luis Shimizu
+Gender: Male
+Passport Number: 340795915
+Nationality: KGZ
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Eva Todorovic
+Gender: Female
+Passport Number: 598582326
+Nationality: CAN
+---
+
+==========
+---
+Name: Julian Greco
+Gender: Male
+Passport Number: 852773914
+Nationality: TKM
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 21 ] driver has an invalid document and therefore can't cross the border.

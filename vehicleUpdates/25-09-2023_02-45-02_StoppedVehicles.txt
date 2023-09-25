@@ -1,0 +1,78 @@
+Vehicle:TYPE: Automobile
+ID: 24
+Number of Passengers: 5
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Yuka Petrovic
+Gender: Female
+Passport Number: 356364566
+Nationality: SGP
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Bianca Allen
+Gender: Female
+Passport Number: 081200685
+Nationality: AUS
+---
+
+==========
+---
+Name: Sergei Lombardi
+Gender: Male
+Passport Number: 041075814
+Nationality: BLR
+---
+
+==========
+---
+Name: Lena Nikolic
+Gender: Female
+Passport Number: 524120128
+Nationality: USA
+---
+
+==========
+---
+Name: Ethan Kobayashi
+Gender: Male
+Passport Number: 240401492
+Nationality: PHL
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 24 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:TYPE: Truck
+ID: 17
+Number of Passengers: 3
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Fabian De Luca
+Gender: Male
+Passport Number: 060198153
+Nationality: JPN
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Laura Fontana
+Gender: Female
+Passport Number: 256742810
+Nationality: AUS
+---
+
+==========
+---
+Name: Greta Moretti
+Gender: Female
+Passport Number: 821316001
+Nationality: AUS
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 17 ] driver has an invalid document and therefore can't cross the border.
