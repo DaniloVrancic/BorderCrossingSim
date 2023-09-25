@@ -2,14 +2,14 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-09-25T03:23:22.414393Z</date>
-  <millis>1695612202414</millis>
-  <nanos>393000</nanos>
-  <sequence>405</sequence>
+  <date>2023-09-25T04:16:34.106658900Z</date>
+  <millis>1695615394106</millis>
+  <nanos>658900</nanos>
+  <sequence>451</sequence>
   <logger>ErrorLogger</logger>
   <level>SEVERE</level>
   <class>vehicles.seriazilabledatastructure.SerializableHashMap</class>
   <method>deserialize</method>
-  <thread>80</thread>
-  <message>&lt;Deserialization failure&gt;: serialization\passengers\25-09-2023_05-23-22_PunishedPassengers.ser (The system cannot find the file specified)</message>
+  <thread>74</thread>
+  <message>&lt;Deserialization failure&gt;: serialization\passengers\25-09-2023_06-16-34_PunishedPassengers.ser (The system cannot find the file specified)</message>
 </record>

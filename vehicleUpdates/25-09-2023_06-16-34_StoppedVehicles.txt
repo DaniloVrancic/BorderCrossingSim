@@ -1,0 +1,125 @@
+Vehicle:TYPE: Automobile
+ID: 45
+Number of Passengers: 5
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Emma Kimura
+Gender: Female
+Passport Number: 417485777
+Nationality: JPN
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Sakura Schröder
+Gender: Female
+Passport Number: 306079734
+Nationality: CAN
+---
+
+==========
+---
+Name: Matthias Weber
+Gender: Male
+Passport Number: 043251862
+Nationality: USA
+---
+
+==========
+---
+Name: Jules Ricci
+Gender: Male
+Passport Number: 004100171
+Nationality: ITA
+---
+
+==========
+---
+Name: Milica Yamamoto
+Gender: Female
+Passport Number: 791865174
+Nationality: SRB
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 45 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:TYPE: Automobile
+ID: 26
+Number of Passengers: 5
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Marko Ricci
+Gender: Male
+Passport Number: 752584052
+Nationality: NZL
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Sofia Nakamura
+Gender: Female
+Passport Number: 953621278
+Nationality: KAZ
+---
+
+==========
+---
+Name: Francesca Ricci
+Gender: Female
+Passport Number: 834546017
+Nationality: BLR
+---
+
+==========
+---
+Name: Nana White
+Gender: Female
+Passport Number: 672332794
+Nationality: MCO
+---
+
+==========
+---
+Name: Vuk Djor?evic
+Gender: Male
+Passport Number: 356747175
+Nationality: CHE
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 26 ] driver has an invalid document and therefore can't cross the border.
+Vehicle:TYPE: Truck
+ID: 5
+Number of Passengers: 3
+-------------
+PASSENGERS INFO:
+==========
+DRIVER:
+---
+Name: Matteo Roux
+Gender: Male
+Passport Number: 199338652
+Nationality: JPN
+---
+OTHER PASSENGERS: 
+
+==========
+---
+Name: Eric Kozlov
+Gender: Male
+Passport Number: 646061287
+Nationality: UKR
+---
+
+==========
+---
+Name: Eleanor Ilic
+Gender: Female
+Passport Number: 292932663
+Nationality: BEL
+---
+ STOPPED FOR REASON:  The vehicle(id): [ 5 ] driver has an invalid document and therefore can't cross the border.
