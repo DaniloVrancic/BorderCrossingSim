@@ -4,6 +4,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
+
+import logger.LoggerManager;
 
 /**
  * Overrides the original functionality of put, adding 
@@ -14,6 +17,8 @@ import java.util.Map;
  */
 public class WriteToFileHashMap<K, V> extends HashMap<K, V> {
 
+	Logger errorLogger = LoggerManager.getErrorLogger();
+	
     /**
 	 * 
 	 */
@@ -40,6 +45,7 @@ public class WriteToFileHashMap<K, V> extends HashMap<K, V> {
             }
             clear();
         } catch (IOException e) {
+        	errorLogger.severe("<IOException during writing HashMap to File>: " + e.getLocalizedMessage());
             e.printStackTrace();
         }
     }

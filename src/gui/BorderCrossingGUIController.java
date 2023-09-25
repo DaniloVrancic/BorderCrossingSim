@@ -57,12 +57,16 @@ public class BorderCrossingGUIController implements Initializable
 	/// VALUES THAT SERVE OPTIMIZATION ---
 	public static boolean listViewNeedsRefresh;
 	public static boolean terminalsNeedRefresh;
+	private static final String INCIDENTS_ICON_URL = "https://shorturl.at/bgHI0";
+	private static final String VEHICLEQUEUE_ICON_URL  = "https://shorturl.at/dlmz0";
 	/// VALUES THAT SERVE OPTIMIZATION ---
 	/// SINGLETON PATTERN - FOR ACCESSING THE COMPONENTS FROM OTHER CLASSES -----------
 	private static BorderCrossingGUIController instance;
 	public static BorderCrossingGUIController getInstance() {
         return instance;
     }
+	
+	Logger errorLogger = LoggerManager.getErrorLogger();
 	
 	private boolean isPaused = false;
 	
@@ -347,8 +351,7 @@ public class BorderCrossingGUIController implements Initializable
 			} //end of try block
 			catch (Exception ex)
 			{
-				Logger errorLogger = LoggerManager.getErrorLogger();
-				errorLogger.severe(ex.getMessage());
+				errorLogger.severe("<AN EXCEPTION OCCURED>:" + ex.getMessage());
 			} //end of catch block
 			
 			
@@ -368,7 +371,7 @@ public class BorderCrossingGUIController implements Initializable
 		} //end of try-block
 		catch(Exception ex)
 		{
-			System.out.println(ex.getMessage());
+			errorLogger.severe("<AN EXCEPTION OCCURED:>" + ex.getMessage());
 		}
 			
 			 // Initialize the ListView with the top 5 vehicles from the queue
@@ -405,9 +408,8 @@ public class BorderCrossingGUIController implements Initializable
 									return;
 								}
 							
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+						} catch (InterruptedException ex) {
+							errorLogger.severe("<INTERRUPTED EXCEPTION OCCURED>:" + ex.getMessage());
 						}
 					}
 					
@@ -532,7 +534,10 @@ public class BorderCrossingGUIController implements Initializable
 	        Stage stage = new Stage();
 	        stage.setTitle("Vehicle Queue");
 	        stage.setScene(new Scene(root));
-
+	        
+	        Image vehicleQueue_icon = new Image(VEHICLEQUEUE_ICON_URL);
+	        if(vehicleQueue_icon != null)
+	        	stage.getIcons().add(vehicleQueue_icon);
 	        // Set the controller for the new window
 	        //VehicleQueueController controller = loader.getController();
 	        //controller.initialize(null,null);
@@ -540,8 +545,9 @@ public class BorderCrossingGUIController implements Initializable
 	            stage.show();
 	        });
 	        
-	    } catch (IOException e) {
-	        e.printStackTrace();
+	    } catch (IOException ex) {
+	    	errorLogger.severe("<AN IOEXCEPTION OCCURED>: " + ex.getMessage());
+	        ex.printStackTrace();
 	    }
 	}
 	
@@ -557,6 +563,13 @@ public class BorderCrossingGUIController implements Initializable
 			stage.setTitle("Incidents Report");
 			stage.setScene(new Scene(root));
 			
+			Image incidents_icon = new Image(INCIDENTS_ICON_URL);
+			
+			if(incidents_icon != null)
+			{
+				stage.getIcons().add(incidents_icon);
+			}
+			
 			//Set the controller for the new window
 	        IncidentsReportController controller = loader.getController();
 	        controller.initialize(null,null);
@@ -565,7 +578,7 @@ public class BorderCrossingGUIController implements Initializable
 	        });
 	        
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			errorLogger.severe("<AN IOException occured>: " + e.getLocalizedMessage());
 			e.printStackTrace();
 		}
 	}
@@ -579,7 +592,6 @@ public class BorderCrossingGUIController implements Initializable
 		{ //THIS IS WHEN IT ALL PAUSES
 			pauseButton.textProperty().setValue("Unpause");
 			timeline.pause();
-			System.out.println(allTerminals.size());
 			for(Terminal terminal : allTerminals)
 			{
 				synchronized (terminal) {
@@ -591,14 +603,14 @@ public class BorderCrossingGUIController implements Initializable
 				}
 			}
 			
-			System.out.println("PAUSED VEHICLES");
+			
 		}
 		else
 		{ //THIS IS WHEN IT ALL RESUMES
 			pauseButton.textProperty().setValue("Pause");
 			if(vehicleQueue.size() > 1 || !allTerminalsEmpty(allTerminals)) // if there are any more vehicles left to be processed
 			timeline.play();
-			System.out.println("UNPAUSED VEHICLES");
+			
 			
 			for(Terminal terminal : allTerminals)
 			{
@@ -607,7 +619,6 @@ public class BorderCrossingGUIController implements Initializable
 					if(vehicleAtTerminal != null)
 					{
 						vehicleAtTerminal.resumeAllFromPause();
-						System.out.println("Vehicle ID: " + vehicleAtTerminal.getVehicleId() + " PAUSED?: " + vehicleAtTerminal.isPaused);
 					}
 				}
 			}

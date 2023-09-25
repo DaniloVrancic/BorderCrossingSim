@@ -219,6 +219,7 @@ public class Truck extends Vehicle<Passenger> implements Serializable{
 		            availableCustomsTerminals.notify();
 		        }
 	    } catch (InterruptedException e) {
+	    	errorLogger.severe("<INTERRUPTED EXCEPTION OCCURED>: " + e.getLocalizedMessage());
 	        e.printStackTrace();
 	    }
 	}

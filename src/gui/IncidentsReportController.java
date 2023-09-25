@@ -44,10 +44,6 @@ public class IncidentsReportController implements Initializable{
 		incidentTextArea.clear();
 		File directory = new File(SERIALIZATION_FILES_DIRECTORY);
 		files = directory.listFiles();
-		for(File file : files)
-		{
-			System.out.println(file);
-		}
 		TreeItem<Serializable> root = new TreeItem<>("List Report"); //Not good, but for testing purposes
 		TreeItem<Serializable> currentInstanceTreeItem = null; //Data retrieved from the current application instance, from RAM
 		Map<PunishedVehicle, List<PunishedPassenger>> deserializedHashMap = PunishmentManager.allPunishmentsMap;

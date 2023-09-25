@@ -77,10 +77,8 @@ public abstract class PoliceTerminal extends Terminal{
 	public void processVehicle(int processingTime)
 	{
 		status = TerminalStatus.PROCESSING;
-		//System.out.println("Processing vehicle: " + this.vehicleAtTerminal.getClass().getSimpleName() + " vehicle_id: " +this.vehicleAtTerminal.getVehicleId() + " ON POLICE TERMINAL: " + this.id);
 		try
 		{
-			//System.out.println("Processing Driver: " + this.vehicleAtTerminal.driver.getFullName() + " of vehicle id:" + this.vehicleAtTerminal.getVehicleId() + " TYPE: (" + this.getVehicleAtTerminal().getClass().getSimpleName() + " )"); //DELETE LATER, TESTING PURPOSES
 			boolean driverPassed = processDriver(this.vehicleAtTerminal.driver, processingTime);
 			
 			if(!driverPassed)
@@ -90,7 +88,6 @@ public abstract class PoliceTerminal extends Terminal{
 				PunishmentManager.addPunishment(new PunishedVehicle(this.vehicleAtTerminal, VEHICLE_DRIVER_HAS_INVALID_DOCUMENT_EXPLANATION())); //First add the vehicle that has been punished to the punishment map list
 				PunishmentManager.addPunishment(new PunishedPassenger(this.vehicleAtTerminal.driver, DRIVER_IDENTIFICATION_INVALID_EXPLANATION(), this.vehicleAtTerminal)); //Then add the driver as the passenger to that subsection
 				StoppedVehicleManager.addStoppedVehicle(this.vehicleAtTerminal, VEHICLE_DRIVER_HAS_INVALID_DOCUMENT_EXPLANATION());
-				//vehicleAtTerminal = null; //MAYBE DELETE!?
 				status = TerminalStatus.VEHICLE_PUNISHED; //Change the status of the terminal to indicate the vehicle didn't pass
 				
 				return; //No need to continue processing after this if the driver is evicted
@@ -135,7 +132,6 @@ public abstract class PoliceTerminal extends Terminal{
 		List<Passenger> passengersToRemove = new ArrayList<>();
 		for(Passenger p : vehicle.passengers)
 		{
-			//System.out.println("PROCESSING PASSENGER: " + p.getFullName() + "FROM VEHICLE (ID) :" + this.vehicleAtTerminal.getVehicleId() + " TYPE: " + this.vehicleAtTerminal.getClass().getSimpleName()); //DELETE LATER, TESTING PURPOSES
 			Thread.sleep(processingTime);
 			if(Math.random() <= 0.03) // Chance of 3%
 			{

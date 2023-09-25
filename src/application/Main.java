@@ -6,13 +6,14 @@ import javafx.stage.Stage;
 import vehicles.Vehicle;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application {
 	public static BlockingQueue<Vehicle<?>> vehicleQueue;
 
-	
+	String APPLICATION_ICON_URL = "https://shorturl.at/klKX9";
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -21,8 +22,13 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Border Crossing Simulator");
-			primaryStage.show();
 			
+			Image icon = new Image(APPLICATION_ICON_URL);
+			if(icon != null)
+		    primaryStage.getIcons().add(icon);
+	
+	        
+			primaryStage.show();
 		}
 		catch(Exception ex)
 		{

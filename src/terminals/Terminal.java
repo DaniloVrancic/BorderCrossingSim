@@ -16,8 +16,9 @@
 		    protected Vehicle<?> vehicleAtTerminal;
 		    protected int id;
 		    protected  ReentrantLock lock = new ReentrantLock();
-		    protected ReentrantLock blockLock = new ReentrantLock();
+		    public Object pauseObject = new Object(); //Every object has their own pauseObject
 		    protected boolean isBlocked;
+			protected boolean isPaused;
 		    
 		    
 		
@@ -59,90 +60,44 @@
 		
 		
 		    public void setBlocked(boolean blocked) {
-		        this.isBlocked = blocked;
-		        if (isBlocked) {
-		        	blockLock.tryLock();
-		            try {
-		                // Notify any waiting threads
-		            	synchronized (blockLock) {						
-		            		blockLock.notifyAll();
-						}
-		            	synchronized (this) {
-							this.notifyAll();
-						}
-		            } finally {
-		                //lock.unlock();
-		            }
-		        }
-		        if(isBlocked == false)
-		        {
-		        	synchronized (blockLock) {
-		        		if(blockLock.isLocked())
-		        		{	        			
-		        			blockLock.unlock();
-		        		}
-		        		blockLock.notifyAll();
-		        	}
-		        		synchronized (this) {
-		        			this.notifyAll();						
-						}
-		        }
+		    	synchronized (this) {
+		    		this.isBlocked = blocked;					
+				}
 		    }
 		    
 		    public boolean isBlocked()
 		    {
-		    	
-						return this.isBlocked;
+		    	synchronized (this) {
+		    		return this.isBlocked;					
+				}
 				
 		    }
 		    
 		    public void unblockTerminal() {
-		        synchronized (this) {
+		        synchronized (pauseObject) {
 		            this.isBlocked = false;
-		           
-		                this.notifyAll(); // Moved inside synchronized block
-		            
+		            pauseObject.notify();
 		        }
-		        synchronized (blockLock) {
-		        	blockLock.notifyAll();
-					release();
-				}
 		    }
 	
-	
-		    
-		    
 		    public void waitWhileBlocked()
 		    {
-		    	try {
-		    		synchronized (this) {
-		    			while(this.isBlocked == true)
-		    			{
-		    				synchronized (blockLock) {
-		    					System.out.println("VEHICLE: " + this.getVehicleAtTerminal().getVehicleId() + " IS WAITING AT TERMINAL FROZen");
-		    					blockLock.wait();
-		    					System.out.println("VEHICLE: " + this.getVehicleAtTerminal().getVehicleId() + " TRYING AGAIN");
-		    				}
-		    				
-		    			}
-						
+		    	try
+		    	{
+		    	synchronized (pauseObject){
+		    		while(this.isBlocked == true)
+		    		{
+		    			System.out.println("THREAD: " + Thread.currentThread().threadId() + " HIT THE waitWhileBlocked() method BEFORE wait");
+		    			pauseObject.wait();
+		    			System.out.println("THREAD: " + Thread.currentThread().threadId() + " HIT THE waitWhileBlocked() method AFTER wait");
+		    		}
 					}
-		    	}
-					 catch (InterruptedException e) {
+					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
-						errorLogger.severe(e.getLocalizedMessage());
-					 }
-		    }
+						e.printStackTrace();
+					}
+				}
 		    
-		    public void exitWhileBlocked()
-		    {
-		    	synchronized (this) {
-		    		this.isBlocked = false;
-				}
-		    	synchronized (blockLock) {
-		    		blockLock.notifyAll();				
-				}
-		    }
 		    
 		    public boolean isAvailable() {
 		        return lock.tryLock(); // Returns true if the lock is available, false otherwise
@@ -152,7 +107,7 @@
 		     * Releases the lock from being used up by this object.
 		     */
 		    public void release() {
-		    	synchronized (lock) {
+		    	synchronized (this) {
 		    		if(lock.isLocked())
 		    		{
 		    			lock.unlock();

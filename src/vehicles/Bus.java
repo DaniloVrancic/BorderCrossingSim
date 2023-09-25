@@ -201,6 +201,7 @@ public class Bus extends Vehicle<BusPassenger> implements Serializable{
 	        
 	        
 	    } catch (InterruptedException e) {
+	    	errorLogger.severe("<INTERRUPTED EXCEPTION OCCURED>: " + e.getLocalizedMessage());
 	        e.printStackTrace();
 	    }
 	}

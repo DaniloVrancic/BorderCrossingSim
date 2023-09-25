@@ -52,11 +52,16 @@ abstract public class Vehicle<T extends Passenger> extends Thread implements Ser
 		return id;
 	}
     
-    public boolean isPaused = false;
+    protected boolean isPaused = false;
     
     public synchronized void setPaused(boolean isPaused)
     {
     	this.isPaused = isPaused;
+    }
+    
+    public boolean isPaused()
+    {
+    	return this.isPaused;
     }
 
 	protected static IdentificationGenerator generator = new IdentificationGenerator(); //Used for the generation of random Passengers
@@ -197,7 +202,7 @@ abstract public class Vehicle<T extends Passenger> extends Thread implements Ser
     		
 									}
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				errorLogger.severe("<INTERRUPTED EXCEPTION OCCURED>: " +e.getLocalizedMessage());
 				e.printStackTrace();
 			}
 		}

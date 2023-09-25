@@ -102,7 +102,7 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 	        		BorderCrossingGUIController.listViewNeedsRefresh = true;
 		            BorderCrossingGUIController.terminalsNeedRefresh = true;
 	        		this.waitVehicle();						    	        		
-	        	} //Maybe delete?
+	        	}
 	        	assignedPoliceTerminal.waitWhileBlocked();
 	        }
 
@@ -167,16 +167,15 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 	    	            BorderCrossingGUIController.terminalsNeedRefresh = true;
 	    	        	this.waitVehicle();						    	        		
 	    	        }
-	    	        synchronized (assignedCustomsTerminal) {
-	    	        	assignedCustomsTerminal.waitWhileBlocked();						
-	    	        }				
+	    	        
+	    	        	assignedCustomsTerminal.waitWhileBlocked();
 	    	        assignedCustomsTerminal.processVehicle();
 	    	        if(this.isPaused)
 	    	        {
 	    	        	BorderCrossingGUIController.listViewNeedsRefresh = true;
 	    	            BorderCrossingGUIController.terminalsNeedRefresh = true;
 	    	        	this.waitVehicle();						    	        		
-	    	        } // maybe delete?
+	    	        }
 	    	        synchronized (assignedCustomsTerminal) {
 	    	        	assignedCustomsTerminal.waitWhileBlocked();						
 	    	        }
@@ -203,6 +202,7 @@ public class Automobile extends Vehicle<Passenger> implements Serializable{
 		        }
 	        
 	    } catch (InterruptedException e) {
+	    	errorLogger.severe("<INTERRUPTED EXCEPTION OCCURED>: " + e.getLocalizedMessage());
 	        e.printStackTrace();
 	    }
 	}
